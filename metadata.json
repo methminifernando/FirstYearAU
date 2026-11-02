@@ -1,0 +1,6 @@
+{
+  "name": "FirstYear AU - Settle into Australia with Confidence",
+  "description": "Step-by-step settlement platform for new migrants and international students in Australia. Week-by-week guides for SIM, banking, TFN, renting, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
