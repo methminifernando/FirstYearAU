@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Menu, X, ChevronDown, Compass, BookOpen, ShieldCheck, 
-  HelpCircle, Sparkles, CheckCircle2
+  Menu, X, ChevronDown, Compass, CheckCircle2, ArrowRight
 } from 'lucide-react';
 
 interface NavItem {
@@ -70,7 +69,7 @@ const NAV_STRUCTURE: NavItem[] = [
   },
   {
     id: 'id',
-    label: 'ID and Paperwork',
+    label: 'ID & Paperwork',
     path: 'id-and-paperwork/proof-of-age',
     children: [
       { label: 'Proof of Age card', path: 'id-and-paperwork/proof-of-age', desc: '18+ Photo Card to safely leave your passport home' },
@@ -80,7 +79,7 @@ const NAV_STRUCTURE: NavItem[] = [
   },
   {
     id: 'pricing',
-    label: 'Membership & Pricing',
+    label: 'Pricing',
     path: 'pricing/compare',
     children: [
       { label: 'Free plan and checklist', path: 'pricing/free', desc: 'Free guides & printable PDF checklist' },
@@ -104,10 +103,10 @@ const NAV_STRUCTURE: NavItem[] = [
 interface NavbarProps {
   currentPath: string;
   onNavigate: (path: string) => void;
-  onOpenGlossary: () => void;
+  onOpenGlossary?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenGlossary }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
@@ -140,59 +139,43 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenG
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E0ECE6] shadow-xs select-none" ref={navRef}>
-      {/* Top Banner with Aussie Glossary and Stage Fast-Switcher */}
-      <div className="bg-[#1B4D3E] px-4 py-1.5 text-xs text-white">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 bg-[#E9C46A] text-[#1B3A34] px-2 py-0.5 rounded-full text-[11px] font-bold">
-              <Sparkles className="w-3 h-3 text-[#1B3A34]" /> Australia Settlement
-            </span>
-            <span className="hidden sm:inline text-emerald-100">Week-by-week guidance for newly arrived migrants & students</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={onOpenGlossary}
-              className="hover:text-[#E9C46A] text-emerald-100 font-medium transition-colors flex items-center gap-1 cursor-pointer"
-            >
-              <BookOpen className="w-3 h-3 text-[#2A9D8F]" />
-              <span>Aussie Terms (Bond, Rego, TFN)</span>
-            </button>
-            <button
-              onClick={() => handleNavClick('contact/chatbot')}
-              className="text-[#E9C46A] hover:text-white flex items-center gap-1 font-semibold transition-colors cursor-pointer"
-            >
-              <HelpCircle className="w-3 h-3 text-[#2A9D8F]" />
-              <span>Ask FirstYear AU</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navbar */}
+      {/* SINGLE HORIZONTAL NAVIGATION BAR (Clean, modern website header) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo / Brand Name */}
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between h-20 gap-4">
+          
+          {/* Logo / Brand Name (FirstYear AU - Settlement & Migration Directory) */}
+          <button
+            onClick={() => handleNavClick('home')}
+            className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none shrink-0"
+          >
+            <div className="w-10 h-10 rounded-2xl bg-[#1B4D3E] flex items-center justify-center shadow-xs border border-[#2A9D8F]/30 group-hover:bg-[#163e32] transition-colors">
+              <Compass className="w-6 h-6 text-[#E9C46A] group-hover:rotate-45 transition-transform duration-300" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#1B4D3E] font-display leading-tight">
+                FirstYear <span className="text-[#2A9D8F]">AU</span>
+              </span>
+              <span className="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-widest font-bold">
+                Settlement & Migration Directory
+              </span>
+            </div>
+          </button>
+
+          {/* Desktop Horizontal Navigation Links (Home, About, 12-Month Plan, Get Set-Up, Find a Home, Get Around, ID & Paperwork, Pricing, Contact) */}
+          <nav className="hidden xl:flex items-center space-x-1">
+            {/* Home Link */}
             <button
               onClick={() => handleNavClick('home')}
-              className="flex items-center gap-2.5 text-left group cursor-pointer focus:outline-none"
+              className={`px-3 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors cursor-pointer ${
+                currentPath === 'home'
+                  ? 'text-[#1B4D3E] bg-[#E2F4EE]'
+                  : 'text-[#1B4D3E] hover:text-[#2A9D8F] hover:bg-[#F0F7F3]'
+              }`}
             >
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#1B4D3E] to-[#2A9D8F] flex items-center justify-center shadow-xs">
-                <Compass className="w-5 h-5 text-[#E9C46A] group-hover:rotate-45 transition-transform duration-300" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold tracking-tight text-[#1B4D3E] font-display leading-tight">
-                  FirstYear <span className="text-[#2A9D8F]">AU</span>
-                </span>
-                <span className="text-[10px] text-[#1B3A34]/70 uppercase tracking-widest font-medium">
-                  Settle with clarity
-                </span>
-              </div>
+              Home
             </button>
-          </div>
 
-          {/* Desktop Navigation Links with Dropdowns */}
-          <nav className="hidden xl:flex items-center space-x-1 lg:space-x-1.5">
+            {/* Sub-section Links with Dropdown Menu */}
             {NAV_STRUCTURE.map((item) => {
               const isOpen = activeDropdown === item.id;
               const isCurrent = currentPath.startsWith(item.id) || 
@@ -204,26 +187,29 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenG
                 (item.id === 'contact' && currentPath.includes('contact'));
 
               return (
-                <div key={item.id} className="relative">
+                <div key={item.id} className="relative group">
                   <button
                     onClick={() => toggleDropdown(item.id)}
-                    className={`flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-full transition-colors cursor-pointer ${
+                    className={`flex items-center gap-1 px-3 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
                       isOpen || isCurrent
-                        ? 'text-[#1B4D3E] bg-[#EAF5F1]'
-                        : 'text-[#1B4D3E] hover:text-[#2A9D8F] hover:bg-[#F6FAF7]'
+                        ? 'text-[#1B4D3E] bg-[#E2F4EE]'
+                        : 'text-[#1B4D3E] hover:text-[#2A9D8F] hover:bg-[#F0F7F3]'
                     }`}
                     aria-expanded={isOpen}
                   >
                     <span>{item.label}</span>
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180 text-[#2A9D8F]' : 'text-[#2A9D8F]/70'}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180 text-[#2A9D8F]' : 'text-slate-400 group-hover:text-[#2A9D8F]'}`} />
                   </button>
 
                   {/* Dropdown Menu */}
                   {isOpen && (
-                    <div className="absolute left-0 mt-2 w-72 bg-white text-[#1B3A34] rounded-2xl shadow-xl border border-[#E0ECE6] py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                      <div className="px-3.5 py-1.5 border-b border-[#E0ECE6] bg-[#F6FAF7] rounded-t-xl">
+                    <div className="absolute left-0 mt-2 w-80 bg-white text-[#1B3A34] rounded-2xl shadow-xl border border-[#D5E4DC] py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                      <div className="px-4 py-2 border-b border-[#E8F0EC] bg-[#F6FAF7] rounded-t-xl flex items-center justify-between">
                         <span className="text-[11px] font-bold text-[#1B4D3E] tracking-wider uppercase">
-                          {item.label} Directory
+                          {item.label}
+                        </span>
+                        <span className="text-[10px] text-[#2A9D8F] font-semibold">
+                          {item.children.length} Guides
                         </span>
                       </div>
                       <div className="py-1">
@@ -233,16 +219,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenG
                             <button
                               key={subItem.path}
                               onClick={() => handleNavClick(subItem.path)}
-                              className={`w-full text-left px-4 py-2.5 text-sm hover:bg-[#EAF5F1] transition-colors flex flex-col group cursor-pointer ${
+                              className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm hover:bg-[#EAF5F1] transition-colors flex flex-col group cursor-pointer ${
                                 isSubActive ? 'bg-[#EAF5F1] text-[#1B4D3E] font-semibold' : 'text-[#1B3A34]'
                               }`}
                             >
                               <div className="flex items-center justify-between">
-                                <span className="group-hover:text-[#2A9D8F] transition-colors font-medium">{subItem.label}</span>
+                                <span className="group-hover:text-[#2A9D8F] transition-colors font-medium">
+                                  {subItem.label}
+                                </span>
                                 {isSubActive && <CheckCircle2 className="w-3.5 h-3.5 text-[#2A9D8F]" />}
                               </div>
                               {subItem.desc && (
-                                <span className="text-[11px] text-[#1B3A34]/70 line-clamp-1 font-normal group-hover:text-[#1B3A34]">
+                                <span className="text-[11px] text-slate-500 line-clamp-1 font-normal group-hover:text-[#1B3A34]">
                                   {subItem.desc}
                                 </span>
                               )}
@@ -257,13 +245,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenG
             })}
           </nav>
 
-          {/* Action CTA Button - Rounded Pill with Warm Orange and Dark Green Text */}
-          <div className="hidden lg:flex items-center space-x-3">
+          {/* Action CTA Button */}
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <button
               onClick={() => handleNavClick('plan/overview')}
-              className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-sm px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer flex items-center gap-1.5 active:scale-95"
+              className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold text-xs xl:text-sm px-6 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer flex items-center gap-1.5 active:scale-95"
             >
               <span>Start my plan</span>
+              <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
             </button>
           </div>
 
@@ -273,52 +262,52 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenG
               onClick={() => handleNavClick('plan/overview')}
               className="bg-[#F4A261] text-[#1B3A34] font-bold text-xs px-3.5 py-1.5 rounded-full cursor-pointer"
             >
-              Start plan
+              Start Plan
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#1B4D3E] hover:text-[#2A9D8F] rounded-lg hover:bg-[#F6FAF7] focus:outline-none cursor-pointer"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 text-[#1B4D3E] hover:bg-slate-100 rounded-lg cursor-pointer"
+              aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#F6FAF7] border-t border-[#E0ECE6] px-4 pt-2 pb-6 max-h-[85vh] overflow-y-auto">
-          <div className="space-y-1">
+        <div className="xl:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 max-h-[80vh] overflow-y-auto space-y-3">
+          <div className="divide-y divide-slate-100">
             <button
               onClick={() => handleNavClick('home')}
-              className="w-full text-left px-3 py-2 text-base font-bold text-[#1B4D3E] rounded-lg hover:bg-[#EAF5F1] cursor-pointer"
+              className="w-full text-left py-2.5 text-sm font-bold text-[#1B4D3E]"
             >
               Home
             </button>
-
             {NAV_STRUCTURE.map((item) => {
               const isExpanded = mobileExpandedSection === item.id;
               return (
-                <div key={item.id} className="border-b border-[#E0ECE6] pb-1">
+                <div key={item.id} className="py-2">
                   <button
                     onClick={() => toggleMobileSection(item.id)}
-                    className="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-[#1B4D3E] hover:text-[#2A9D8F] hover:bg-white rounded-lg cursor-pointer"
+                    className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#1B4D3E] cursor-pointer"
                   >
                     <span>{item.label}</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180 text-[#2A9D8F]' : 'text-[#2A9D8F]/70'}`} />
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                   </button>
 
                   {isExpanded && (
-                    <div className="pl-4 pr-2 py-1 space-y-1 bg-white rounded-xl my-1 border border-[#E0ECE6]">
-                      {item.children.map((subItem) => (
+                    <div className="pl-3 pr-2 py-1 space-y-1 bg-slate-50/70 rounded-xl my-1">
+                      {item.children.map((sub) => (
                         <button
-                          key={subItem.path}
-                          onClick={() => handleNavClick(subItem.path)}
-                          className="w-full text-left px-3 py-2 text-xs text-[#1B3A34] hover:text-[#2A9D8F] hover:bg-[#F6FAF7] rounded-lg cursor-pointer flex flex-col"
+                          key={sub.path}
+                          onClick={() => handleNavClick(sub.path)}
+                          className="w-full text-left py-2 px-2 text-xs font-medium text-slate-700 hover:text-[#1B4D3E] hover:bg-white rounded-lg transition-colors cursor-pointer block"
                         >
-                          <span className="font-semibold text-[#1B4D3E]">{subItem.label}</span>
-                          {subItem.desc && <span className="text-[11px] text-[#1B3A34]/70">{subItem.desc}</span>}
+                          <span className="font-semibold block">{sub.label}</span>
+                          {sub.desc && <span className="text-[11px] text-slate-500 block">{sub.desc}</span>}
                         </button>
                       ))}
                     </div>
@@ -328,18 +317,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenG
             })}
           </div>
 
-          <div className="mt-4 pt-3 border-t border-[#E0ECE6] flex flex-col gap-2">
+          <div className="pt-3 border-t border-slate-200 space-y-2">
             <button
               onClick={() => handleNavClick('plan/overview')}
-              className="w-full bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold py-2.5 rounded-full text-sm text-center shadow cursor-pointer"
+              className="w-full bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold py-3 rounded-full text-center text-sm shadow cursor-pointer block"
             >
-              Start my plan (12-Month Timeline)
+              Start My Plan
             </button>
             <button
               onClick={() => handleNavClick('pricing/free')}
-              className="w-full bg-white hover:bg-slate-50 border border-[#E0ECE6] text-[#1B4D3E] font-semibold py-2 rounded-full text-xs text-center cursor-pointer"
+              className="w-full bg-white text-[#1B4D3E] font-semibold py-2.5 rounded-full text-center text-xs border border-slate-300 hover:bg-slate-50 cursor-pointer block"
             >
-              Download the free checklist
+              Download Free Checklist
             </button>
           </div>
         </div>

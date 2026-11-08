@@ -46,7 +46,7 @@ export const ContactView: React.FC<ContactViewProps> = ({
     {
       id: 'welcome',
       sender: 'bot',
-      text: "G'day! I'm your FirstYear AU assistant. Whether you're Priya landing in Adelaide or a skilled worker moving to Sydney, ask me anything about SIM cards, banking, TFNs, renting with no local history, bonds, or driver licences.",
+      text: "G'day! I'm your FirstYear AU assistant. Whether you're an international student arriving for study, a skilled visa holder, or relocating with your family, ask me anything about SIM cards, banking, TFNs, renting with no local history, bonds, or driver licences.",
       timestamp: 'Just now'
     }
   ]);
@@ -187,7 +187,7 @@ export const ContactView: React.FC<ContactViewProps> = ({
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Priya Sharma"
+                    placeholder="e.g. Alex Morgan"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"

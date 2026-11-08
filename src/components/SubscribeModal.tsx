@@ -146,7 +146,7 @@ export const SubscribeModal: React.FC<SubscribeModalProps> = ({
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Priya Sharma"
+                  placeholder="e.g. Jordan Taylor"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
@@ -237,7 +237,7 @@ export const SubscribeModal: React.FC<SubscribeModalProps> = ({
               </div>
               <div className="p-3.5 flex justify-between bg-white">
                 <span className="text-slate-500">Subscriber Name</span>
-                <span className="font-medium text-[#1B3A34]">{formData.name || 'Priya Sharma'}</span>
+                <span className="font-medium text-[#1B3A34]">{formData.name || 'New Subscriber'}</span>
               </div>
               <div className="p-3.5 flex justify-between bg-white">
                 <span className="text-slate-500">Reminder Email</span>

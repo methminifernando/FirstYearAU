@@ -81,10 +81,10 @@ export const AboutView: React.FC<AboutViewProps> = ({
 
             <div className="bg-[#F6FAF7] border border-[#2A9D8F]/30 p-5 rounded-2xl my-6">
               <h3 className="text-base font-bold text-[#1B4D3E] mb-1">
-                The Persona We Solve For: Priya Sharma
+                Who We Build For: New Migrants & International Students
               </h3>
               <p className="text-sm text-[#1B3A34]/80">
-                Priya is a 23-year-old international postgraduate student from India arriving at the University of Adelaide. She is price-sensitive, searches full questions on Google on her phone, and struggles with unfamiliar Australian terms like "rego", "bond", and "condition report". She has zero Australian credit history and worries constantly about rental scams. FirstYear AU was designed from the ground up to be Priya’s definitive, trusted guide.
+                Whether you are an international student landing for university in Adelaide, Melbourne, or Sydney, a skilled professional on a work visa, or a newcomer starting fresh with your family—everyone faces unfamiliar Australian terminology ("rego", "bond", "condition report", "TFN"), zero local credit history, and conflicting state-by-state advice. FirstYear AU was designed from the ground up to give every new arrival a trusted, step-by-step roadmap to settle in Australia with total peace of mind.
               </p>
             </div>
 
