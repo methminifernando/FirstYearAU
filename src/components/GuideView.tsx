@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  CheckCircle2, AlertCircle, ExternalLink, Calendar, 
-  ChevronRight, ArrowRight, ShieldCheck, FileText, 
-  Sparkles, HelpCircle, MessageSquareQuote, Check, Info, Users
+  AlertCircle, ExternalLink, Calendar, 
+  ChevronRight, ArrowRight, ShieldCheck, 
+  Sparkles, Info, Users, Link2
 } from 'lucide-react';
 import { GuideItem } from '../types';
+import { getGuideById } from '../data/guidesData';
+import { getHref } from '../utils/routing';
 
 interface GuideViewProps {
   guide: GuideItem;
@@ -25,13 +27,13 @@ export const GuideView: React.FC<GuideViewProps> = ({
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
-  const handleNextStep = () => {
-    if (guide.nextStepId === '12-month-plan') {
-      onNavigate('plan/overview');
-    } else {
-      onSelectGuide(guide.nextStepId);
-    }
-  };
+  const nextPath =
+    guide.nextStepId === '12-month-plan'
+      ? 'plan/overview'
+      : (() => {
+          const next = getGuideById(guide.nextStepId);
+          return next ? `${next.categorySlug}/${next.slug}` : 'plan/overview';
+        })();
 
   return (
     <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
@@ -41,14 +43,28 @@ export const GuideView: React.FC<GuideViewProps> = ({
           <span className="text-xs font-bold text-[#1B4D3E] uppercase tracking-wider bg-[#E2F4EE] px-3.5 py-1 rounded-full">
             {guide.category} · Step in Settlement Sequence
           </span>
-          <span className="text-xs text-[#1B3A34]/70 font-medium">
-            Keyword: <span className="font-semibold text-[#1B4D3E]">{guide.seoKeyword}</span>
-          </span>
+          <a
+            href={getHref('plan/week-1')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('plan/week-1');
+              }
+            }}
+            className="text-xs text-[#2A9D8F] hover:text-[#1B4D3E] font-semibold underline"
+          >
+            Part of the first week in Australia checklist
+          </a>
         </div>
 
         <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] tracking-tight font-display">
           {guide.title}
         </h1>
+
+        {/* Friendly 2-3 sentence introduction paragraph with main keyword in first sentence */}
+        <p className="text-sm sm:text-base text-[#1B3A34]/90 leading-relaxed">
+          {guide.intro}
+        </p>
 
         {/* Metadata: Reviewer & Last Reviewed Date */}
         <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs text-[#1B3A34]/70 border-y border-[#E0ECE6] py-2.5">
@@ -62,12 +78,18 @@ export const GuideView: React.FC<GuideViewProps> = ({
             <span>Reviewed by: <strong className="text-[#1B4D3E]">{guide.reviewedBy}</strong></span>
           </div>
           <span className="text-slate-300">·</span>
-          <button
-            onClick={() => onNavigate('plan/overview')}
+          <a
+            href={getHref('plan/overview')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('plan/overview');
+              }
+            }}
             className="text-[#2A9D8F] hover:text-[#1B4D3E] font-bold cursor-pointer underline"
           >
-            See the full 12-month plan
-          </button>
+            See the full 12-month new migrant Australia setup guide
+          </a>
         </div>
       </header>
 
@@ -105,25 +127,31 @@ export const GuideView: React.FC<GuideViewProps> = ({
             <span>Recommended Resource</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
-            Applying with no Australian rental history?
+            Need a rental application template for new migrants with zero local references?
           </h3>
           <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-2xl">
-            Don’t let agents skip your application. Use our proven Newcomer Rental Application Pack—featuring pre-written cover letter wording explaining overseas savings, proof of funds layout, and guarantor templates.
+            Don’t let agents skip your rental application in Australia. Preview our Newcomer Rental Application Pack free—featuring cover letter wording explaining overseas savings, proof of funds layout, and referee templates.
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <button
               onClick={onOpenTemplatePreview}
               className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-sm transition-all cursor-pointer inline-flex items-center gap-1.5 active:scale-95"
             >
-              <span>Preview the template for free</span>
+              <span>Preview the rental template free</span>
               <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
             </button>
-            <button
-              onClick={() => onNavigate('pricing/plus')}
+            <a
+              href={getHref('pricing/plus')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  onNavigate('pricing/plus');
+                }
+              }}
               className="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full border border-white/30 transition-colors cursor-pointer"
             >
-              View Membership & Pricing
-            </button>
+              View Membership &amp; Pricing
+            </a>
           </div>
         </section>
       )}
@@ -131,7 +159,7 @@ export const GuideView: React.FC<GuideViewProps> = ({
       {/* 4. Numbered Steps (White Cards with Soft Shadows) */}
       <section className="space-y-6">
         <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
-          Step-by-Step Instructions
+          {guide.stepsHeading}
         </h2>
 
         <div className="space-y-5">
@@ -183,12 +211,12 @@ export const GuideView: React.FC<GuideViewProps> = ({
         <section className="bg-white border border-[#E0ECE6] rounded-3xl p-6 space-y-3 shadow-xs">
           <div className="flex items-center gap-2 text-[#1B4D3E]">
             <Info className="w-5 h-5 text-[#2A9D8F]" />
-            <h3 className="text-base font-bold">
-              State-Specific Rules & Variations
-            </h3>
+            <h2 className="text-base font-bold">
+              How do rules differ across Australian states?
+            </h2>
           </div>
           <p className="text-xs text-[#1B3A34]/70">
-            Australian statutory rules differ between states. Please check the rules for where you are residing:
+            Australian statutory rules can vary between states and territories. Always confirm current requirements where you live:
           </p>
           <div className="divide-y divide-[#E0ECE6] text-xs sm:text-sm">
             {Object.entries(guide.stateNotes).map(([jurisdiction, note]) => (
@@ -201,10 +229,10 @@ export const GuideView: React.FC<GuideViewProps> = ({
         </section>
       )}
 
-      {/* 6. Short FAQ */}
+      {/* 6. Short FAQ (All 3 FAQ answers stay present in initial HTML DOM for search & AI crawlers) */}
       <section className="space-y-4">
         <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
-          Frequently Asked Questions
+          {guide.faqHeading}
         </h2>
 
         <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
@@ -214,6 +242,7 @@ export const GuideView: React.FC<GuideViewProps> = ({
               <div key={index} className="py-4 px-5 sm:px-6">
                 <button
                   onClick={() => toggleFaq(index)}
+                  aria-expanded={isOpen}
                   className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
                 >
                   <span>{faq.question}</span>
@@ -223,25 +252,79 @@ export const GuideView: React.FC<GuideViewProps> = ({
                     }`}
                   />
                 </button>
-                {isOpen && (
-                  <p className="mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6 animate-in fade-in duration-150">
-                    {faq.answer}
-                  </p>
-                )}
+                <p
+                  className={
+                    isOpen
+                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
+                      : 'hidden'
+                  }
+                >
+                  {faq.answer}
+                </p>
               </div>
             );
           })}
         </div>
       </section>
 
-      {/* 7. Official Government Sources */}
+      {/* 7. Related Guides & Internal Plan Links */}
+      <section className="bg-white border border-[#E0ECE6] rounded-3xl p-6 space-y-4 shadow-xs">
+        <div className="flex items-center gap-2 text-[#1B4D3E]">
+          <Link2 className="w-5 h-5 text-[#2A9D8F]" />
+          <h2 className="text-base font-bold">
+            What should I read next in my 12-Month Plan?
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+          <a
+            href={getHref(nextPath)}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                if (guide.nextStepId === '12-month-plan') {
+                  onNavigate('plan/overview');
+                } else {
+                  onSelectGuide(guide.nextStepId);
+                }
+              }
+            }}
+            className="p-3.5 rounded-2xl bg-[#F6FAF7] border border-[#2A9D8F]/30 hover:border-[#2A9D8F] text-[#1B4D3E] font-semibold flex items-center justify-between gap-2 transition-colors"
+          >
+            <span>{guide.nextStepAnchorText}</span>
+            <ArrowRight className="w-4 h-4 text-[#2A9D8F] shrink-0" />
+          </a>
+
+          {guide.relatedGuides.map((rel) => {
+            const relGuide = getGuideById(rel.id);
+            const relPath = relGuide ? `${relGuide.categorySlug}/${relGuide.slug}` : 'plan/overview';
+            return (
+              <a
+                key={rel.id}
+                href={getHref(relPath)}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    onSelectGuide(rel.id);
+                  }
+                }}
+                className="p-3.5 rounded-2xl bg-[#F6FAF7] border border-[#E0ECE6] hover:border-[#2A9D8F] text-[#1B4D3E] font-semibold flex items-center justify-between gap-2 transition-colors"
+              >
+                <span>{rel.anchorText}</span>
+                <ChevronRight className="w-4 h-4 text-[#2A9D8F] shrink-0" />
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 8. Official Government Sources */}
       <section className="bg-white border border-[#E0ECE6] rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-[#2A9D8F]" />
-            <h3 className="text-base font-bold text-[#1B4D3E]">
+            <h2 className="text-base font-bold text-[#1B4D3E]">
               Official Australian Government Sources
-            </h3>
+            </h2>
           </div>
           <span className="text-[11px] text-[#2A9D8F] font-mono font-bold">
             Verified Links
@@ -249,7 +332,7 @@ export const GuideView: React.FC<GuideViewProps> = ({
         </div>
 
         <p className="text-xs text-[#1B3A34]/70">
-          Always confirm current statutory details with the official regulatory agencies:
+          Always confirm current statutory fees, deadlines, and eligibility rules directly with official Australian government websites:
         </p>
 
         <div className="space-y-2.5">
@@ -280,41 +363,63 @@ export const GuideView: React.FC<GuideViewProps> = ({
         </div>
       </section>
 
-      {/* 8. Mandatory Confirmation Notice & General Disclaimer */}
+      {/* 9. Mandatory Confirmation Notice & General Disclaimer */}
       <div className="p-4 bg-[#E2F4EE] border border-[#2A9D8F]/30 rounded-2xl text-xs text-[#1B4D3E] flex items-start gap-2.5">
         <AlertCircle className="w-4 h-4 text-[#2A9D8F] shrink-0 mt-0.5" />
         <p className="leading-relaxed">
-          <strong>Notice:</strong> This guide provides general settlement information only and does not constitute legal, financial, or migration advice. Specific requirements may vary based on your visa subclass and state jurisdiction. Always confirm current details with the official source.
+          <strong>Notice:</strong> This guide provides general settlement information only and does not constitute legal, financial, visa, or migration advice. Requirements vary based on your visa subclass and state jurisdiction—always confirm current details with official government portals.
         </p>
       </div>
 
-      {/* 9. Next Step Action Button & Help Links - Pill Button */}
+      {/* 10. Next Step Action Button & Help Links - Pill Button */}
       <footer className="pt-6 border-t border-[#E0ECE6] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-xs text-[#1B3A34]/70 flex items-center gap-3">
           <span>Stuck or have a question?</span>
-          <button
-            onClick={() => onNavigate('contact/chatbot')}
+          <a
+            href={getHref('contact/chatbot')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('contact/chatbot');
+              }
+            }}
             className="text-[#2A9D8F] hover:text-[#1B4D3E] font-bold underline cursor-pointer"
           >
             Ask Chat-Bot
-          </button>
+          </a>
           <span>·</span>
-          <button
-            onClick={() => onNavigate('contact/faq')}
+          <a
+            href={getHref('contact/faq')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('contact/faq');
+              }
+            }}
             className="text-[#2A9D8F] hover:text-[#1B4D3E] font-bold underline cursor-pointer"
           >
             Read FAQ
-          </button>
+          </a>
         </div>
 
         {/* Go to the next step button - Rounded Pill in Warm Orange with Dark Green Text */}
-        <button
-          onClick={handleNextStep}
-          className="w-full sm:w-auto bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
+        <a
+          href={getHref(nextPath)}
+          onClick={(e) => {
+            if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+              e.preventDefault();
+              if (guide.nextStepId === '12-month-plan') {
+                onNavigate('plan/overview');
+              } else {
+                onSelectGuide(guide.nextStepId);
+              }
+            }
+          }}
+          className="w-full sm:w-auto bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
         >
           <span>Go to the next step: {guide.nextStepTitle}</span>
           <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-        </button>
+        </a>
       </footer>
     </article>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Compass, ShieldCheck, HeartHandshake, FileText, ArrowRight, MapPin, Phone, Mail, Award } from 'lucide-react';
+import { Compass, ShieldCheck, ArrowRight, MapPin } from 'lucide-react';
+import { getHref } from '../utils/routing';
 
 interface FooterProps {
   onNavigate: (path: string) => void;
@@ -7,12 +8,31 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) => {
+  const NavLink: React.FC<{ path: string; className?: string; children: React.ReactNode }> = ({
+    path,
+    className = 'hover:text-[#E9C46A] transition-colors text-left cursor-pointer',
+    children
+  }) => (
+    <a
+      href={getHref(path)}
+      onClick={(e) => {
+        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+          e.preventDefault();
+          onNavigate(path);
+        }
+      }}
+      className={className}
+    >
+      {children}
+    </a>
+  );
+
   return (
     <footer className="bg-[#112B23] text-emerald-100/90 border-t border-[#1F4E3F] pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Grid: 5 columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-[#1F4E3F]">
-          {/* Brand & Purpose (AML Corporate Tone) */}
+          {/* Brand & Purpose */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-2xl bg-[#1B4D3E] border border-[#2A9D8F]/40 flex items-center justify-center">
@@ -38,7 +58,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
                 <span>Our Statutory Integrity & Review Pledge</span>
               </div>
               <p>
-                Every settlement guide is cross-referenced with official Australian Government bodies (ATO, Home Affairs, Fair Work, CBS, RTBA, Service SA) and reviewed quarterly.
+                Every settlement guide is cross-referenced with official Australian Government bodies (ATO, Home Affairs, Fair Work, CBS, RTBA, Service SA) and reviewed regularly. Confirm details on official sites before acting.
               </p>
             </div>
           </div>
@@ -50,39 +70,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => onNavigate('plan/before-arrival')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Before Arrival Roadmap
-                </button>
+                <NavLink path="plan/before-arrival">Moving to Australia Checklist (Pre-Flight)</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('plan/week-1')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Week 1 (Landing)
-                </button>
+                <NavLink path="plan/week-1">First Week in Australia Checklist</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('plan/month-1')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Month 1 (Housing & Leases)
-                </button>
+                <NavLink path="plan/month-1">Things to Do After Arriving: Month 1</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('get-set-up/sim-internet')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  SIM Card & Internet
-                </button>
+                <NavLink path="plan/overview">Complete 12-Month Setup Guide</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('get-set-up/bank-account')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Bank Account (6-Wk Rule)
-                </button>
+                <NavLink path="get-set-up/sim-internet">Best SIM Card for New Arrivals Australia</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('get-set-up/tax-file-number')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Tax File Number (TFN)
-                </button>
+                <NavLink path="get-set-up/bank-account">Open Bank Account Australia New Arrival</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('get-set-up/superannuation')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Superannuation & DASP
-                </button>
+                <NavLink path="get-set-up/tax-file-number">Apply for TFN Online Australia (ATO)</NavLink>
+              </li>
+              <li>
+                <NavLink path="get-set-up/superannuation">How Does Super Work in Australia</NavLink>
               </li>
             </ul>
           </div>
@@ -94,39 +103,31 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => onNavigate('find-a-home/renting-inspections')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Renting (No History)
-                </button>
+                <NavLink path="find-a-home/renting-inspections">How to Rent With No Rental History</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('find-a-home/bond-condition-report')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Bond & Condition Reports
-                </button>
+                <NavLink path="find-a-home/bond-condition-report">Rental Bond & Condition Reports</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('find-a-home/furniture')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Furnishing on a Budget
-                </button>
+                <NavLink path="find-a-home/furniture">Cheap Furniture for Students</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('get-around/public-transport')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Public Transport Cards
-                </button>
+                <NavLink path="get-around/public-transport">Public Transport Cards Australia</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('get-around/driver-licence')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Driver Licence Rules
-                </button>
+                <NavLink path="get-around/driver-licence">Driving on an Overseas Licence</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('id-and-paperwork/proof-of-age')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Proof of Age 18+ Card
-                </button>
+                <NavLink path="get-around/buying-a-car">Buying a Used Car Safely</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('id-and-paperwork/police-check')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  National Police Check
-                </button>
+                <NavLink path="id-and-paperwork/proof-of-age">Proof of Age Card Australia (18+)</NavLink>
+              </li>
+              <li>
+                <NavLink path="id-and-paperwork/police-check">AFP Police Check International Student</NavLink>
+              </li>
+              <li>
+                <NavLink path="id-and-paperwork/working-with-children">Working With Children Check</NavLink>
               </li>
             </ul>
           </div>
@@ -138,39 +139,33 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => onNavigate('pricing/free')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Free Checklist Download
-                </button>
+                <NavLink path="pricing/free">Free Moving to Australia Checklist</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('pricing/plus')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  FirstYear Plus (A$4.99/mo)
-                </button>
+                <NavLink path="pricing/plus">Rental Application Template & Plus</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('pricing/compare')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Compare Plans & 7-Day Refund
-                </button>
+                <NavLink path="pricing/compare">Compare Plans & 7-Day Refund</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('pricing/partners')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Vetted Partner Offers
-                </button>
+                <NavLink path="pricing/partners">New Migrant Partner Offers</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('about/how-we-work')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  How We Work
-                </button>
+                <NavLink path="about/story">About FirstYear AU</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('contact/faq')} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
-                  Frequently Asked Questions
-                </button>
+                <NavLink path="about/how-we-work">How We Verify Official Sources</NavLink>
               </li>
               <li>
-                <button onClick={() => onNavigate('contact/chatbot')} className="hover:text-[#E9C46A] transition-colors text-left text-[#E9C46A] font-semibold cursor-pointer">
-                  Chat-Bot Assistant
-                </button>
+                <NavLink path="contact/faq">New Migrant Australia FAQ</NavLink>
+              </li>
+              <li>
+                <NavLink
+                  path="contact/chatbot"
+                  className="hover:text-[#E9C46A] transition-colors text-left text-[#E9C46A] font-semibold cursor-pointer"
+                >
+                  Settlement Assistant Chat-Bot
+                </NavLink>
               </li>
               <li>
                 <button onClick={onOpenGlossary} className="hover:text-[#E9C46A] transition-colors text-left cursor-pointer">
@@ -181,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
           </div>
         </div>
 
-        {/* Australian Cities & Settlement Hubs (AML Signature Regional Presence) */}
+        {/* Australian Cities & Settlement Hubs */}
         <div className="py-8 border-b border-[#1F4E3F]">
           <div className="flex items-center gap-2 mb-3">
             <MapPin className="w-4 h-4 text-[#E9C46A]" />
@@ -192,23 +187,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xs text-emerald-100/70">
             <div>
               <span className="font-bold text-white block">Melbourne (VIC)</span>
-              <span>Level 2, 50 Market St · myki & RTBA rules</span>
+              <span>myki, VicRoads & RTBA rules</span>
             </div>
             <div>
               <span className="font-bold text-white block">Adelaide (SA)</span>
-              <span>North Terrace · metroCARD & CBS rules</span>
+              <span>metroCARD, Service SA & CBS rules</span>
             </div>
             <div>
               <span className="font-bold text-white block">Sydney (NSW)</span>
-              <span>George Street · Opal & Fair Trading</span>
+              <span>Opal, Service NSW & Fair Trading</span>
             </div>
             <div>
               <span className="font-bold text-white block">Brisbane (QLD)</span>
-              <span>Queen Street · go card & RTA</span>
+              <span>go card, Blue Card & RTA</span>
             </div>
             <div>
               <span className="font-bold text-white block">Perth (WA)</span>
-              <span>St Georges Terrace · SmartRider & DMIRS</span>
+              <span>SmartRider, WA Photo Card & DMIRS</span>
             </div>
           </div>
         </div>
@@ -221,21 +216,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
                 Commercial Partner Disclosure
               </p>
               <p className="text-emerald-100/80 mt-0.5">
-                FirstYear AU features carefully vetted partner offers (such as mobile SIMs, NBN broadband, and student furniture). We receive an affiliate referral commission if you choose to activate through these links, at zero extra cost to you. All partner products are chosen strictly for newcomer affordability, network quality, and customer service.
+                FirstYear AU features clearly labelled partner offers (such as mobile SIMs, NBN broadband, and student furniture). We may receive a referral commission if you sign up through these links at no extra cost to you.
               </p>
             </div>
-            <button
-              onClick={() => onNavigate('pricing/partners')}
+            <NavLink
+              path="pricing/partners"
               className="shrink-0 text-[#E9C46A] hover:text-white font-semibold inline-flex items-center gap-1 cursor-pointer"
             >
               <span>See partner policy</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </NavLink>
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-4 text-emerald-100/80">
             <p className="text-center md:text-left font-medium">
-              Important: General information only, not legal or financial advice. Confirm current regulations with the relevant Australian government authority before making decisions.
+              Important: General information only, not legal, financial, visa, or migration advice. Confirm current regulations on official government portals (such as ato.gov.au and homeaffairs.gov.au).
             </p>
             <p className="shrink-0 text-center md:text-right">
               &copy; {new Date().getFullYear()} FirstYear AU. All rights reserved. Settle into Australia with confidence.

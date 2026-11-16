@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Menu, X, ChevronDown, Compass, CheckCircle2, ArrowRight
 } from 'lucide-react';
+import { getHref } from '../utils/routing';
 
 interface NavItem {
   id: string;
@@ -144,8 +145,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Logo / Brand Name (FirstYear AU - Settlement & Migration Directory) */}
-          <button
-            onClick={() => handleNavClick('home')}
+          <a
+            href={getHref('home')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                handleNavClick('home');
+              }
+            }}
             className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none shrink-0"
           >
             <div className="w-10 h-10 rounded-2xl bg-[#1B4D3E] flex items-center justify-center shadow-xs border border-[#2A9D8F]/30 group-hover:bg-[#163e32] transition-colors">
@@ -159,13 +166,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 Settlement & Migration Directory
               </span>
             </div>
-          </button>
+          </a>
 
           {/* Desktop Horizontal Navigation Links (Home, About, 12-Month Plan, Get Set-Up, Find a Home, Get Around, ID & Paperwork, Pricing, Contact) */}
-          <nav className="hidden xl:flex items-center space-x-1">
+          <nav className="hidden xl:flex items-center space-x-1" aria-label="Primary Navigation">
             {/* Home Link */}
-            <button
-              onClick={() => handleNavClick('home')}
+            <a
+              href={getHref('home')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  handleNavClick('home');
+                }
+              }}
               className={`px-3 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors cursor-pointer ${
                 currentPath === 'home'
                   ? 'text-[#1B4D3E] bg-[#E2F4EE]'
@@ -173,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               }`}
             >
               Home
-            </button>
+            </a>
 
             {/* Sub-section Links with Dropdown Menu */}
             {NAV_STRUCTURE.map((item) => {
@@ -216,9 +229,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                         {item.children.map((subItem) => {
                           const isSubActive = currentPath === subItem.path;
                           return (
-                            <button
+                            <a
                               key={subItem.path}
-                              onClick={() => handleNavClick(subItem.path)}
+                              href={getHref(subItem.path)}
+                              onClick={(e) => {
+                                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                                  e.preventDefault();
+                                  handleNavClick(subItem.path);
+                                }
+                              }}
                               className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm hover:bg-[#EAF5F1] transition-colors flex flex-col group cursor-pointer ${
                                 isSubActive ? 'bg-[#EAF5F1] text-[#1B4D3E] font-semibold' : 'text-[#1B3A34]'
                               }`}
@@ -234,7 +253,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                                   {subItem.desc}
                                 </span>
                               )}
-                            </button>
+                            </a>
                           );
                         })}
                       </div>
@@ -247,23 +266,35 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
           {/* Action CTA Button */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => handleNavClick('plan/overview')}
+            <a
+              href={getHref('plan/overview')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  handleNavClick('plan/overview');
+                }
+              }}
               className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold text-xs xl:text-sm px-6 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer flex items-center gap-1.5 active:scale-95"
             >
               <span>Start my plan</span>
               <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex xl:hidden items-center gap-2">
-            <button
-              onClick={() => handleNavClick('plan/overview')}
+            <a
+              href={getHref('plan/overview')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  handleNavClick('plan/overview');
+                }
+              }}
               className="bg-[#F4A261] text-[#1B3A34] font-bold text-xs px-3.5 py-1.5 rounded-full cursor-pointer"
             >
               Start Plan
-            </button>
+            </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-[#1B4D3E] hover:bg-slate-100 rounded-lg cursor-pointer"
@@ -280,12 +311,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
       {mobileMenuOpen && (
         <div className="xl:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 max-h-[80vh] overflow-y-auto space-y-3">
           <div className="divide-y divide-slate-100">
-            <button
-              onClick={() => handleNavClick('home')}
-              className="w-full text-left py-2.5 text-sm font-bold text-[#1B4D3E]"
+            <a
+              href={getHref('home')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  handleNavClick('home');
+                }
+              }}
+              className="block w-full text-left py-2.5 text-sm font-bold text-[#1B4D3E]"
             >
               Home
-            </button>
+            </a>
             {NAV_STRUCTURE.map((item) => {
               const isExpanded = mobileExpandedSection === item.id;
               return (
@@ -301,14 +338,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   {isExpanded && (
                     <div className="pl-3 pr-2 py-1 space-y-1 bg-slate-50/70 rounded-xl my-1">
                       {item.children.map((sub) => (
-                        <button
+                        <a
                           key={sub.path}
-                          onClick={() => handleNavClick(sub.path)}
+                          href={getHref(sub.path)}
+                          onClick={(e) => {
+                            if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                              e.preventDefault();
+                              handleNavClick(sub.path);
+                            }
+                          }}
                           className="w-full text-left py-2 px-2 text-xs font-medium text-slate-700 hover:text-[#1B4D3E] hover:bg-white rounded-lg transition-colors cursor-pointer block"
                         >
                           <span className="font-semibold block">{sub.label}</span>
                           {sub.desc && <span className="text-[11px] text-slate-500 block">{sub.desc}</span>}
-                        </button>
+                        </a>
                       ))}
                     </div>
                   )}
@@ -318,18 +361,30 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           </div>
 
           <div className="pt-3 border-t border-slate-200 space-y-2">
-            <button
-              onClick={() => handleNavClick('plan/overview')}
+            <a
+              href={getHref('plan/overview')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  handleNavClick('plan/overview');
+                }
+              }}
               className="w-full bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold py-3 rounded-full text-center text-sm shadow cursor-pointer block"
             >
               Start My Plan
-            </button>
-            <button
-              onClick={() => handleNavClick('pricing/free')}
+            </a>
+            <a
+              href={getHref('pricing/free')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  handleNavClick('pricing/free');
+                }
+              }}
               className="w-full bg-white text-[#1B4D3E] font-semibold py-2.5 rounded-full text-center text-xs border border-slate-300 hover:bg-slate-50 cursor-pointer block"
             >
               Download Free Checklist
-            </button>
+            </a>
           </div>
         </div>
       )}

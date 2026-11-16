@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight, Home } from 'lucide-react';
+import { getHref } from '../utils/routing';
 
 interface BreadcrumbsProps {
   items: {
@@ -13,13 +14,19 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, onNavigate }) =
   return (
     <nav aria-label="Breadcrumb" className="bg-[#F6FAF7] border-b border-[#E0ECE6] py-3 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex items-center space-x-2 text-xs sm:text-sm text-[#1B3A34] overflow-x-auto whitespace-nowrap">
-        <button
-          onClick={() => onNavigate('home')}
+        <a
+          href={getHref('home')}
+          onClick={(e) => {
+            if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+              e.preventDefault();
+              onNavigate('home');
+            }
+          }}
           className="flex items-center gap-1.5 hover:text-[#2A9D8F] transition-colors text-[#1B3A34]/80 font-medium cursor-pointer"
         >
           <Home className="w-3.5 h-3.5 text-[#2A9D8F]" />
           <span>Home</span>
-        </button>
+        </a>
 
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -31,12 +38,18 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, onNavigate }) =
                   {item.label}
                 </span>
               ) : (
-                <button
-                  onClick={() => onNavigate(item.path!)}
+                <a
+                  href={getHref(item.path)}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      onNavigate(item.path!);
+                    }
+                  }}
                   className="hover:text-[#2A9D8F] transition-colors text-[#1B3A34]/80 font-medium cursor-pointer"
                 >
                   {item.label}
-                </button>
+                </a>
               )}
             </React.Fragment>
           );

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  CheckCircle2, Circle, Clock, ArrowRight, Download, 
-  Filter, Sparkles, AlertTriangle, ShieldCheck, HelpCircle, 
-  Check, Calendar, ChevronRight
+  CheckCircle2, Circle, ArrowRight, Download, 
+  Filter, Sparkles, AlertTriangle, Calendar, ChevronRight 
 } from 'lucide-react';
 import { PLAN_STAGES, PlanStageInfo } from '../data/planData';
+import { PLAN_FAQS } from '../data/pageFaqs';
+import { getGuideById } from '../data/guidesData';
 import { AustralianState } from '../types';
+import { getHref } from '../utils/routing';
 
 interface Plan12MonthViewProps {
   currentStageId?: string;
@@ -13,6 +15,48 @@ interface Plan12MonthViewProps {
   onSelectGuide: (guideSlug: string) => void;
   onOpenSubscribeModal: () => void;
 }
+
+const STAGE_COPY: Record<
+  string,
+  { h1: string; intro: string; faqTitle: string }
+> = {
+  overview: {
+    h1: 'Things to Do After Arriving in Australia: 12-Month Plan',
+    intro:
+      'Sorting out all the things to do after arriving in Australia is much calmer when you follow a clear order. This new migrant Australia setup guide breaks your year—starting with your first week in Australia checklist—into practical, sequential tasks. Confirm current visa, tax, and state rules directly with official portals such as ato.gov.au and homeaffairs.gov.au.',
+    faqTitle: 'Frequently Asked Questions About Things to Do After Arriving in Australia'
+  },
+  'week-1': {
+    h1: 'First Week in Australia Checklist: Days 1 to 7',
+    intro:
+      'Your first week in Australia checklist focuses on the four foundation tasks that unlock every step that follows. In this opening stage of our new migrant Australia setup guide, you can tick off the urgent things to do after arriving in Australia—getting a SIM card, verifying your bank passport ID, picking up a transit card, and applying for a TFN. Confirm current requirements on official government sites such as ato.gov.au and acma.gov.au.',
+    faqTitle: 'Frequently Asked Questions About Your First Week in Australia Checklist'
+  },
+  'before-arrival': {
+    h1: 'Moving to Australia Checklist: Before Arrival',
+    intro:
+      'Starting your moving to Australia checklist a few weeks before departure prevents stress during your first 48 hours on the ground. This pre-flight stage of our new migrant Australia setup guide helps you verify health cover, pre-open a bank account, book temporary accommodation, and prepare printed documents. Check visa entry conditions directly on immi.homeaffairs.gov.au.',
+    faqTitle: 'Frequently Asked Questions Before Moving to Australia'
+  },
+  'month-1': {
+    h1: 'Things to Do After Arriving in Australia: Month 1',
+    intro:
+      'Your Month 1 things to do after arriving in Australia focus on finding stable housing and getting connected at home. Inside this stage of our new migrant Australia setup guide, you will learn how to prepare for rental inspections, protect your bond, return a condition report, and furnish essentials affordably. Verify state bond and tenancy rules on consumer.vic.gov.au, fairtrading.nsw.gov.au, or cbs.sa.gov.au.',
+    faqTitle: 'Frequently Asked Questions About Your First Month in Australia'
+  },
+  'months-2-3': {
+    h1: 'New Migrant Australia Setup Guide: Months 2 to 3',
+    intro:
+      'Months 2 to 3 of our new migrant Australia setup guide shift focus to everyday Australian photo ID, work superannuation, and healthcare registration. Completing these steps protects your passport and ensures your employer super payments go into one low-fee fund. Confirm current Superannuation Guarantee rates directly on ato.gov.au.',
+    faqTitle: 'Frequently Asked Questions About Months 2 to 3 in Australia'
+  },
+  'months-4-12': {
+    h1: 'New Migrant Australia Setup Guide: Months 4 to 12',
+    intro:
+      'In Months 4 to 12 of our new migrant Australia setup guide, you can tackle longer-term milestones including vehicle checks, overseas driver licence conversion, police checks, and your annual tax return. Always verify state licensing cutoffs and clearance fees on official portals such as afp.gov.au, service.nsw.gov.au, vicroads.vic.gov.au, or sa.gov.au.',
+    faqTitle: 'Frequently Asked Questions About Settling Long Term in Australia'
+  }
+};
 
 export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
   currentStageId = 'overview',
@@ -23,19 +67,27 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
   const [activeStage, setActiveStage] = useState<string>(
     currentStageId === 'overview' ? 'week-1' : currentStageId
   );
-  const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>(() => {
+  const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({});
+  const [selectedState, setSelectedState] = useState<AustralianState>('ALL');
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  // Hydrate checklist state client-side only so SSR & initial render stay deterministic
+  useEffect(() => {
     try {
       const saved = localStorage.getItem('fyau_completed_tasks');
-      return saved ? JSON.parse(saved) : {};
+      if (saved) {
+        setCompletedTasks(JSON.parse(saved));
+      }
     } catch {
-      return {};
+      // ignore storage errors
     }
-  });
-  const [selectedState, setSelectedState] = useState<AustralianState>('ALL');
+  }, []);
 
   useEffect(() => {
     if (currentStageId && currentStageId !== 'overview') {
       setActiveStage(currentStageId);
+    } else if (currentStageId === 'overview') {
+      setActiveStage('week-1');
     }
   }, [currentStageId]);
 
@@ -52,7 +104,6 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
     }
   };
 
-  // Calculate total tasks and completed tasks
   const allTasks = PLAN_STAGES.flatMap((stage) => stage.tasks);
   const totalTasks = allTasks.length;
   const completedCount = allTasks.filter((t) => !!completedTasks[t.id]).length;
@@ -60,6 +111,9 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
 
   const currentStageData: PlanStageInfo =
     PLAN_STAGES.find((s) => s.id === activeStage) || PLAN_STAGES[1];
+
+  const copy = STAGE_COPY[currentStageId] || STAGE_COPY.overview;
+  const faqs = PLAN_FAQS[currentStageId] || PLAN_FAQS.overview;
 
   const statesList: { code: AustralianState; name: string }[] = [
     { code: 'ALL', name: 'All States (National)' },
@@ -79,21 +133,27 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           <span>Chronological Settlement Roadmap</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-          Things to do after arriving in Australia: 12-Month Plan
+          {copy.h1}
         </h1>
-        <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-          From your first week in Australia as an international student or skilled worker, to converting driver licences and lodging your first annual tax return. Follow tasks in chronological order so you never hit a roadblock.
+        <p className="text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+          {copy.intro}
         </p>
 
         {/* Action Header Button: "Download the free checklist" */}
         <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-          <button
-            onClick={() => onNavigate('pricing/free')}
+          <a
+            href={getHref('pricing/free')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('pricing/free');
+              }
+            }}
             className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md transition-all cursor-pointer flex items-center gap-2 active:scale-95"
           >
             <Download className="w-4 h-4 text-[#1B3A34]" />
             <span>Download the free checklist</span>
-          </button>
+          </a>
           <button
             onClick={onOpenSubscribeModal}
             className="bg-white hover:bg-[#F6FAF7] text-[#1B4D3E] font-semibold text-xs sm:text-sm px-6 py-3 rounded-full border border-[#E0ECE6] shadow-xs transition-colors cursor-pointer"
@@ -139,7 +199,7 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           </div>
         </div>
 
-        {/* Progress Bar in Eucalyptus Teal to Warm Orange */}
+        {/* Progress Bar */}
         <div className="w-full bg-[#E0ECE6]/60 rounded-full h-3 overflow-hidden">
           <div
             className="bg-gradient-to-r from-[#2A9D8F] to-[#F4A261] h-3 rounded-full transition-all duration-500"
@@ -148,7 +208,7 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
         </div>
       </div>
 
-      {/* Stage Timeline Navigation Tabs with Week (Light Green) & Month (Light Orange) Tags */}
+      {/* Stage Timeline Navigation Tabs (Crawlable anchor links) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
         {PLAN_STAGES.map((stage) => {
           const isActive = activeStage === stage.id;
@@ -157,11 +217,15 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           const isWeekStage = stage.id === 'before-arrival' || stage.id === 'week-1';
 
           return (
-            <button
+            <a
               key={stage.id}
-              onClick={() => {
-                setActiveStage(stage.id);
-                onNavigate(`plan/${stage.id}`);
+              href={getHref(`plan/${stage.id}`)}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  setActiveStage(stage.id);
+                  onNavigate(`plan/${stage.id}`);
+                }
               }}
               className={`p-4 rounded-3xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                 isActive
@@ -192,14 +256,13 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#E9C46A]" />
                 )}
               </div>
-            </button>
+            </a>
           );
         })}
       </div>
 
-      {/* Active Stage Detailed View (White card with soft shadow) */}
+      {/* Active Stage Detailed View */}
       <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 sm:p-8 space-y-8 shadow-xs">
-        {/* Stage Header */}
         <div className="space-y-3 pb-6 border-b border-[#E0ECE6]">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
@@ -211,12 +274,9 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
                 {currentStageData.timeframe}
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1.5 font-display">
-                {currentStageData.title}
+                {currentStageData.title}: What comes first?
               </h2>
             </div>
-            <span className="bg-[#E2F4EE] text-[#1B4D3E] text-xs px-3 py-1 rounded-full font-semibold">
-              Keyword: {currentStageData.seoKeyword}
-            </span>
           </div>
 
           <p className="text-sm sm:text-base text-[#1B3A34]/90 leading-relaxed">
@@ -225,10 +285,10 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
 
           {/* Why this exact order rationale */}
           <div className="bg-[#F6FAF7] border border-[#2A9D8F]/30 rounded-2xl p-4 text-xs sm:text-sm text-[#1B4D3E]">
-            <span className="font-bold flex items-center gap-1.5 mb-1">
+            <h3 className="font-bold flex items-center gap-1.5 mb-1 text-sm sm:text-base">
               <Sparkles className="w-4 h-4 text-[#2A9D8F]" />
-              Why this order matters:
-            </span>
+              <span>Why does this order matter in your new migrant Australia setup guide?</span>
+            </h3>
             <p className="text-[#1B3A34]/80">
               {currentStageData.whyThisOrder}
             </p>
@@ -238,9 +298,9 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
         {/* Interactive Task Checklist for this Stage */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-base sm:text-lg font-bold text-[#1B4D3E]">
-              Essential Tasks for {currentStageData.title}
-            </h3>
+            <h2 className="text-base sm:text-lg font-bold text-[#1B4D3E]">
+              What tasks belong in {currentStageData.title}?
+            </h2>
             <span className="text-xs text-[#1B3A34]/70">
               Click checkbox to mark complete
             </span>
@@ -249,6 +309,9 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           <div className="space-y-3">
             {currentStageData.tasks.map((task) => {
               const isChecked = !!completedTasks[task.id];
+              const linkedGuide = task.guideSlug ? getGuideById(task.guideSlug) : undefined;
+              const guidePath = linkedGuide ? `${linkedGuide.categorySlug}/${linkedGuide.slug}` : undefined;
+
               return (
                 <div
                   key={task.id}
@@ -298,15 +361,21 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
                     </div>
                   </div>
 
-                  {/* Guide Link Button if linked - Pill Shaped */}
-                  {task.guideSlug && (
-                    <button
-                      onClick={() => onSelectGuide(task.guideSlug!)}
+                  {/* Keyword-rich Guide Link if linked */}
+                  {task.guideSlug && guidePath && (
+                    <a
+                      href={getHref(guidePath)}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                          e.preventDefault();
+                          onSelectGuide(task.guideSlug!);
+                        }
+                      }}
                       className="shrink-0 bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] border border-[#2A9D8F]/30 font-bold text-xs px-4 py-2 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1.5 self-end sm:self-center"
                     >
-                      <span>Read guide</span>
+                      <span>{linkedGuide?.seoKeyword || 'Read guide'}</span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#2A9D8F]" />
-                    </button>
+                    </a>
                   )}
                 </div>
               );
@@ -316,10 +385,10 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
 
         {/* Pitfalls to Avoid in this Stage */}
         <div className="bg-rose-50/70 border border-rose-200 rounded-2xl p-5 space-y-2">
-          <span className="text-xs font-bold text-rose-900 uppercase tracking-wider flex items-center gap-1.5">
+          <h3 className="text-xs font-bold text-rose-900 uppercase tracking-wider flex items-center gap-1.5">
             <AlertTriangle className="w-4 h-4 text-rose-600" />
-            Costly Pitfalls to Avoid During {currentStageData.title}
-          </span>
+            <span>Common pitfalls to avoid during {currentStageData.title}</span>
+          </h3>
           <ul className="space-y-1.5 text-xs sm:text-sm text-rose-950 list-disc pl-5">
             {currentStageData.pitfallsToAvoid.map((pitfall, idx) => (
               <li key={idx} className="leading-relaxed">
@@ -329,18 +398,24 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           </ul>
         </div>
 
-        {/* Next Stage Teaser */}
+        {/* Next Stage & Checklist Links */}
         <div className="pt-4 border-t border-[#E0ECE6] flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-xs text-[#1B3A34]/70">
-            Need automated reminders before state deadlines expire?
+            Want automated alerts before bank ID and TFN deadlines expire?
           </span>
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => onNavigate('pricing/free')}
+            <a
+              href={getHref('pricing/free')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  onNavigate('pricing/free');
+                }
+              }}
               className="text-xs text-[#2A9D8F] hover:text-[#1B4D3E] font-bold cursor-pointer underline"
             >
-              Download PDF checklist
-            </button>
+              Download free moving to Australia checklist
+            </a>
             <button
               onClick={onOpenSubscribeModal}
               className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs px-5 py-2.5 rounded-full transition-all cursor-pointer inline-flex items-center gap-1"
@@ -351,6 +426,43 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Stage FAQ Section (All 3 answers kept in HTML DOM) */}
+      <section className="space-y-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
+          {copy.faqTitle}
+        </h2>
+        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaqIndex === index;
+            return (
+              <div key={index} className="py-4 px-5 sm:px-6">
+                <button
+                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
+                >
+                  <span>{faq.question}</span>
+                  <ChevronRight
+                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
+                      isOpen ? 'rotate-90' : ''
+                    }`}
+                  />
+                </button>
+                <p
+                  className={
+                    isOpen
+                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
+                      : 'hidden'
+                  }
+                >
+                  {faq.answer}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 };

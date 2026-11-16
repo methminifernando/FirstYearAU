@@ -1,10 +1,10 @@
 import React from 'react';
 import { 
-  ArrowRight, CheckCircle2, Star, ShieldCheck, 
-  Smartphone, Home, Car, Shield, Sparkles, ChevronRight,
-  Download, Users, Quote
+  ArrowRight, CheckCircle2, Star, 
+  Smartphone, Home, Car, Shield, ChevronRight
 } from 'lucide-react';
 import heroBgImage from '../assets/images/australia_hero_bg_1794143866124.jpg';
+import { getHref } from '../utils/routing';
 
 interface HomeViewProps {
   onNavigate: (path: string) => void;
@@ -15,6 +15,25 @@ interface HomeViewProps {
 export const HomeView: React.FC<HomeViewProps> = ({
   onNavigate
 }) => {
+  const NavLink: React.FC<{
+    path: string;
+    className?: string;
+    children: React.ReactNode;
+  }> = ({ path, className, children }) => (
+    <a
+      href={getHref(path)}
+      onClick={(e) => {
+        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+          e.preventDefault();
+          onNavigate(path);
+        }
+      }}
+      className={className}
+    >
+      {children}
+    </a>
+  );
+
   // Testimonials embedding the required search keywords naturally
   const TESTIMONIALS = [
     {
@@ -27,7 +46,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       avatarColor: 'bg-[#E2F4EE] text-[#1B4D3E]',
       quote: (
         <>
-          "Finding a genuinely practical <strong className="text-[#1B4D3E] font-semibold">new migrant guide Australia</strong> that told me what to do in order saved me from complete overwhelm. During my <strong className="text-[#1B4D3E] font-semibold">first week in Australia international student</strong> arrival in Adelaide, I followed FirstYear AU to <strong className="text-[#1B4D3E] font-semibold">apply for TFN online</strong> directly via the ATO for free, unlocked my debit card before the 6-week passport cutoff, and got my <strong className="text-[#1B4D3E] font-semibold">proof of age card South Australia</strong> so I never had to risk carrying my passport around."
+          "Finding a genuinely practical <strong className="text-[#1B4D3E] font-semibold">new migrant guide Australia</strong> that told me what to do in order saved me from complete overwhelm. During my <strong className="text-[#1B4D3E] font-semibold">first week in Australia</strong> arrival in Adelaide, I followed FirstYear AU to <strong className="text-[#1B4D3E] font-semibold">apply for TFN online</strong> directly via the ATO for free, unlocked my debit card before the 6-week passport cutoff, and got my <strong className="text-[#1B4D3E] font-semibold">18 Plus card South Australia</strong> so I never had to risk carrying my passport around."
         </>
       )
     },
@@ -41,7 +60,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       avatarColor: 'bg-[#FDE9DB] text-[#8B4513]',
       quote: (
         <>
-          "As newcomers with zero local credit, the <strong className="text-[#1B4D3E] font-semibold">rental application template for new migrants</strong> was worth everything. It showed us exactly <strong className="text-[#1B4D3E] font-semibold">how to rent with no rental history</strong> by formatting overseas savings, employment offers, and referee letters the way Australian property managers expect. We inspected on Saturday and our Southbank lease was approved by Tuesday."
+          "As newcomers with zero local credit, the <strong className="text-[#1B4D3E] font-semibold">rental application template for new migrants</strong> was worth everything. It showed us exactly <strong className="text-[#1B4D3E] font-semibold">how to rent with no rental history Australia</strong> by formatting overseas savings, employment offers, and referee letters the way Australian property managers expect. We inspected on Saturday and our Southbank lease was approved by Tuesday."
         </>
       )
     },
@@ -55,7 +74,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       avatarColor: 'bg-[#FCF4DD] text-[#684C00]',
       quote: (
         <>
-          "Before leaving Colombo, the <strong className="text-[#1B4D3E] font-semibold">moving to Australia checklist</strong> helped me organize everything in advance. It listed the true priority <strong className="text-[#1B4D3E] font-semibold">things to do after arriving in Australia</strong> and showed me the <strong className="text-[#1B4D3E] font-semibold">best SIM card for new arrivals Australia</strong> so I had unlimited data the moment I walked out of Sydney Kingsford Smith Airport."
+          "Before leaving Colombo, the <strong className="text-[#1B4D3E] font-semibold">moving to Australia checklist</strong> helped me organize everything in advance. It listed the true priority <strong className="text-[#1B4D3E] font-semibold">things to do after arriving Australia</strong> and showed me the <strong className="text-[#1B4D3E] font-semibold">best SIM card for new arrivals Australia</strong> so I had unlimited data the moment I walked out of Sydney Kingsford Smith Airport."
         </>
       )
     },
@@ -69,7 +88,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       avatarColor: 'bg-[#E2F4EE] text-[#2A9D8F]',
       quote: (
         <>
-          "I needed an official <strong className="text-[#1B4D3E] font-semibold">national police check for international students</strong> and hospital volunteering in Brisbane. FirstYear AU showed me the direct Australian Federal Police portal so I avoided shady commercial scam agencies that charge double. Clear, honest, and zero fluff."
+          "I needed an official <strong className="text-[#1B4D3E] font-semibold">police check international student Australia</strong> and hospital volunteering clearance in Brisbane. FirstYear AU showed me the direct Australian Federal Police portal so I avoided shady commercial websites that charge extra. Clear, honest, and zero fluff."
         </>
       )
     }
@@ -79,40 +98,44 @@ export const HomeView: React.FC<HomeViewProps> = ({
     <div className="space-y-16 sm:space-y-20 bg-[#FBFDFB]">
       {/* 1. HERO SECTION: Australian panoramic scenic background, picture clearly visible with subtle readable contrast */}
       <section className="relative overflow-hidden min-h-[520px] lg:min-h-[560px] flex items-center border-b border-[#E0ECE6] bg-[#0E1E1A]">
-        {/* Australian Panoramic Scenic Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center sm:bg-[center_top] bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBgImage})` }}
+        {/* Australian Panoramic Scenic Background Image with descriptive keyword-rich alt text */}
+        <img
+          src={heroBgImage}
+          alt="Sydney Harbour and city skyline panoramic view for our new migrant guide Australia"
+          className="absolute inset-0 w-full h-full object-cover object-center sm:object-top"
         />
 
         {/* Balanced, subtle atmospheric overlay: lets the photo shine through while guaranteeing contrast for white text */}
         <div 
-          className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/15 sm:from-[#0D1F18]/70 sm:via-[#0D1F18]/30 sm:to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15 sm:from-[#0D1F18]/75 sm:via-[#0D1F18]/35 sm:to-transparent"
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10 w-full">
-          <div className="max-w-3xl space-y-6">
-            
-            {/* The exact requested paragraph, directly on top of the picture in high-contrast white text */}
-            <p className="text-xl sm:text-2xl lg:text-[27px] font-semibold text-white leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              New country, new rules, endless to-do lists. FirstYear AU turns your move to Australia into a simple week-by-week checklist, from getting a SIM card, opening a bank account and applying for your tax file number to finding a rental and settling in. Built for new migrants and international students, so you always know what to do next.
+          <div className="max-w-3xl space-y-5">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-display leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              Your New Migrant Guide to Australia
+            </h1>
+
+            {/* Introduction paragraph: 3 friendly sentences with main keyword in first sentence */}
+            <p className="text-lg sm:text-xl lg:text-2xl font-medium text-white/95 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              New country, new rules, endless to-do lists—this <strong className="font-bold text-white">new migrant guide Australia</strong> turns your move into a simple week-by-week moving to Australia checklist. From getting a SIM card, opening a bank account and applying for your tax file number to finding a rental, discover all the key things to do after arriving in Australia in plain English. Built for new migrants and international students, with direct reminders to confirm official rules on government sites such as ato.gov.au.
             </p>
 
             {/* Primary Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-3">
-              <button
-                onClick={() => onNavigate('plan/overview')}
+              <NavLink
+                path="plan/overview"
                 className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
               >
                 <span>Start my plan</span>
                 <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-              </button>
-              <button
-                onClick={() => onNavigate('pricing/free')}
+              </NavLink>
+              <NavLink
+                path="pricing/free"
                 className="bg-white/95 hover:bg-white text-[#1B4D3E] font-bold text-sm sm:text-base px-7 py-4 rounded-full shadow-md transition-all cursor-pointer text-center"
               >
                 Download free checklist
-              </button>
+              </NavLink>
             </div>
 
             {/* Subtle Trust Indicators */}
@@ -123,11 +146,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </span>
               <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                 <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
-                Official ATO, Home Affairs & Govt Sources
+                Official ATO, Home Affairs &amp; Govt Sources
               </span>
               <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                 <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
-                Updated Quarterly for 2026/2027
+                Regularly Reviewed General Information
               </span>
             </div>
           </div>
@@ -141,10 +164,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
             Settlement Directory
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1 font-display">
-            Explore guides clearly by sub-section
+            What are the essential things to do after arriving in Australia?
           </h2>
           <p className="text-sm text-[#1B3A34]/80 mt-2">
-            Every step is detailed under its specific sub-section with direct answers, step-by-step instructions, and official links.
+            Explore every milestone in our moving to Australia checklist with direct answers, step-by-step instructions, and official government links.
           </p>
         </div>
 
@@ -164,38 +187,38 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </p>
               <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
                 <li>
-                  <button onClick={() => onNavigate('get-set-up/sim-internet')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-set-up/sim-internet" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>SIM and Internet</span>
-                  </button>
+                    <span>Best SIM card for new arrivals Australia</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('get-set-up/bank-account')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-set-up/bank-account" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Bank Account (6-Wk Rule)</span>
-                  </button>
+                    <span>Open bank account Australia new arrival</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('get-set-up/tax-file-number')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-set-up/tax-file-number" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Tax File Number (TFN)</span>
-                  </button>
+                    <span>How to apply for a TFN online</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('get-set-up/superannuation')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-set-up/superannuation" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Superannuation & DASP</span>
-                  </button>
+                    <span>How does super work in Australia</span>
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="pt-5">
-              <button
-                onClick={() => onNavigate('get-set-up/sim-internet')}
-                className="w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
+              <NavLink
+                path="get-set-up/sim-internet"
+                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
               >
                 Open Get Set-Up
-              </button>
+              </NavLink>
             </div>
           </div>
 
@@ -213,32 +236,32 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </p>
               <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
                 <li>
-                  <button onClick={() => onNavigate('find-a-home/renting-inspections')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="find-a-home/renting-inspections" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Renting & Inspections</span>
-                  </button>
+                    <span>Rent with no rental history Australia</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('find-a-home/bond-condition-report')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="find-a-home/bond-condition-report" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Bond & Condition Report</span>
-                  </button>
+                    <span>Rental bond and condition report</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('find-a-home/furniture')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="find-a-home/furniture" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Furniture on a Budget</span>
-                  </button>
+                    <span>Cheap furniture for students</span>
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="pt-5">
-              <button
-                onClick={() => onNavigate('find-a-home/renting-inspections')}
-                className="w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
+              <NavLink
+                path="find-a-home/renting-inspections"
+                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
               >
                 Open Find a Home
-              </button>
+              </NavLink>
             </div>
           </div>
 
@@ -256,32 +279,32 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </p>
               <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
                 <li>
-                  <button onClick={() => onNavigate('get-around/public-transport')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-around/public-transport" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Public Transport Cards</span>
-                  </button>
+                    <span>Public transport cards Australia</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('get-around/driver-licence')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-around/driver-licence" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Driver Licence Conversion</span>
-                  </button>
+                    <span>Driving on overseas licence Australia</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('get-around/buying-a-car')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="get-around/buying-a-car" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Buying a Car & PPSR Check</span>
-                  </button>
+                    <span>Buying a car &amp; PPSR check</span>
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="pt-5">
-              <button
-                onClick={() => onNavigate('get-around/public-transport')}
-                className="w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
+              <NavLink
+                path="get-around/public-transport"
+                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
               >
                 Open Get Around
-              </button>
+              </NavLink>
             </div>
           </div>
 
@@ -292,39 +315,39 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <Shield className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                ID & Paperwork
+                ID &amp; Paperwork
               </h3>
               <p className="text-xs text-[#1B3A34]/70 leading-relaxed">
                 Official 18+ photo identity cards, AFP national police checks, and Working with Children certification.
               </p>
               <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
                 <li>
-                  <button onClick={() => onNavigate('id-and-paperwork/proof-of-age')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="id-and-paperwork/proof-of-age" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Proof of Age 18+ Card</span>
-                  </button>
+                    <span>Proof of Age card Australia (18+)</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('id-and-paperwork/police-check')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="id-and-paperwork/police-check" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>National Police Check</span>
-                  </button>
+                    <span>AFP police check international student</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <button onClick={() => onNavigate('id-and-paperwork/working-with-children')} className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
+                  <NavLink path="id-and-paperwork/working-with-children" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
                     <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
                     <span>Working with Children Check</span>
-                  </button>
+                  </NavLink>
                 </li>
               </ul>
             </div>
             <div className="pt-5">
-              <button
-                onClick={() => onNavigate('id-and-paperwork/proof-of-age')}
-                className="w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
+              <NavLink
+                path="id-and-paperwork/proof-of-age"
+                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
               >
-                Open ID & Paperwork
-              </button>
+                Open ID &amp; Paperwork
+              </NavLink>
             </div>
           </div>
 
@@ -339,10 +362,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
               Simple 3-Step Process
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1 font-display">
-              How FirstYear AU works
+              How does our moving to Australia checklist work?
             </h2>
             <p className="text-sm text-[#1B3A34]/80 mt-2">
-              We cut through the noise of conflicting advice on social media and WhatsApp groups.
+              We cut through conflicting social media advice so every international student and migrant knows the right order.
             </p>
           </div>
 
@@ -352,10 +375,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 1
               </div>
               <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Choose your stage & state
+                Choose your stage &amp; state
               </h3>
               <p className="text-sm text-[#1B3A34]/80 mt-2 leading-relaxed">
-                Whether on a student visa (subclass 500) or skilled visa, select your Australian state (VIC, SA, NSW, QLD, WA) to filter out irrelevant state rules.
+                Start before you fly or in Week 1, and review state-specific requirements for Victoria, South Australia, NSW, Queensland, or WA.
               </p>
             </div>
 
@@ -367,7 +390,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 Follow the week-by-week plan
               </h3>
               <p className="text-sm text-[#1B3A34]/80 mt-2 leading-relaxed">
-                Complete tasks in their true chronological order. Learn why task A unlocks task B (e.g. your SIM number enables your bank PayID, which enables your rental bond).
+                Complete tasks in their natural sequence—activating a SIM card enables bank PayID, which supports your rental application and bond lodgement.
               </p>
             </div>
 
@@ -379,7 +402,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 Verify with official sources
               </h3>
               <p className="text-sm text-[#1B3A34]/80 mt-2 leading-relaxed">
-                Every guide directly links to the relevant Australian Government department (ATO, Fair Trading, Service SA, AFP). Zero guesswork, zero scams.
+                Every guide links directly to official Australian Government bodies (such as ato.gov.au, Fair Trading, Service SA, and AFP) so you can confirm current rules.
               </p>
             </div>
           </div>
@@ -393,10 +416,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
             Stories from New Arrivals
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1 font-display">
-            What newcomers say about FirstYear AU
+            How newcomers use FirstYear AU in their first 12 months
           </h2>
           <p className="text-sm text-[#1B3A34]/80 mt-2">
-            Real experiences from international students and skilled migrants navigating their first 12 months in Australia.
+            General examples showing how international students and skilled migrants navigate their first week and rental setup in Australia.
           </p>
         </div>
 
@@ -415,13 +438,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     ))}
                   </div>
                   <span className="text-xs font-semibold text-slate-500 bg-[#F6FAF7] border border-[#E0ECE6] px-2.5 py-0.5 rounded-full">
-                    Verified Newcomer
+                    New Arrival Experience
                   </span>
                 </div>
 
                 {/* Testimonial Quote including organic keywords */}
                 <p className="text-sm text-[#1B3A34]/85 leading-relaxed italic">
-                  "{item.quote}"
+                  {item.quote}
                 </p>
               </div>
 
@@ -448,25 +471,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="bg-gradient-to-r from-[#1B4D3E] to-[#2A9D8F] text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display leading-tight text-white">
-            Ready to take control of your first year in Australia?
+            Ready to organise your first year in Australia?
           </h2>
           <p className="text-sm sm:text-base text-emerald-100 max-w-xl mx-auto">
-            Stop worrying about which task comes first. Get your clear week-by-week plan right now—completely free.
+            Stop wondering which task comes first. Open your free week-by-week moving to Australia checklist right now.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <button
-              onClick={() => onNavigate('plan/overview')}
+            <NavLink
+              path="plan/overview"
               className="w-full sm:w-auto bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-base px-8 py-4 rounded-full shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               <span>Start my plan</span>
               <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-            </button>
-            <button
-              onClick={() => onNavigate('contact/chatbot')}
-              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-7 py-4 rounded-full border border-white/30 transition-colors cursor-pointer"
+            </NavLink>
+            <NavLink
+              path="contact/chatbot"
+              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-7 py-4 rounded-full border border-white/30 transition-colors cursor-pointer text-center"
             >
               Ask FirstYear AU a question
-            </button>
+            </NavLink>
           </div>
         </div>
       </section>

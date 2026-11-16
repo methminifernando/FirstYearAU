@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { 
-  Mail, MessageSquare, Send, CheckCircle2, AlertCircle, 
-  HelpCircle, Sparkles, Bot, User, ArrowRight, ExternalLink, RefreshCw 
+  Send, CheckCircle2, Bot, User, ArrowRight, RefreshCw 
 } from 'lucide-react';
 import { GENERAL_FAQS } from '../data/faqData';
 import { SUGGESTED_QUESTIONS, getBotAnswer, BotResponse } from '../data/chatbotKnowledge';
+import { getGuideById } from '../data/guidesData';
+import { getHref } from '../utils/routing';
 
 interface ContactViewProps {
   subPage: 'form' | 'faq' | 'chatbot';
@@ -27,7 +28,6 @@ export const ContactView: React.FC<ContactViewProps> = ({
   onNavigate,
   onSelectGuide
 }) => {
-  // Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,11 +37,9 @@ export const ContactView: React.FC<ContactViewProps> = ({
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // FAQ State
   const [faqCategory, setFaqCategory] = useState<string>('All');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  // ChatBot State
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
@@ -53,7 +51,6 @@ export const ContactView: React.FC<ContactViewProps> = ({
   const [inputQuery, setInputQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
-  // Handle Contact Form Submit
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -63,7 +60,6 @@ export const ContactView: React.FC<ContactViewProps> = ({
     }, 700);
   };
 
-  // Handle Chat Submit
   const handleChatSubmit = (queryText?: string) => {
     const q = queryText || inputQuery;
     if (!q.trim()) return;
@@ -95,7 +91,6 @@ export const ContactView: React.FC<ContactViewProps> = ({
     }, 600);
   };
 
-  // FAQ Filtering
   const faqCategories = ['All', 'Getting Started', 'Housing & Renting', 'Work & Tax', 'Identity & Transport', 'Subscription & Refunds'];
   const filteredFaqs = GENERAL_FAQS.filter((f) => faqCategory === 'All' || f.category === faqCategory);
 
@@ -104,8 +99,14 @@ export const ContactView: React.FC<ContactViewProps> = ({
       {/* Subpage Switcher Tabs */}
       <div className="flex items-center justify-center">
         <div className="bg-slate-100 p-1 rounded-full flex items-center border border-slate-200 text-xs sm:text-sm font-semibold">
-          <button
-            onClick={() => onNavigate('contact/form')}
+          <a
+            href={getHref('contact/form')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('contact/form');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'form'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -113,9 +114,15 @@ export const ContactView: React.FC<ContactViewProps> = ({
             }`}
           >
             Contact form
-          </button>
-          <button
-            onClick={() => onNavigate('contact/faq')}
+          </a>
+          <a
+            href={getHref('contact/faq')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('contact/faq');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'faq'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -123,9 +130,15 @@ export const ContactView: React.FC<ContactViewProps> = ({
             }`}
           >
             FAQ
-          </button>
-          <button
-            onClick={() => onNavigate('contact/chatbot')}
+          </a>
+          <a
+            href={getHref('contact/chatbot')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('contact/chatbot');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer flex items-center gap-1.5 ${
               subPage === 'chatbot'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -134,7 +147,7 @@ export const ContactView: React.FC<ContactViewProps> = ({
           >
             <Bot className="w-3.5 h-3.5 text-[#E9C46A]" />
             <span>Chat-Bot</span>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -146,10 +159,10 @@ export const ContactView: React.FC<ContactViewProps> = ({
               We Are Here to Help
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              Contact FirstYear AU
+              Contact FirstYear AU Settlement Team
             </h1>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              Have a question about an Australian statutory requirement or spotted a regulation change in your state? Send us a message and our settlement team will reply within 24 hours.
+              Need to contact the FirstYear AU settlement team with general feedback or a state rule update to double-check? Send us a message anytime. Note that we provide general settlement information only—never visa or migration advice—and recommend checking official sites such as immi.homeaffairs.gov.au or ato.gov.au.
             </p>
           </div>
 
@@ -159,9 +172,9 @@ export const ContactView: React.FC<ContactViewProps> = ({
                 <div className="w-14 h-14 bg-[#E2F4EE] rounded-full flex items-center justify-center mx-auto text-[#1B4D3E]">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1B4D3E]">
+                <h2 className="text-xl font-bold text-[#1B4D3E]">
                   Message Received!
-                </h3>
+                </h2>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
                   Thank you, <strong>{formData.name}</strong>. We have received your inquiry regarding your{' '}
                   <span className="font-semibold text-[#1B3A34]">{formData.stageOfArrival.replace('-', ' ')}</span> stage and will respond to <strong>{formData.email}</strong> shortly.
@@ -270,10 +283,10 @@ export const ContactView: React.FC<ContactViewProps> = ({
               Immediate Answers
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              Frequently Asked Questions
+              New Migrant Australia FAQ &amp; Answers
             </h1>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              Find answers to the most common questions new migrants ask about Australian banking, renting, taxes, and daily life.
+              Browse our new migrant Australia FAQ for direct answers on Australian banking, tax file numbers, renting with no local history, driver licences, and Proof of Age cards. Always confirm current rules on official portals such as ato.gov.au.
             </p>
           </div>
 
@@ -294,7 +307,7 @@ export const ContactView: React.FC<ContactViewProps> = ({
             ))}
           </div>
 
-          {/* FAQ Accordions */}
+          {/* FAQ Accordions (All answers present in HTML DOM) */}
           <div className="bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden shadow-xs">
             {filteredFaqs.map((faq, index) => {
               const isOpen = openFaqIndex === index;
@@ -302,6 +315,7 @@ export const ContactView: React.FC<ContactViewProps> = ({
                 <div key={index} className="p-5 sm:p-6">
                   <button
                     onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
                     className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-base sm:text-lg"
                   >
                     <span>{faq.question}</span>
@@ -309,11 +323,15 @@ export const ContactView: React.FC<ContactViewProps> = ({
                       {isOpen ? '—' : '+'}
                     </span>
                   </button>
-                  {isOpen && (
-                    <div className="mt-3 text-sm text-[#1B3A34]/80 leading-relaxed animate-in fade-in duration-150">
-                      {faq.answer}
-                    </div>
-                  )}
+                  <div
+                    className={
+                      isOpen
+                        ? 'mt-3 text-sm text-[#1B3A34]/80 leading-relaxed'
+                        : 'hidden'
+                    }
+                  >
+                    {faq.answer}
+                  </div>
                 </div>
               );
             })}
@@ -322,20 +340,38 @@ export const ContactView: React.FC<ContactViewProps> = ({
           {/* Still have questions */}
           <div className="bg-[#F6FAF7] p-6 sm:p-8 rounded-2xl border border-teal-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
             <div>
-              <h3 className="font-bold text-[#1B4D3E] text-base sm:text-lg">
-                Can’t find what you are looking for?
-              </h3>
+              <h2 className="font-bold text-[#1B4D3E] text-base sm:text-lg">
+                Still have questions about things to do after arriving in Australia?
+              </h2>
               <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                Chat with our interactive settlement assistant or submit a custom question.
+                Try our interactive settlement assistant or open the{' '}
+                <a
+                  href={getHref('plan/week-1')}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      onNavigate('plan/week-1');
+                    }
+                  }}
+                  className="text-[#2A9D8F] underline font-semibold"
+                >
+                  first week in Australia checklist
+                </a>.
               </p>
             </div>
-            <button
-              onClick={() => onNavigate('contact/chatbot')}
+            <a
+              href={getHref('contact/chatbot')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  onNavigate('contact/chatbot');
+                }
+              }}
               className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-sm transition-all cursor-pointer inline-flex items-center gap-2 shrink-0"
             >
               <span>Chat with Assistant</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       )}
@@ -349,67 +385,78 @@ export const ContactView: React.FC<ContactViewProps> = ({
               <span>Ask FirstYear AU · 24/7 Newcomer Assistant</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] font-display">
-              Instant Settlement Guidance
+              Australia Settlement Assistant Chat
             </h1>
             <p className="text-xs sm:text-sm text-[#1B3A34]/80 max-w-lg mx-auto">
-              Ask questions about opening a bank account, TFN online application, renting with no history, or state road rules.
+              Use our Australia settlement assistant chat to find direct links on opening a bank account, applying for a TFN online, renting with no history, or state driver licence rules. Confirm details on official sites like ato.gov.au.
             </p>
           </div>
 
           {/* Chat Container */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-md flex flex-col h-[560px] overflow-hidden">
-            {/* Chat Messages Log */}
             <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-[#F6FAF7]/50">
-              {messages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex items-start gap-3 ${
-                    msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
-                  }`}
-                >
+              {messages.map((msg) => {
+                const relatedGuide = msg.relatedGuideId ? getGuideById(msg.relatedGuideId) : undefined;
+                const jumpPath =
+                  msg.relatedGuideId === '12-month-plan'
+                    ? 'plan/overview'
+                    : relatedGuide
+                    ? `${relatedGuide.categorySlug}/${relatedGuide.slug}`
+                    : 'plan/overview';
+                return (
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${
-                      msg.sender === 'user'
-                        ? 'bg-[#F4A261] text-[#1B3A34]'
-                        : 'bg-[#1B4D3E] text-[#E9C46A]'
+                    key={msg.id}
+                    className={`flex items-start gap-3 ${
+                      msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
                     }`}
                   >
-                    {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
-                  </div>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${
+                        msg.sender === 'user'
+                          ? 'bg-[#F4A261] text-[#1B3A34]'
+                          : 'bg-[#1B4D3E] text-[#E9C46A]'
+                      }`}
+                    >
+                      {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                    </div>
 
-                  <div
-                    className={`max-w-[82%] sm:max-w-[75%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
-                      msg.sender === 'user'
-                        ? 'bg-[#1B4D3E] text-white rounded-tr-xs'
-                        : 'bg-white text-[#1B3A34] border border-slate-200 rounded-tl-xs shadow-xs space-y-2'
-                    }`}
-                  >
-                    <p>{msg.text}</p>
+                    <div
+                      className={`max-w-[82%] sm:max-w-[75%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
+                        msg.sender === 'user'
+                          ? 'bg-[#1B4D3E] text-white rounded-tr-xs'
+                          : 'bg-white text-[#1B3A34] border border-slate-200 rounded-tl-xs shadow-xs space-y-2'
+                      }`}
+                    >
+                      <p>{msg.text}</p>
 
-                    {/* Related Guide Quick Jump */}
-                    {msg.relatedGuideId && (
-                      <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
-                        <span className="text-[11px] text-slate-500 font-medium">
-                          Source: {msg.source}
-                        </span>
-                        <button
-                          onClick={() => {
-                            if (msg.relatedGuideId === '12-month-plan') {
-                              onNavigate('plan/overview');
-                            } else {
-                              onSelectGuide(msg.relatedGuideId!);
-                            }
-                          }}
-                          className="bg-[#E2F4EE] hover:bg-[#d4eee4] text-[#1B4D3E] font-bold text-[11px] px-3 py-1 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1"
-                        >
-                          <span>Read full guide</span>
-                          <ArrowRight className="w-3 h-3 text-[#2A9D8F]" />
-                        </button>
-                      </div>
-                    )}
+                      {msg.relatedGuideId && (
+                        <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+                          <span className="text-[11px] text-slate-500 font-medium">
+                            Source: {msg.source}
+                          </span>
+                          <a
+                            href={getHref(jumpPath)}
+                            onClick={(e) => {
+                              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                                e.preventDefault();
+                                if (msg.relatedGuideId === '12-month-plan') {
+                                  onNavigate('plan/overview');
+                                } else {
+                                  onSelectGuide(msg.relatedGuideId!);
+                                }
+                              }
+                            }}
+                            className="bg-[#E2F4EE] hover:bg-[#d4eee4] text-[#1B4D3E] font-bold text-[11px] px-3 py-1 rounded-full transition-colors cursor-pointer inline-flex items-center gap-1"
+                          >
+                            <span>Read full guide</span>
+                            <ArrowRight className="w-3 h-3 text-[#2A9D8F]" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
               {isTyping && (
                 <div className="flex items-center gap-2 text-xs text-slate-400 pl-11">
@@ -421,7 +468,6 @@ export const ContactView: React.FC<ContactViewProps> = ({
               )}
             </div>
 
-            {/* Suggested Prompts Strip */}
             <div className="p-2.5 bg-[#F6FAF7] border-t border-slate-200 flex items-center gap-2 overflow-x-auto text-[11px]">
               <span className="font-bold text-[#1B4D3E] shrink-0">Popular:</span>
               {SUGGESTED_QUESTIONS.map((sug, idx) => (
@@ -435,7 +481,6 @@ export const ContactView: React.FC<ContactViewProps> = ({
               ))}
             </div>
 
-            {/* Input Bar */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();

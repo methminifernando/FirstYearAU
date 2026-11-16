@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { 
   Check, X, ShieldCheck, Download, ArrowRight, 
-  Tag, ExternalLink, Calendar, Bell, FileText, Video, CheckCircle2, HelpCircle 
+  ExternalLink, Calendar, Bell, FileText, Video, CheckCircle2, ChevronRight 
 } from 'lucide-react';
 import { PLAN_COMPARISON, PARTNER_OFFERS } from '../data/pricingData';
 import { PLAN_STAGES } from '../data/planData';
+import { PRICING_FAQS } from '../data/pageFaqs';
+import { getGuideById } from '../data/guidesData';
+import { getHref } from '../utils/routing';
 
 interface MembershipPricingViewProps {
   subPage: 'free' | 'plus' | 'compare' | 'partners';
@@ -20,6 +23,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
   onOpenSubscribeModal
 }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Printable checklist handler
   const handlePrintChecklist = () => {
@@ -31,18 +35,30 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
       {/* Subpage Switcher Tabs */}
       <div className="flex items-center justify-center overflow-x-auto pb-2">
         <div className="bg-slate-100 p-1 rounded-full flex items-center border border-slate-200 text-xs sm:text-sm font-semibold whitespace-nowrap">
-          <button
-            onClick={() => onNavigate('pricing/free')}
+          <a
+            href={getHref('pricing/free')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('pricing/free');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'free'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
                 : 'text-slate-600 hover:text-[#1B4D3E]'
             }`}
           >
-            Free plan & checklist
-          </button>
-          <button
-            onClick={() => onNavigate('pricing/plus')}
+            Free plan &amp; checklist
+          </a>
+          <a
+            href={getHref('pricing/plus')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('pricing/plus');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'plus'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -50,9 +66,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             }`}
           >
             FirstYear Plus subscription
-          </button>
-          <button
-            onClick={() => onNavigate('pricing/compare')}
+          </a>
+          <a
+            href={getHref('pricing/compare')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('pricing/compare');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'compare'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -60,9 +82,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             }`}
           >
             Compare plans
-          </button>
-          <button
-            onClick={() => onNavigate('pricing/partners')}
+          </a>
+          <a
+            href={getHref('pricing/partners')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('pricing/partners');
+              }
+            }}
             className={`px-5 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'partners'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -70,7 +98,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             }`}
           >
             Partner offers
-          </button>
+          </a>
         </div>
       </div>
 
@@ -82,10 +110,10 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
               100% Free Settlement Resources
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              Moving to Australia checklist: Free Plan
+              Moving to Australia Checklist: Free Plan
             </h1>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              We never hide essential settlement knowledge behind paywalls. Every new migrant and international student can read our complete 13 guides and print our comprehensive settling checklist for free.
+              Our free moving to Australia checklist gives international students and new migrants every essential first-year milestone in clear chronological order. Read all 13 public guides at no cost and preview our rental application template for new migrants before deciding on any upgrade. Always confirm official rules and fees directly with government websites such as ato.gov.au.
             </p>
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <button
@@ -95,12 +123,18 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <Download className="w-4 h-4" />
                 <span>Print or Save as PDF Checklist</span>
               </button>
-              <button
-                onClick={() => onNavigate('plan/overview')}
+              <a
+                href={getHref('plan/overview')}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    onNavigate('plan/overview');
+                  }
+                }}
                 className="bg-white hover:bg-[#F6FAF7] text-[#1B4D3E] font-semibold text-xs sm:text-sm px-5 py-3 rounded-full border border-slate-300 transition-colors cursor-pointer"
               >
-                Explore Interactive Timeline
-              </button>
+                Explore Interactive 12-Month Plan
+              </a>
             </div>
           </div>
 
@@ -109,10 +143,10 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             <div className="border-b border-slate-200 pb-4 flex items-center justify-between">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E]">
-                  Complete FirstYear AU 12-Month Checklist
+                  What tasks are on your complete moving to Australia checklist?
                 </h2>
                 <p className="text-xs text-slate-500">
-                  Includes key deadlines, 6-week passport rule, and regulatory checkpoints
+                  Includes key deadlines, 6-week bank passport verification window, and regulatory checkpoints
                 </p>
               </div>
               <span className="text-xs font-semibold bg-[#E2F4EE] text-[#1B4D3E] px-3 py-1 rounded-full">
@@ -127,9 +161,9 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                   <div key={stage.id} className="space-y-3">
                     <div className="bg-[#F6FAF7] px-4 py-2.5 rounded-xl flex items-center justify-between border border-slate-100">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#1B4D3E] text-sm sm:text-base">
+                        <h3 className="font-bold text-[#1B4D3E] text-sm sm:text-base">
                           {stage.title}
-                        </span>
+                        </h3>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                           isWeek ? 'bg-[#E2F4EE] text-[#1B4D3E]' : 'bg-[#FDE9DB] text-[#8B4513]'
                         }`}>
@@ -142,24 +176,34 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                     </div>
 
                     <div className="divide-y divide-slate-100 pl-2">
-                      {stage.tasks.map((task) => (
-                        <div key={task.id} className="py-2.5 flex items-start gap-3">
-                          <div className="w-4 h-4 rounded border border-slate-300 shrink-0 mt-0.5"></div>
-                          <div className="flex-1 text-xs sm:text-sm">
-                            <span className="font-semibold text-[#1B3A34]">{task.title}</span>
-                            <span className="text-[#2A9D8F] font-mono text-xs ml-2">[{task.estimatedDays}]</span>
-                            <p className="text-slate-500 text-xs mt-0.5">{task.description}</p>
+                      {stage.tasks.map((task) => {
+                        const linkedGuide = task.guideSlug ? getGuideById(task.guideSlug) : undefined;
+                        const guidePath = linkedGuide ? `${linkedGuide.categorySlug}/${linkedGuide.slug}` : undefined;
+                        return (
+                          <div key={task.id} className="py-2.5 flex items-start gap-3">
+                            <div className="w-4 h-4 rounded border border-slate-300 shrink-0 mt-0.5"></div>
+                            <div className="flex-1 text-xs sm:text-sm">
+                              <span className="font-semibold text-[#1B3A34]">{task.title}</span>
+                              <span className="text-[#2A9D8F] font-mono text-xs ml-2">[{task.estimatedDays}]</span>
+                              <p className="text-slate-500 text-xs mt-0.5">{task.description}</p>
+                            </div>
+                            {linkedGuide && guidePath && (
+                              <a
+                                href={getHref(guidePath)}
+                                onClick={(e) => {
+                                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                                    e.preventDefault();
+                                    onNavigate(guidePath);
+                                  }
+                                }}
+                                className="text-xs text-[#2A9D8F] hover:underline shrink-0 no-print font-medium"
+                              >
+                                {linkedGuide.seoKeyword}
+                              </a>
+                            )}
                           </div>
-                          {task.guideSlug && (
-                            <button
-                              onClick={() => onNavigate(`get-set-up/${task.guideSlug}`)}
-                              className="text-xs text-[#2A9D8F] hover:underline shrink-0 no-print font-medium"
-                            >
-                              Read guide
-                            </button>
-                          )}
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 );
@@ -171,7 +215,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-[#1B4D3E] text-sm sm:text-base">
-                    Want the full Rental Application Pack & Task Reminders?
+                    Want the full Rental Application Template for New Migrants &amp; Reminders?
                   </span>
                   <span className="bg-[#E9C46A] text-[#1B3A34] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                     Plus
@@ -201,14 +245,14 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             </span>
             <div className="flex items-center justify-center gap-2">
               <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-                FirstYear Plus Subscription
+                Rental Application Template for New Migrants &amp; FirstYear Plus
               </h1>
-              <span className="bg-[#E9C46A] text-[#1B3A34] text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-[#E9C46A] text-[#1B3A34] text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0">
                 Plus
               </span>
             </div>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              Your personal settling co-pilot. For less than the price of one flat white coffee a month, get automated deadline reminders, our zero-history rental application pack, video walkthroughs, and self-checks.
+              Unlock our editable rental application template for new migrants alongside a personalised moving to Australia checklist synced to your arrival date. For A$4.99 a month or A$49 a year (cancel anytime, 7-day full refund), you also receive deadline reminders, video walkthroughs, and self-checks—with a free rental template preview before subscribing.
             </p>
 
             {/* Billing Toggle */}
@@ -241,6 +285,12 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             </div>
           </div>
 
+          <div className="text-center">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
+              What is included in FirstYear Plus for new migrants?
+            </h2>
+          </div>
+
           {/* Plus Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
@@ -252,7 +302,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Enter your flight landing date and destination city. We generate a custom calendar that syncs with Google Calendar, Apple iCal, or Outlook.
+                Enter your arrival date and city to tailor your moving to Australia checklist and export milestones to your calendar.
               </p>
             </div>
 
@@ -261,11 +311,11 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <Bell className="w-5 h-5" />
               </div>
               <div className="flex items-center justify-between">
-                <h3 className="text-base font-bold text-[#1B4D3E]">Task Reminders via Email & SMS</h3>
+                <h3 className="text-base font-bold text-[#1B4D3E]">Task Reminders via Email &amp; SMS</h3>
                 <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Critical notifications sent before strict state deadlines: the 6-week passport banking rule, 28-day TFN employer submission, and 3-day condition report returns.
+                Reminders before important state and federal cutoffs, including the 6-week passport banking rule and condition report return windows.
               </p>
             </div>
 
@@ -278,7 +328,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Full downloadable Microsoft Word & PDF pack: cover letter explaining student savings, income schedule, and referee questionnaires.
+                Full downloadable Microsoft Word &amp; PDF pack: cover letter explaining overseas savings, income schedule, and referee templates.
               </p>
               <button
                 onClick={onOpenTemplatePreview}
@@ -298,7 +348,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Real room-by-room walkthroughs demonstrating how to document ovens, carpets, and window seals on incoming condition reports to guarantee 100% bond returns.
+                Room-by-room walkthroughs demonstrating how to document condition reports carefully to protect your rental bond.
               </p>
             </div>
 
@@ -311,7 +361,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Diagnostic audits to verify if your employment pay slips match Fair Work awards, if your super is being paid quarterly, and if your lease has illegal clauses.
+                Practical self-checks to remind you to verify TFN setup, super fund deposits, and incoming lease documentation.
               </p>
             </div>
 
@@ -324,7 +374,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span className="bg-[#E2F4EE] text-[#1B4D3E] text-[10px] font-bold px-2 py-0.5 rounded-full">Included</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Test FirstYear Plus completely risk-free. If it doesn’t save you time, stress, and money, email us within 7 days for a 100% full refund with zero questions asked.
+                Try FirstYear Plus risk-free. Cancel anytime in one click, or request a full refund within 7 days with no questions asked.
               </p>
             </div>
           </div>
@@ -339,7 +389,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 Subscribe to FirstYear Plus
               </h2>
               <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed">
-                A$4.99 a month or A$49 a year. Cancel anytime with a single click. Includes the complete Rental Application Pack, personalized reminders, and video walkthroughs.
+                A$4.99 a month or A$49 a year. Cancel anytime with a single click. Includes our rental application template for new migrants, reminders, and video walkthroughs.
               </p>
             </div>
 
@@ -366,12 +416,16 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
               Feature Matrix
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              Compare Free vs. FirstYear Plus
+              Compare Moving to Australia Checklist &amp; Plus Plans
             </h1>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              Transparent side-by-side comparison. Free access for self-directed research; Plus for automated reminders, downloadable templates, and peace of mind.
+              See everything included in our free moving to Australia checklist alongside FirstYear Plus, which unlocks our full rental application template for new migrants, personalised reminders, and video walkthroughs—all backed by a 7-day refund guarantee.
             </p>
           </div>
+
+          <h2 className="text-xl font-bold text-[#1B4D3E] text-center font-display">
+            How do the Free Plan and FirstYear Plus compare?
+          </h2>
 
           {/* Comparison Table */}
           <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
@@ -379,7 +433,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="bg-[#1B4D3E] text-white border-b border-teal-800">
-                    <th className="p-4 sm:p-5 font-bold text-sm sm:text-base w-1/2">Features & Capabilities</th>
+                    <th className="p-4 sm:p-5 font-bold text-sm sm:text-base w-1/2">Features &amp; Capabilities</th>
                     <th className="p-4 sm:p-5 font-bold text-center w-1/4">Free Plan (A$0)</th>
                     <th className="p-4 sm:p-5 font-bold text-center w-1/4 bg-[#2A9D8F]">
                       <div className="flex items-center justify-center gap-1.5">
@@ -439,12 +493,18 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span>Cancel anytime with 1 click · 7-day 100% money-back refund guarantee</span>
               </div>
               <div className="flex items-center gap-3">
-                <button
-                  onClick={() => onNavigate('pricing/free')}
+                <a
+                  href={getHref('pricing/free')}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      onNavigate('pricing/free');
+                    }
+                  }}
                   className="px-5 py-2 text-xs font-semibold text-[#1B4D3E] bg-white border border-slate-300 rounded-full hover:bg-slate-50 transition-colors cursor-pointer"
                 >
                   Download Free Checklist
-                </button>
+                </a>
                 <button
                   onClick={onOpenSubscribeModal}
                   className="px-6 py-2.5 text-xs font-bold text-[#1B3A34] bg-[#F4A261] hover:bg-[#e7924e] rounded-full shadow-sm transition-all cursor-pointer"
@@ -462,13 +522,13 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
         <div className="space-y-10 animate-in fade-in duration-200">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
-              Vetted Student & Expat Deals
+              Clearly Labelled Newcomer Deals
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              Clearly Labelled Partner Offers
+              New Migrant Partner Offers in Australia
             </h1>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              We know new arrivals spend hundreds of dollars unnecessarily in their first month. We negotiate special discounts with reliable Australian providers and transparently disclose our commercial partnerships.
+              Explore clearly labelled new migrant partner offers in Australia covering prepaid SIMs, home NBN internet, currency transfers, and budget furniture alongside your free moving to Australia checklist. Always read each provider’s current terms independently before purchasing.
             </p>
           </div>
 
@@ -476,9 +536,22 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
           <div className="bg-[#FFF8F0] border border-amber-200 p-5 rounded-2xl text-xs sm:text-sm text-amber-950 flex items-start gap-3">
             <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <div>
-              <p className="font-bold">Affiliate Disclosure Policy:</p>
+              <h2 className="font-bold text-sm">How do FirstYear AU partner disclosures work?</h2>
               <p className="text-slate-600 mt-0.5">
-                FirstYear AU receives an affiliate commission if you purchase through these links, at zero extra cost to you. We strictly decline partnerships with providers that lock students into predatory contracts, charge hidden account fees, or deliver poor network reception.
+                FirstYear AU may receive an affiliate commission if you purchase through these links, at zero extra cost to you. We clearly disclose every partner relationship and encourage you to compare options independently alongside our free{' '}
+                <a
+                  href={getHref('get-set-up/sim-internet')}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      onNavigate('get-set-up/sim-internet');
+                    }
+                  }}
+                  className="text-[#1B4D3E] underline font-semibold"
+                >
+                  best SIM card for new arrivals Australia
+                </a>{' '}
+                guide.
               </p>
             </div>
           </div>
@@ -519,7 +592,6 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                     </div>
                   )}
 
-                  {/* Mandatory Clearly Labelled Partner Disclosure */}
                   <div className="text-[11px] text-slate-400 border-t border-slate-100 pt-2 italic">
                     {offer.disclosure}
                   </div>
@@ -541,6 +613,43 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
           </div>
         </div>
       )}
+
+      {/* FAQ Section for Membership & Pricing (All 3 answers kept in HTML DOM) */}
+      <section className="space-y-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
+          Frequently Asked Questions About FirstYear AU Plans &amp; Rental Templates
+        </h2>
+        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
+          {PRICING_FAQS.map((faq, index) => {
+            const isOpen = openFaqIndex === index;
+            return (
+              <div key={index} className="py-4 px-5 sm:px-6">
+                <button
+                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
+                >
+                  <span>{faq.question}</span>
+                  <ChevronRight
+                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
+                      isOpen ? 'rotate-90' : ''
+                    }`}
+                  />
+                </button>
+                <p
+                  className={
+                    isOpen
+                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
+                      : 'hidden'
+                  }
+                >
+                  {faq.answer}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 };

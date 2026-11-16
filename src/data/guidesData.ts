@@ -7,79 +7,89 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Set-Up',
     categorySlug: 'get-set-up',
     slug: 'sim-internet',
-    title: 'SIM and Internet for New Arrivals',
-    seoKeyword: 'best SIM card for new arrivals Australia',
-    question: 'How do I get an Australian mobile SIM card and home internet as a new arrival?',
+    title: 'Best SIM Card for New Arrivals in Australia & Home Internet',
+    seoKeyword: 'best sim card new arrivals australia',
+    intro:
+      'Choosing the best SIM card for new arrivals in Australia gives you an active local phone number on Day 1 for banking codes, maps, and job applications. Whether you need a prepaid SIM card as an international student in Australia or NBN internet after signing a lease, this guide walks through your main options in plain English. Always confirm current mobile ID verification requirements on acma.gov.au before activating.',
+    question: 'How do I choose a prepaid SIM card as an international student in Australia?',
     directAnswer:
-      'You can buy a prepaid Australian SIM card immediately upon landing at the airport or order an eSIM online before you board your flight. Australia has three primary mobile networks—Telstra, Optus, and Vodafone—along with budget-friendly resellers called MVNOs (Mobile Virtual Network Operators). You must provide your foreign passport and a temporary Australian residential address for mandatory identity verification.',
+      'You can buy a prepaid Australian SIM card at the airport or activate an eSIM before boarding your flight. Australia has three primary mobile networks—Telstra, Optus, and Vodafone—along with lower-cost resellers called MVNOs (Mobile Virtual Network Operators) that run on those same towers. Under Australian law, you must complete a mandatory identity check using your foreign passport and temporary Australian address.',
     appliesTo:
-      'All newly arrived migrants, international students (subclass 500), temporary graduates (subclass 485), and skilled visa holders (subclass 482, 189, 190).',
+      'All newly arrived migrants, international students (subclass 500), temporary graduates (subclass 485), and skilled visa holders.',
+    stepsHeading: 'How do new arrivals set up a SIM card and home broadband in Australia?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Check your phone compatibility & eSIM support',
+        title: 'Check phone unlock status and eSIM compatibility',
         description:
-          'Ensure your mobile phone is unlocked by your home carrier. If your phone supports eSIM, you can install your Australian mobile profile before departing or while connected to airport Wi-Fi.',
-        tip: 'Check if your device supports Australian 4G/5G frequency bands (Band 28 700MHz is critical for regional coverage on the Telstra network).'
+          'Confirm your phone is unlocked by your home carrier before flying. If your handset supports eSIM, you can download an Australian prepaid plan over airport Wi-Fi or prior to departure.',
+        tip: 'Check that your phone supports Australian 4G and 5G bands, especially Band 28 (700 MHz), which is important for regional coverage.'
       },
       {
         stepNumber: 2,
-        title: 'Choose between the Big 3 networks or budget MVNOs',
+        title: 'Compare major networks vs prepaid MVNO providers',
         description:
-          'Telstra offers the widest rural coverage; Optus and Vodafone offer competitive city pricing. For the best value, consider MVNOs like Boost Mobile (full Telstra network), Felix, Moose Mobile, or Belong, which offer 30-day no-lock-in prepaid plans for A$25 to A$40/month with generous data banking.',
-        tip: 'Look for plans with unlimited international calling to your home country if you plan to call family often.'
+          'Telstra has the broadest regional reach, while Optus and Vodafone offer competitive metro coverage. Many international students choose MVNOs such as Boost Mobile, Felix, Belong, or Moose Mobile on no-lock-in 30-day prepaid plans that include international call credits and data banking.',
+        tip: 'Look for prepaid plans with unlimited international calls to your home country if you call family regularly.'
       },
       {
         stepNumber: 3,
-        title: 'Complete the mandatory Australian ID check',
+        title: 'Complete the mandatory ACMA identity verification',
         description:
-          'Under Australian telecommunications law, every SIM card must be registered. You will need your passport number, visa grant number, and the address of your temporary hostel, student lodge, or hotel.',
-        caution: 'Never buy an activated SIM from an informal third party; your name must match your banking and tax records.'
+          'Australian telecommunications regulations require every SIM card to be registered to your legal identity. Keep your passport, visa details, and the address of your hotel, student lodge, or temporary stay handy.',
+        caution: 'Never buy an already-activated SIM from an informal seller; your legal name must match your banking and ATO records.'
       },
       {
         stepNumber: 4,
-        title: 'Organise short-term portable internet or home broadband',
+        title: 'Organise short-term wireless or NBN home internet',
         description:
-          'If you are staying in temporary shared accommodation, 5G home wireless (A$55–A$75/month) requires no technician install and plugs directly into a power socket. Once you sign a residential lease, you can order fixed-line NBN (National Broadband Network).',
-        tip: 'Check what NBN technology type is installed at your rental address (FTTP, FTTC, or FTTN) before buying an NBN modem.'
+          'If you are in temporary accommodation, a 5G home wireless modem requires no technician visit and plugs straight into a wall socket. Once you sign a lease, check your address on nbnco.com.au to pick an NBN broadband plan.',
+        tip: 'Check what NBN technology is installed at your rental (FTTP, FTTC, or FTTN) before purchasing a router.'
       }
     ],
     stateNotes: {
-      'Regional WA / SA / QLD / NT': 'If moving outside capital cities (such as regional South Australia, North Queensland, or Western Australian mining hubs), prioritize Telstra or Boost Mobile for dependable coverage.',
-      'Metro (Sydney, Melbourne, Brisbane, Adelaide, Perth)': 'All major networks and MVNOs provide strong 4G/5G reception across metropolitan rail corridors and university campuses.'
+      'Regional WA / SA / QLD / NT': 'If you plan to study or work in regional towns or remote areas, check Telstra or Boost Mobile coverage maps carefully before choosing a provider.',
+      'Metro (Sydney, Melbourne, Brisbane, Adelaide, Perth)': 'All three primary mobile networks and major MVNOs offer strong 4G and 5G signals across capital cities and university campuses.'
     },
+    faqHeading: 'Frequently Asked Questions About Australian SIM Cards for New Arrivals',
     faqs: [
       {
-        question: 'Can I keep my home country WhatsApp number when using an Australian SIM?',
-        answer: 'Yes. When you insert your Australian physical SIM or activate an eSIM, WhatsApp will ask whether you want to keep your existing phone number. Select "Keep" to maintain all your chat histories and contacts intact.'
+        question: 'What is the best prepaid SIM card for an international student in Australia?',
+        answer: 'Most international students start with a 30-day no-contract prepaid SIM from a major carrier or an MVNO (such as Boost, Belong, or Optus prepaid) that includes generous local data, data rollover, and international minutes. Compare current plan inclusions directly on provider websites.'
       },
       {
-        question: 'Should I buy a SIM at Sydney or Melbourne airport upon landing?',
-        answer: 'Airport retail kiosks sell SIM cards, but they often push pricier tourist bundles. Buying a basic 7-day starter pack at the airport is fine for immediate transport and Uber access, after which you can port your number to a cheaper monthly MVNO.'
+        question: 'Can I keep my home WhatsApp number when I switch to an Australian SIM?',
+        answer: 'Yes. When you insert an Australian physical SIM or activate an eSIM, WhatsApp asks if you want to keep your existing number. Select "Keep" so your chats and groups remain unchanged.'
       },
       {
-        question: 'What is data banking in Australia?',
-        answer: 'Most Australian prepaid providers roll over your unused mobile data at the end of each 30-day recharge cycle if you maintain auto-recharge. This prevents data waste during school holidays or quiet weeks.'
+        question: 'What ID do I need to activate a prepaid SIM card in Australia?',
+        answer: 'You need your current foreign passport and a valid Australian residential or temporary accommodation address to satisfy the Australian Communications and Media Authority (ACMA) identity check.'
       }
     ],
     officialSources: [
       {
         agency: 'Australian Communications and Media Authority (ACMA)',
-        title: 'Prepaid Mobile Phone Customer Verification Guidelines',
+        title: 'Identity Checks for Prepaid Mobile Services',
         url: 'https://www.acma.gov.au/identity-checks-prepaid-mobiles',
-        note: 'Official rules on mandatory passport identification when buying an Australian SIM'
+        note: 'Official federal rules explaining mandatory passport verification when buying an Australian SIM card'
       },
       {
         agency: 'NBN Co Australia',
-        title: 'National Broadband Network Address Rollout Checker',
+        title: 'Check Your Address for NBN Broadband',
         url: 'https://www.nbnco.com.au/',
-        note: 'Check broadband speed tiers and hardware types available at your Australian rental'
+        note: 'Verify NBN broadband availability and connection hardware at your Australian address'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'bank-account',
-    nextStepTitle: 'Open an Australian Bank Account'
+    nextStepTitle: 'Open an Australian Bank Account',
+    nextStepAnchorText: 'Next step: how to open a bank account in Australia as a new arrival',
+    relatedGuides: [
+      { id: 'tax-file-number', anchorText: 'how to apply for a TFN online in Australia' },
+      { id: 'public-transport', anchorText: 'setting up public transport cards in Australia' },
+      { id: 'renting-inspections', anchorText: 'how to rent with no rental history in Australia' }
+    ]
   },
 
   // 2. Bank Account
@@ -88,78 +98,88 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Set-Up',
     categorySlug: 'get-set-up',
     slug: 'bank-account',
-    title: 'Opening an Australian Bank Account',
-    seoKeyword: 'open bank account new arrival Australia',
-    question: 'How do new migrants and international students open an Australian bank account without a local credit history?',
+    title: 'How to Open a Bank Account in Australia as a New Arrival',
+    seoKeyword: 'open bank account australia new arrival',
+    intro:
+      'Learning how to open a bank account in Australia as a new arrival helps you receive wages, pay rent via PayID, and avoid overseas card conversion fees. We also explain what to look for when choosing the best bank account for a new migrant in Australia, from student fee waivers to branch access. Always confirm current verification rules directly with your chosen bank and austrac.gov.au.',
+    question: 'Which is the best bank account for a new migrant in Australia?',
     directAnswer:
-      'You can apply online with Australia’s major banks up to 14 days before your arrival or within your first 6 weeks in the country. The Big Four banks (Commonwealth Bank, ANZ, NAB, and Westpac) offer fee-free everyday transaction accounts for students and newcomers. When you arrive, visit a branch with your passport and visa to verify your identity and collect your debit card.',
+      'Many new arrivals start with an everyday transaction account from one of Australia’s Big Four banks (Commonwealth Bank, ANZ, NAB, or Westpac), which allow you to apply online before you fly or within 6 weeks of landing using only your passport. Look for accounts with zero monthly maintenance fees or full-time student waivers, wide ATM access, and instant PayID support.',
     appliesTo:
-      'All incoming temporary and permanent visa holders. Applying within 6 weeks of arrival requires only your foreign passport for identity verification under the 100-point ID concession.',
+      'All incoming temporary and permanent visa holders. Visiting a branch within 6 weeks of landing lets you verify your identity under Australia’s new-arrival passport concession.',
+    stepsHeading: 'How do you open a bank account in Australia as a new arrival?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Apply online before boarding or in your first 14 days',
+        title: 'Compare everyday transaction accounts and apply online',
         description:
-          'Choose an everyday transaction account (such as CommBank Everyday Account Smart Access, NAB Classic Banking, ANZ Plus, or Westpac Choice). Enter your overseas address, anticipated arrival date, and chosen local branch.',
-        tip: 'Students can have monthly account fees ($4 to $5) waived entirely by submitting student ID or proof of university enrolment.'
+          'Review fee-free transaction accounts from Commonwealth Bank, NAB, ANZ, or Westpac, or digital-first accounts once you hold local ID. Most major banks let you apply up to 14 days before your flight and choose a convenient branch near your arrival address.',
+        tip: 'International students can usually waive monthly account keeping fees by showing university enrolment confirmation.'
       },
       {
         stepNumber: 2,
-        title: 'Transfer initial living funds safely via international transfer',
+        title: 'Transfer initial living funds safely',
         description:
-          'Once your account number (BSB and Account Number) is generated, you can transfer Australian Dollars from home using regulated services like Wise or OFX to avoid high retail bank wire fees.',
-        tip: 'In Australia, account routing uses a 6-digit BSB (Bank State Branch) code and an 8 to 9-digit account number.'
+          'Once your account is created, your bank provides a 6-digit BSB (Bank State Branch) code and an account number. Compare exchange rates and fees across your bank and regulated remittance providers such as Wise or OFX before moving living funds.',
+        tip: 'Keep a screenshot of your BSB and account number handy for employers, rental applications, and your TFN setup.'
       },
       {
         stepNumber: 3,
-        title: 'Visit your chosen branch with your passport (Within 6 weeks)',
+        title: 'Visit a branch with your passport within 6 weeks of arrival',
         description:
-          'Under the Australian Financial Transactions Reports Act, you have 6 weeks from your landing date to verify your identity with just your foreign passport. After 6 weeks, you must produce 100 points of documentation (utility bills, lease agreements, Australian driver licence).',
-        caution: 'Do not delay your branch appointment past 6 weeks; otherwise you will need extensive local documentation to unlock your funds.'
+          'Under Australian anti-money-laundering rules overseen by AUSTRAC, new arrivals generally have a 6-week window after landing to verify their identity in branch using just a foreign passport and visa details. Waiting longer can require full 100-point Australian ID.',
+        caution: 'Book or visit your bank branch in Week 1 so your debit card and full transfer access are unlocked before you inspect rentals.'
       },
       {
         stepNumber: 4,
-        title: 'Set up PayID, Beem, and link your debit card to Apple/Google Pay',
+        title: 'Activate PayID and link your Tax File Number (TFN)',
         description:
-          'PayID links your Australian mobile number or email address directly to your bank account, allowing instant money transfers 24/7 using the New Payments Platform (NPP) with zero fees.',
-        tip: 'Most Australians do not share BSB and account numbers with friends; they simply request payment via mobile number using PayID.'
+          'Register your Australian mobile number as your PayID inside your banking app for instant, fee-free bank transfers. Once your TFN arrives from the ATO, enter it in your banking app to prevent higher withholding tax on savings interest.',
+        tip: 'In Australia, friends and landlords often use PayID rather than sharing full BSB and account numbers.'
       }
     ],
     stateNotes: {
-      'National': 'The Big Four banks operate extensive branch networks and fee-free ATM arrangements across all states and territories (NSW, VIC, QLD, SA, WA, TAS, ACT, NT).'
+      'National Coverage': 'Major Australian banks operate branches across NSW, VIC, QLD, SA, WA, TAS, ACT, and NT, and follow federal identification standards under AUSTRAC.'
     },
+    faqHeading: 'Frequently Asked Questions About Opening an Australian Bank Account',
     faqs: [
       {
-        question: 'What is a BSB number?',
-        answer: 'A BSB (Bank State Branch) is a six-digit code that identifies the specific Australian financial institution and regional branch where your account is registered. Format is XXX-XXX.'
+        question: 'Can I open a bank account in Australia with no local credit history?',
+        answer: 'Yes. Standard everyday transaction and savings accounts in Australia do not require a local credit score. You only need valid passport identification and visa verification.'
       },
       {
-        question: 'Do I pay taxes on money transferred from my home savings?',
-        answer: 'Bringing personal savings or gift funds into Australia to fund your living expenses or university tuition is generally not considered taxable income by the ATO. However, any interest earned inside an Australian savings account is taxable.'
+        question: 'What happens if I miss the 6-week bank passport verification window?',
+        answer: 'If more than 6 weeks pass after your arrival, banks usually require additional Australian documents (such as a state Proof of Age card, lease agreement, or utility bill) to satisfy standard 100-point ID checks. Confirm exact rules with your bank.'
       },
       {
-        question: 'Can I open a bank account with zero Australian credit score?',
-        answer: 'Yes. Everyday debit transaction accounts and high-interest savings accounts do not require a credit check or local credit rating.'
+        question: 'What is a BSB number and PayID in Australia?',
+        answer: 'A BSB (Bank State Branch) is a 6-digit code identifying your bank and branch, paired with your account number. PayID links your mobile number or email to your account for instant transfers.'
       }
     ],
     officialSources: [
       {
         agency: 'Australian Transaction Reports and Analysis Centre (AUSTRAC)',
-        title: 'Customer Identification & 100-Point ID Verification Rules',
+        title: 'Customer Identification & Verification Guidance',
         url: 'https://www.austrac.gov.au/business/core-guidance/customer-identification-and-verification',
-        note: 'Federal guidelines explaining the 6-week passport identity concession for new arrivals'
+        note: 'Official Australian rules on identity verification for new arrivals opening bank accounts'
       },
       {
         agency: 'Moneysmart (ASIC)',
-        title: 'Choosing a Bank Account in Australia',
+        title: 'Banking and Choosing an Account in Australia',
         url: 'https://moneysmart.gov.au/banking/banking-in-australia',
-        note: 'Independent consumer guide to fee structures and debit cards'
+        note: 'Independent government consumer guide to bank accounts, fees, and safe banking'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'tax-file-number',
-    nextStepTitle: 'Apply for a Tax File Number (TFN)'
+    nextStepTitle: 'Apply for a Tax File Number (TFN)',
+    nextStepAnchorText: 'Next step: how to apply for a TFN online in Australia for free',
+    relatedGuides: [
+      { id: 'sim-internet', anchorText: 'choosing the best SIM card for new arrivals in Australia' },
+      { id: 'superannuation', anchorText: 'learn how superannuation works in Australia for new migrants' },
+      { id: 'renting-inspections', anchorText: 'how to prepare a rental application as a new migrant' }
+    ]
   },
 
   // 3. Tax File Number (TFN)
@@ -168,78 +188,88 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Set-Up',
     categorySlug: 'get-set-up',
     slug: 'tax-file-number',
-    title: 'Applying for a Tax File Number (TFN)',
-    seoKeyword: 'apply for TFN online',
-    question: 'How do I apply for a Tax File Number (TFN) online for free after arriving in Australia?',
+    title: 'How to Apply for TFN Online in Australia (Free ATO Guide)',
+    seoKeyword: 'apply for tfn online australia',
+    intro:
+      'Knowing how to apply for a TFN online in Australia is essential before starting any part-time, casual, or full-time job. This plain-English guide breaks down the official TFN application for international students and skilled migrants so you avoid paid scam websites. Always submit your application directly and confirm current tax rules on the official Australian Taxation Office website at ato.gov.au.',
+    question: 'How does a TFN application for international students and migrants work?',
     directAnswer:
-      'Applying for a TFN is 100% free through the official Australian Taxation Office (ATO) website. You can only apply after you have cleared Australian customs and border control, as your entry is automatically verified against Department of Home Affairs visa records. Your 9-digit TFN will be posted to your Australian residential address within 28 days.',
+      'Applying for a TFN online in Australia is 100% free through the official Australian Taxation Office (ATO) website. You must wait until you have arrived in Australia and cleared border control so the ATO system can verify your passport and visa status automatically with the Department of Home Affairs. Your 9-digit Tax File Number is mailed to your Australian address.',
     appliesTo:
-      'Any migrant with work rights (including student visa subclass 500 holders working up to 48 hours per fortnight during terms, WHV 417/462, and permanent residents).',
+      'International students (subclass 500), temporary graduates, working holiday makers, and skilled migrants who have work rights on their visa.',
+    stepsHeading: 'How do I complete a TFN application as an international student online?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Wait until you have passed Australian border control',
+        title: 'Arrive in Australia and clear airport immigration first',
         description:
-          'The ATO’s online system cross-references your passport number with immigration arrival databases. Attempting to apply before your aircraft lands will result in an immediate rejection.',
-        tip: 'Wait 24 hours after your flight lands so the Department of Home Affairs border system updates your entry status.'
+          'The ATO online form checks your passport against Australian border arrival records. Applying from overseas before landing will fail automatically.',
+        tip: 'Wait at least 24 hours after passing customs so your arrival record is updated across federal systems.'
       },
       {
         stepNumber: 2,
-        title: 'Complete the ATO online foreign passport holder application',
+        title: 'Apply directly on the official ATO website (ato.gov.au)',
         description:
-          'Visit the official ATO portal (ato.gov.au). Select "Foreign passport holders, permanent migrants and temporary visitors – TFN application". Have your passport, current visa subclass, and valid Australian postal address ready.',
-        caution: 'Beware of scam websites demanding $50 to $120 to process your TFN. The ATO NEVER charges an application fee.'
+          'Go to ato.gov.au and choose the online application for "Foreign passport holders, permanent migrants and temporary visitors". Enter your passport details, visa subclass, and an Australian postal address where you can receive mail reliably.',
+        caution: 'Never pay a third-party website to submit a TFN form—official TFN applications on ato.gov.au are always completely free.'
       },
       {
         stepNumber: 3,
         title: 'Save your Application Reference Number (ARN)',
         description:
-          'At the end of the online form, you will receive an Application Reference Number. Save a screenshot or PDF of this receipt. You can provide this ARN to an employer while waiting for your formal TFN letter.',
-        tip: 'Under Australian workplace law, you have 28 days to provide your TFN to your employer without incurring penalty tax withholding.'
+          'Once submitted, the screen displays an Application Reference Number (ARN). Save a PDF or screenshot immediately so you can show an employer that your TFN is already in progress.',
+        tip: 'You generally have 28 days after starting employment to give your TFN to your employer before higher withholding rates apply—check current timeframes on ato.gov.au.'
       },
       {
         stepNumber: 4,
-        title: 'Provide your TFN to your employer and your bank',
+        title: 'Give your TFN to your employer and link it to your bank',
         description:
-          'Once your TFN letter arrives in the post, provide it to your employer via a Tax File Number Declaration form. Also enter your TFN in your mobile banking app so the bank does not withhold the top marginal tax rate (47%) on your interest earnings.',
-        caution: 'Keep your 9-digit TFN strictly private. Never share it over social media, informal WhatsApp messages, or with unverified rental listings.'
+          'When your 9-digit TFN letter arrives by post, complete your employer’s TFN Declaration and add your TFN to your Australian bank account and superannuation fund.',
+        caution: 'Keep your TFN strictly confidential—never post it in social chats or include it on general job resumes or rental applications.'
       }
     ],
     stateNotes: {
-      'National': 'The ATO is a federal government department. The application process, tax brackets, and 28-day delivery timeframe are identical across all Australian states.'
+      'National Federal System': 'Tax File Numbers and income tax rules are administered federally by the ATO, meaning the online application process is the same in every Australian state and territory.'
     },
+    faqHeading: 'Frequently Asked Questions About Applying for a TFN Online',
     faqs: [
       {
-        question: 'What happens if I work without a Tax File Number?',
-        answer: 'If you do not supply a TFN or valid ARN within 28 days of starting work, your employer is legally required to withhold income tax at the highest marginal rate (47%), significantly reducing your pay slip.'
+        question: 'How long does a TFN application for an international student take?',
+        answer: 'Once submitted online via ato.gov.au, the ATO posts your TFN letter to your nominated Australian address, typically within 28 days. Check current processing times directly on ato.gov.au.'
       },
       {
-        question: 'Do international students pay tax in Australia?',
-        answer: 'Yes, if you work in Australia you pay tax on your earnings. If you stay for more than 6 months, you are typically assessed as an "Australian resident for tax purposes", which entitles you to the tax-free threshold of A$18,200 per financial year (July 1 to June 30).'
+        question: 'Can I start working while waiting for my TFN to arrive?',
+        answer: 'Yes, provided your visa permits work. Let your employer know you have applied for a TFN and supply your Application Reference Number while waiting for the letter, following guidance on ato.gov.au.'
       },
       {
-        question: 'How do I track my TFN application if 28 days have passed?',
-        answer: 'You can phone the ATO directly on 13 28 61 (8:00 am to 6:00 pm Monday–Friday) with your Application Reference Number. If you need language assistance, call the Translating and Interpreting Service (TIS) on 13 14 50 first.'
+        question: 'Is there any fee to apply for a TFN online in Australia?',
+        answer: 'No. Applying for a TFN through ato.gov.au is completely free. Avoid commercial websites that charge a processing fee.'
       }
     ],
     officialSources: [
       {
         agency: 'Australian Taxation Office (ATO)',
-        title: 'Foreign Passport Holders Online TFN Application',
+        title: 'Foreign Passport Holders & Temporary Visitors – Apply for a TFN',
         url: 'https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn/foreign-passport-holders-permanent-migrants-and-temporary-visitors-tfn-application',
-        note: 'Official, free federal government portal to submit your TFN'
+        note: 'Official, free federal government portal to submit your TFN application'
       },
       {
         agency: 'Department of Home Affairs',
         title: 'Visa Entitlement Verification Online (VEVO)',
         url: 'https://immi.homeaffairs.gov.au/visas/already-have-a-visa/check-visa-details-and-conditions/overview',
-        note: 'Check your work conditions and visa grant details before completing your TFN application'
+        note: 'Verify your visa work conditions before commencing employment'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'public-transport',
-    nextStepTitle: 'Set Up Public Transport & Travel Cards'
+    nextStepTitle: 'Set Up Public Transport & Travel Cards',
+    nextStepAnchorText: 'Next step: set up public transport cards across Australian cities',
+    relatedGuides: [
+      { id: 'bank-account', anchorText: 'how to open a bank account in Australia as a new arrival' },
+      { id: 'superannuation', anchorText: 'learn how super works in Australia for new migrants' },
+      { id: 'police-check', anchorText: 'apply for a police check as an international student in Australia' }
+    ]
   },
 
   // 4. Public Transport
@@ -248,87 +278,97 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Around',
     categorySlug: 'get-around',
     slug: 'public-transport',
-    title: 'Public Transport & Smart Cards Across Australia',
-    seoKeyword: 'public transport cards Australia international students',
-    question: 'How does public transport ticketing work across different Australian capital cities, and do international students get discounts?',
+    title: 'Public Transport Cards in Australia: City-by-City Guide',
+    seoKeyword: 'public transport cards australia',
+    intro:
+      'Understanding public transport cards in Australia makes getting to campus, bank appointments, and rental inspections effortless from Day 1. Every Australian state runs its own smart card or contactless payment network, and student concession eligibility depends heavily on which state you live in. Always confirm current fares and concession rules on your local state transport authority website.',
+    question: 'How do public transport smart cards and student concessions work across Australia?',
     directAnswer:
-      'Australia does not have a single national public transport card; each state operates its own contactless or smart card ticketing network (e.g. Opal in Sydney, myki in Melbourne, go card in Brisbane, and metroCARD in Adelaide). In most cities you can simply tap your physical Visa/Mastercard or phone wallet. Student concession fare eligibility varies dramatically by state, with some states granting 50% discounts while others restrict concessions to domestic students.',
+      'Australia uses state-based transit ticketing rather than a single national card—such as Opal in Sydney, myki in Melbourne, metroCARD in Adelaide, and go card in South East Queensland. Many networks now support contactless Visa or Mastercard tap-and-go for adult fares, while international student concession discounts vary significantly between states.',
     appliesTo:
-      'All newcomers needing daily transit for university commutes, work shifts, grocery shopping, and rental property inspections.',
+      'All newcomers commuting to universities, workplaces, supermarkets, and open-home rental inspections.',
+    stepsHeading: 'How do new arrivals set up public transport cards in each Australian city?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Identify your city’s specific transit card system',
+        title: 'Get your city’s transport card or check contactless options',
         description:
-          'Sydney (NSW): Opal card or contactless payment cards. Melbourne (VIC): myki card or Mobile myki on Android. Brisbane/Gold Coast (QLD): go card or Smart Ticketing. Adelaide (SA): metroCARD or contactless on trams/buses. Perth (WA): SmartRider. Canberra (ACT): MyWay+. Hobart (TAS): Greencard.',
-        tip: 'In Sydney, contactless bank cards and Apple Pay / Google Pay debit cards qualify for the same daily and weekly travel caps as adult Opal cards.'
+          'Sydney/NSW: Opal card or contactless payment card. Melbourne/VIC: myki card (or Mobile myki on Android). Brisbane/SE QLD: go card or Smart Ticketing. Adelaide/SA: metroCARD or contactless tap on buses and trams. Perth/WA: SmartRider. Canberra/ACT: MyWay+.',
+        tip: 'Always remember to tap on when boarding and tap off when leaving buses, ferries, and gated train stations.'
       },
       {
         stepNumber: 2,
-        title: 'Check student concession fare eligibility for your state',
+        title: 'Verify international student concession eligibility in your state',
         description:
-          'Rules differ significantly. In South Australia, Queensland, WA, ACT, and Tasmania, full-time international students receive tertiary concession discounts (~50% off). In Victoria and NSW, standard international university students usually pay adult fares unless their institution participates in specific pass schemes (such as Victoria’s International Student Travel Pass or NSW i-Venture).',
-        caution: 'Never travel on a concession ticket without carrying your approved physical Student ID or concession transport card; transit inspectors issue on-the-spot fines exceeding A$250.'
+          'States set their own student fare rules. South Australia, Queensland, WA, ACT, and Tasmania generally offer tertiary concession fares to eligible full-time international students, whereas Victoria and NSW restrict standard concessions primarily to domestic students unless specific pass schemes apply.',
+        caution: 'Do not use a concession card unless you meet your state’s official rules and carry valid student proof; transit officers issue heavy fines for invalid concessions.'
       },
       {
         stepNumber: 3,
-        title: 'Download local transit apps for real-time timetables',
+        title: 'Install official local trip-planning apps',
         description:
-          'Google Maps works reliably across all cities. City-specific apps like AnyTrip or Opal Travel (NSW), PTV app (VIC), MyTranslink (QLD), and Adelaide Metro provide live vehicle tracking and crowd indicators.',
-        tip: 'Most Australian buses require you to tap on when boarding and tap off when disembarking through the rear door to calculate distance-based fares.'
+          'Google Maps works reliably nationwide, alongside official state apps such as Opal Travel (NSW), PTV (VIC), Translink (QLD), and Adelaide Metro for live platform changes and service alerts.',
+        tip: 'Check weekly travel caps and off-peak fare windows on your state transport site to reduce commuting costs.'
       },
       {
         stepNumber: 4,
-        title: 'Learn suburban safety protocols for late-night travel',
+        title: 'Know late-night station safety zones and emergency contacts',
         description:
-          'Trains have emergency help buttons (yellow or blue) and designated night-safety zones on platforms marked with high-visibility lighting and CCTV cameras. Travel in the carriage closest to the train guard (marked with a blue light).',
-        tip: 'Save your local transport safety number or emergency police number (000) on speed dial.'
+          'Major train platforms have marked night-safety zones with bright lighting, CCTV, and emergency help buttons. At night, consider sitting in the carriage near the guard or driver.',
+        tip: 'Save 000 for emergencies on your phone as soon as your Australian SIM is active.'
       }
     ],
     stateNotes: {
-      'South Australia (Adelaide)': 'International tertiary students enrolled full-time get equal concession access on metroCARD. Buy cards at Adelaide Railway Station or InfoCentres.',
-      'Victoria (Melbourne)': 'myki is required for trains, trams, and buses. The Melbourne CBD has a Free Tram Zone where you do not need to tap on.',
-      'New South Wales (Sydney)': 'Opal network covers trains, ferries, light rail, and buses with weekly spend caps. International students pay adult fares unless on sponsored scholarships.',
-      'Queensland (Brisbane)': 'Full-time international students can register their go card online for 50% student concession.'
+      'South Australia (Adelaide)': 'Eligible full-time international tertiary students can apply for concession fares using a metroCARD. Check current eligibility on adelaidemetro.com.au.',
+      'Victoria (Melbourne)': 'Melbourne uses myki for trains, trams, and buses, and includes a Free Tram Zone inside the central CBD. Check ptv.vic.gov.au for student pass rules.',
+      'New South Wales (Sydney)': 'Opal cards and contactless debit/credit cards share adult daily and weekly travel caps across trains, buses, ferries, and light rail. See transportnsw.info.',
+      'Queensland (Brisbane)': 'Full-time international students in South East Queensland can register for tertiary concession fares on translink.com.au.'
     },
+    faqHeading: 'Frequently Asked Questions About Public Transport in Australia',
     faqs: [
       {
-        question: 'What is the Melbourne Free Tram Zone?',
-        answer: 'In central Melbourne, tram travel within the defined CBD perimeter and Docklands is completely free. You do not need to tap your myki. If your trip extends outside this boundary, you must touch on.'
+        question: 'Can I tap my foreign bank card or phone on Australian buses and trains?',
+        answer: 'Yes, contactless networks in cities like Sydney, Brisbane, and Adelaide accept Visa and Mastercard debit/credit cards and mobile wallets for adult fares, though your overseas bank may charge foreign transaction fees.'
       },
       {
-        question: 'Can I use an overseas debit card on Australian transport?',
-        answer: 'Yes, contactless terminals in Sydney, Brisbane, Adelaide, and Canberra accept overseas Visa and Mastercard debit/credit cards, but foreign currency conversion fees may apply from your overseas bank.'
+        question: 'Do international students get discounted public transport in Australia?',
+        answer: 'It depends on the state. South Australia, Queensland, WA, ACT, and Tasmania offer concession options for eligible full-time students, while NSW and Victoria have specific restrictions. Always verify rules on your state transport authority website.'
       },
       {
-        question: 'What is the penalty for fare evasion?',
-        answer: 'Authorised officers routinely patrol trains and trams. Traveling without an activated card or carrying an unauthorized concession incurs fines ranging from $200 to $290 depending on the state.'
+        question: 'How does the Melbourne Free Tram Zone work?',
+        answer: 'Within central Melbourne CBD and Docklands boundaries, tram rides are free and you do not need to touch on your myki unless your journey travels outside the free zone.'
       }
     ],
     officialSources: [
       {
         agency: 'Transport for NSW',
-        title: 'Opal Card & Contactless Fare Rules',
+        title: 'Opal Card and Contactless Ticketing',
         url: 'https://transportnsw.info/tickets-opal',
-        note: 'Fares, daily/weekly caps, and airport line charges for Sydney and NSW regional'
+        note: 'Official Sydney & NSW transit caps, fares, and concession rules'
       },
       {
         agency: 'Public Transport Victoria (PTV)',
-        title: 'Ticketing and Concessions Guide',
+        title: 'myki Fares & Concession Eligibility',
         url: 'https://www.ptv.vic.gov.au/tickets/fares/concession-fares/',
-        note: 'Official rules for myki and the International Student Travel Pass'
+        note: 'Official Melbourne ticketing, Free Tram Zone map, and student pass information'
       },
       {
-        agency: 'Adelaide Metro (SA)',
-        title: 'Tertiary Student Concession metroCARD',
+        agency: 'Adelaide Metro',
+        title: 'Tertiary Student Concessions (SA)',
         url: 'https://www.adelaidemetro.com.au/tickets-and-fares/tertiary-students',
-        note: 'Guidelines for international students studying at Flinders, UniSA, and University of Adelaide'
+        note: 'Official concession rules for university students in Adelaide and South Australia'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'renting-inspections',
-    nextStepTitle: 'Renting and Attending Inspections'
+    nextStepTitle: 'Renting and Attending Inspections',
+    nextStepAnchorText: 'Next step: how to rent with no rental history in Australia',
+    relatedGuides: [
+      { id: 'sim-internet', anchorText: 'best SIM card for new arrivals in Australia' },
+      { id: 'driver-licence', anchorText: 'rules for driving in Australia on an overseas licence' },
+      { id: 'proof-of-age', anchorText: 'apply for a Proof of Age card in Australia' }
+    ]
   },
 
   // 5. Renting and Inspections
@@ -337,87 +377,97 @@ export const GUIDES: GuideItem[] = [
     category: 'Find a Home',
     categorySlug: 'find-a-home',
     slug: 'renting-inspections',
-    title: 'Renting a Home & Attending Inspections',
-    seoKeyword: 'how to rent with no rental history',
-    question: 'How do new migrants rent a home in Australia with no local rental history or credit score?',
+    title: 'How to Rent With No Rental History in Australia',
+    seoKeyword: 'rent with no rental history australia',
+    intro:
+      'Figuring out how to rent with no rental history in Australia is often the biggest challenge for international students and newly arrived migrants. This guide explains how to rent in Australia without local references and prepare a strong rental application as a new migrant so property managers can assess your reliability quickly. Always verify local tenancy laws and rent-bidding bans on state government websites such as consumer.vic.gov.au, fairtrading.nsw.gov.au, and cbs.sa.gov.au.',
+    question: 'How to rent in Australia without local references or credit history?',
     directAnswer:
-      'In Australia, private rentals are secured by attending open-house property inspections and submitting detailed digital applications through portals like 2Apply or realestate.com.au (1Form/Ignite). Because property managers look for reliability, you can compensate for zero Australian rental history by providing certified bank statements showing 3 to 6 months of living funds, an overseas employment letter or scholarship confirmation, and a structured cover letter explaining your arrival story.',
+      'Australian real estate agents look for verified identity, affordability, and reliable character references. When you have no Australian rental history, you can strengthen your rental application by preparing a clear dossier containing certified bank statements showing savings, your university Confirmation of Enrolment (CoE) or employment contract, overseas landlord or employer referees, and a concise cover letter.',
     appliesTo:
-      'Anyone looking for a shared apartment, private flat, or suburban house in competitive Australian housing markets.',
+      'International students, skilled visa holders, and newcomers applying for apartments, units, or shared houses across Australia.',
     hasTemplateOffer: true,
+    stepsHeading: 'How do I prepare a rental application as a new migrant in Australia?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Understand the rental application verification standard',
+        title: 'Prepare your 100 points of ID and financial proof early',
         description:
-          'Property managers evaluate your application against three criteria: proof of identity (100 points of ID), proof of capacity to pay rent (gross income should generally be at least 3x the weekly rent), and reliability references.',
-        tip: 'Rent in Australia is advertised on a PER WEEK basis (e.g. $450/week), but paid monthly: (Weekly Rent ÷ 7) × 365 ÷ 12.'
+          'Property managers assess identity (passport, visa grant letter, bank card, student ID) alongside capacity to pay rent. Notice that rent in Australia is advertised per week even if paid fortnightly or monthly.',
+        tip: 'Include a clear summary page showing your liquid savings balance or scholarship/salary letter in Australian dollars.'
       },
       {
         stepNumber: 2,
-        title: 'Attend open-for-inspection sessions in person',
+        title: 'Attend property inspections in person',
         description:
-          'Most agencies will not consider your application unless you or an authorised proxy inspects the premises in person. Arrive 10 minutes early, dress neatly, and register your attendance with the leasing agent.',
-        caution: 'Never transfer deposit funds or bond money for a property you have only seen in photos or video on Facebook or Gumtree. Rental deposit fraud is widespread.'
+          'Most agencies require you—or someone representing you—to inspect the apartment at an advertised open-for-inspection before processing your application. Arrive slightly early and introduce yourself politely to the leasing agent.',
+        caution: 'Never transfer bond money or holding deposits for any property listed privately without inspecting inside in person and verifying the agent or landlord.'
       },
       {
         stepNumber: 3,
-        title: 'Prepare your "Zero Rental History" application pack',
+        title: 'Build a clean Zero-History New Migrant Rental Application Pack',
         description:
-          'Assemble your dossier beforehand: certified passport copy, visa grant notice, university enrolment Confirmation of Enrolment (CoE) or Australian employment contract, bank statement showing sufficient savings, and a formal cover letter introducing yourself.',
-        tip: 'Our FirstYear Plus rental application template is pre-formatted with proven cover letter wording for international students and new migrants.'
+          'Combine your passport, visa grant, financial statement, CoE or job offer, overseas references (in English), and an arrival cover letter into one clean pack. Previewing a structured template helps prevent missing documents.',
+        tip: 'You can preview our rental application template for new migrants free before applying on 2Apply or realestate.com.au.'
       },
       {
         stepNumber: 4,
-        title: 'Submit your digital application within 2 hours of inspecting',
+        title: 'Submit quickly after the inspection and alert referees',
         description:
-          'Popular apartments receive 15+ applications within 24 hours. Pre-fill your profile on 2Apply, TenantApp, and realestate.com.au so you can hit "Submit" immediately after walking out of the inspection.',
-        tip: 'Notify your overseas referees (past landlords, employers, or academic professors) via WhatsApp so they respond instantly to automated agency emails.'
+          'Pre-fill your tenant profile on platforms like 2Apply, Ignite, or TenantApp before inspecting so you can apply promptly after leaving. Let your referees know via messaging apps to expect an automated reference email.',
+        tip: 'Consider starting in short-term or student accommodation while inspecting private rentals calmly in person.'
       }
     ],
     stateNotes: {
-      'South Australia (Adelaide)': 'Consumer and Business Services (CBS) regulates residential tenancies. Rent bidding (offering above advertised rent) is illegal.',
-      'Victoria (Melbourne)': 'Consumer Affairs Victoria enforces strict rental standards. Rent bidding is banned; landlords must provide minimum heating and safety standards.',
-      'New South Wales (Sydney)': 'Fair Trading NSW regulates leases. Rent bidding is banned; holding fees cannot exceed one week rent.'
+      'South Australia (Adelaide)': 'Consumer and Business Services (cbs.sa.gov.au) oversees residential tenancies; rent bidding is prohibited.',
+      'Victoria (Melbourne)': 'Consumer Affairs Victoria (consumer.vic.gov.au) enforces minimum rental standards and bans solicited rent bidding.',
+      'New South Wales (Sydney)': 'NSW Fair Trading (fairtrading.nsw.gov.au) regulates residential leases, holding deposits, and tenant rights.'
     },
+    faqHeading: 'Frequently Asked Questions About Renting With No Rental History in Australia',
     faqs: [
       {
-        question: 'Can a landlord ask for 6 or 12 months of rent upfront?',
-        answer: 'In most Australian states (including Victoria and Queensland), landlords and property managers cannot legally demand more than one month or one fortnight of rent in advance. While some tenants volunteer advance rent to strengthen their application, state tenancy laws prohibit landlords from soliciting it.'
+        question: 'How do I rent in Australia without local references?',
+        answer: 'Replace missing local references with strong financial proof (bank savings statements, salary offer, or scholarship letter), overseas landlord or academic references with current email contacts, and a well-structured cover letter.'
       },
       {
-        question: 'What is the 100-point ID system in rental applications?',
-        answer: 'Real estate agencies use a point rating system for your identification. A passport is worth 70 points; Australian driver licence/Proof of Age card is 40 points; bank debit card is 25 points; utility bill or student ID is 25 points. You must reach at least 100 points.'
+        question: 'Can a landlord force me to pay six months of rent upfront?',
+        answer: 'Across major Australian states, landlords and agents are restricted by tenancy laws from demanding excessive rent in advance. Check exact state limits on consumer.vic.gov.au, fairtrading.nsw.gov.au, or cbs.sa.gov.au.'
       },
       {
-        question: 'Should I live in student accommodation or a private flat?',
-        answer: 'Purpose-Built Student Accommodation (PBSA, e.g., Scape, UniLodge, Iglu) includes all utility bills (water, gas, high-speed Wi-Fi) and does not require local rental history, making it an easier landing pad for your first 3 to 6 months before leasing a private apartment.'
+        question: 'What is the 100-point ID check on an Australian rental application?',
+        answer: 'Agencies assign points to identification documents—such as a passport, Australian bank card, student ID, or Proof of Age card—to verify identity. Keep clear scans ready before inspecting.'
       }
     ],
     officialSources: [
       {
         agency: 'Consumer Affairs Victoria',
-        title: 'Applying for a Rental Property and Tenant Rights',
+        title: 'Renting a Home and Applying for Properties',
         url: 'https://www.consumer.vic.gov.au/housing/renting',
-        note: 'Guidelines on rent bidding bans, application standards, and minimum housing requirements'
+        note: 'Victorian rules on tenant applications, rent bidding bans, and minimum standards'
       },
       {
         agency: 'NSW Fair Trading',
-        title: 'Renting a Home in New South Wales',
+        title: 'Renting in New South Wales',
         url: 'https://www.fairtrading.nsw.gov.au/housing-and-property/renting',
-        note: 'Official tenant information statement and leasing agreements'
+        note: 'Official NSW tenant information and lease rights'
       },
       {
-        agency: 'Consumer and Business Services South Australia (CBS)',
-        title: 'Renting in SA: Tenant Information & Rights',
+        agency: 'Consumer and Business Services (SA)',
+        title: 'Renting Advice for South Australia',
         url: 'https://www.cbs.sa.gov.au/renting',
-        note: 'Adelaide residential tenancy legislation and open-inspection guidance'
+        note: 'South Australian residential tenancy guidance and inspection rules'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'bond-condition-report',
-    nextStepTitle: 'Pay Rental Bond and Complete Condition Report'
+    nextStepTitle: 'Pay Rental Bond and Complete Condition Report',
+    nextStepAnchorText: 'Next step: how to lodge your rental bond and condition report safely',
+    relatedGuides: [
+      { id: 'bank-account', anchorText: 'how to open a bank account in Australia as a new arrival' },
+      { id: 'furniture', anchorText: 'finding cheap furniture for international students in Australia' },
+      { id: 'proof-of-age', anchorText: 'getting a Proof of Age card in Australia for extra ID points' }
+    ]
   },
 
   // 6. Bond and Condition Report
@@ -426,86 +476,96 @@ export const GUIDES: GuideItem[] = [
     category: 'Find a Home',
     categorySlug: 'find-a-home',
     slug: 'bond-condition-report',
-    title: 'Bond Lodgement & Condition Reports',
-    seoKeyword: 'rental bond condition report Australia',
-    question: 'How do I legally pay a rental bond and complete an incoming condition report to guarantee getting my money back?',
+    title: 'Rental Bond and Condition Report Guide for Australia',
+    seoKeyword: 'rental bond condition report australia',
+    intro:
+      'Knowing how a rental bond and condition report work in Australia protects your deposit from unfair deductions when you move out. Your bond is held safely by an independent state authority rather than your landlord, and your incoming condition report documents the property’s exact state on move-in day. Always confirm state deadlines with official portals such as fairtrading.nsw.gov.au, rentalbonds.vic.gov.au, cbs.sa.gov.au, or rta.qld.gov.au.',
+    question: 'How do rental bond lodgement and incoming condition reports protect Australian tenants?',
     directAnswer:
-      'A rental bond (usually 4 weeks of rent) is held as financial security by an independent state statutory authority, never kept directly in the landlord’s personal bank account. Within 3 to 7 business days of moving into the property, you must fill out, photograph, and return the Incoming Condition Report detailing every pre-existing scuff, stain, crack, or defect. This condition report is your primary legal defence to reclaim 100% of your bond when your lease concludes.',
+      'In Australia, a rental bond (commonly equal to 4 weeks of rent, subject to state rules) must be lodged with an official state bond authority, never kept privately by a landlord. Within the statutory timeframe after collecting keys (typically 2 to 7 business days depending on your state), you inspect the home, add photos and notes to the Incoming Condition Report, and return a signed copy.',
     appliesTo:
-      'All tenants signing a residential tenancy lease, rooming house agreement, or sub-tenancy.',
+      'All newcomers signing a residential tenancy agreement or rooming lease in Australia.',
+    stepsHeading: 'How do you pay a rental bond and finish a condition report step by step?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Verify that your bond is lodged with the official state authority',
+        title: 'Confirm your bond is lodged with your state bond authority',
         description:
-          'In NSW: Rental Bonds Online (RBO). In Victoria: Residential Tenancies Bond Authority (RTBA). In South Australia: Residential Bonds Online (CBS). In Queensland: Residential Tenancies Authority (RTA). You will receive an official direct SMS and email receipt from the government authority confirming your bond deposit number.',
-        caution: 'If a private landlord insists on keeping your 4-week bond in their personal account or in cash, this is illegal. Insist on official state bond lodgement.'
+          'Each state holds bonds securely: Rental Bonds Online (NSW), RTBA (VIC), Consumer and Business Services (SA), and RTA (QLD). You should receive an official email or SMS receipt with a bond number directly from the government authority.',
+        caution: 'Never let a landlord hold your bond in cash or in a personal bank account without lodging it with the state authority.'
       },
       {
         stepNumber: 2,
-        title: 'Conduct a thorough move-in inspection before unpacking',
+        title: 'Inspect every room thoroughly before unpacking boxes',
         description:
-          'Before moving heavy furniture into the property, inspect every room with your phone flashlight. Test all light switches, tap water pressure, gas stove burners, door handles, window locks, and bathroom exhaust fans.',
-        tip: 'Check inside oven racks, bathroom shower silicone joints, and behind bedroom doors for pre-existing mould, dents, or grease.'
+          'Walk through every room with good lighting before moving heavy furniture in. Test taps, stove burners, exhaust fans, window latches, blinds, and air-conditioning units.',
+        tip: 'Check inside ovens, shower grout, and behind doors for pre-existing scratches, stains, or wear.'
       },
       {
         stepNumber: 3,
-        title: 'Photograph and timestamp every pre-existing mark',
+        title: 'Take timestamped photos and video evidence',
         description:
-          'Take 50 to 150 high-resolution photos and a continuous video walkthrough. Keep backup copies in Google Drive or iCloud with original metadata timestamps.',
-        tip: 'Place a coin or your fingertip next to wall scuffs or carpet stains in photos to show the exact scale of the mark.'
+          'Capture clear photos and a slow walkthrough video of every wall, floor, carpet, and appliance, and save them in cloud storage with dates intact so you have clear proof at lease end.',
+        tip: 'Compare the agent’s checklist item by item and write clear notes wherever you spot pre-existing marks.'
       },
       {
         stepNumber: 4,
-        title: 'Return the signed Condition Report within the statutory deadline',
+        title: 'Return your signed Condition Report before the deadline',
         description:
-          'In Victoria, NSW, and SA you must return your amended condition report to the agent within 3 to 7 business days of taking possession. Note any disagreements clearly in the tenant column and retain a signed copy.',
-        caution: 'If you fail to return the condition report on time, the law deems you to have agreed with the landlord’s assessment that the property was in pristine condition.'
+          'Email or upload your amended Incoming Condition Report within your state’s strict window (for example, 2 business days in SA, 5 business days in VIC, or 7 days in NSW) and keep a copy for yourself.',
+        caution: 'Missing the return window can mean the landlord’s original report is taken as the agreed baseline.'
       }
     ],
     stateNotes: {
-      'Victoria (RTBA)': 'Condition reports must be returned within 5 business days. Maximum bond is 4 weeks rent for properties under $900/week.',
-      'New South Wales (RBO)': 'Condition reports must be completed and returned within 7 days of moving in. Bond lodgement through Rental Bonds Online is mandatory.',
-      'South Australia (CBS)': 'Condition report must be returned within 2 business days in SA. Bonds above $250/week are capped at 6 weeks of rent; under $250/week capped at 4 weeks.'
+      'Victoria (RTBA)': 'Condition reports must be returned within 5 business days; confirm bond caps on rentalbonds.vic.gov.au.',
+      'New South Wales (RBO)': 'Tenants generally have 7 days to return the condition report, and bond lodgement is handled via Rental Bonds Online.',
+      'South Australia (CBS)': 'Condition report return periods are very short (2 business days in SA), so start inspecting on move-in day. Check cbs.sa.gov.au for bond caps.'
     },
+    faqHeading: 'Frequently Asked Questions About Rental Bonds and Condition Reports',
     faqs: [
       {
-        question: 'What is fair wear and tear in Australia?',
-        answer: 'Fair wear and tear refers to the reasonable deterioration of a property over time through ordinary use (e.g., faded curtains from sunlight, minor scuffs on high-traffic hallway carpet). You cannot be charged for fair wear and tear.'
+        question: 'What is "fair wear and tear" on an Australian rental?',
+        answer: 'Fair wear and tear means normal everyday deterioration over time, such as faded paint or minor carpet wear from regular walking. Tenants are not responsible for ordinary fair wear and tear.'
       },
       {
-        question: 'Can the landlord deduct carpet steam cleaning from my bond?',
-        answer: 'In Victoria and NSW, landlords cannot legally mandate professional carpet cleaning unless the carpet was professionally cleaned immediately prior to your lease or you caused abnormal staining or kept pets.'
+        question: 'Who holds my rental bond money during the lease?',
+        answer: 'In every Australian state, your bond is held independently by a government statutory authority (such as RTBA, RBO, CBS, or RTA) until both parties agree on release or a tribunal resolves a claim.'
       },
       {
-        question: 'What should I do if the landlord disputes my bond refund at checkout?',
-        answer: 'You can immediately submit an independent claim for your bond directly through your state bond authority website as soon as you hand back the keys. The landlord then has 14 days to file a formal dispute in the state tribunal (e.g., VCAT, NCAT, or SACAT) or the bond is automatically paid back to you.'
+        question: 'What can I do if there is a bond dispute when moving out?',
+        answer: 'Check your state bond portal for how to submit a bond claim or contact your state tenant advice body and tribunal (such as VCAT, NCAT, or SACAT) with your move-in condition photos.'
       }
     ],
     officialSources: [
       {
-        agency: 'NSW Rental Bonds Online (RBO)',
-        title: 'Lodging and Reclaiming Your Residential Bond',
+        agency: 'NSW Fair Trading / Service NSW',
+        title: 'Rental Bonds Online (RBO)',
         url: 'https://www.service.nsw.gov.au/transaction/apply-rental-bonds-online',
-        note: 'Official NSW state bond lodgement portal and tracking'
+        note: 'Official NSW state bond lodgement portal and claim instructions'
       },
       {
-        agency: 'Victorian Residential Tenancies Bond Authority (RTBA)',
-        title: 'RTBA Online Guide for Tenants',
+        agency: 'Victorian Residential Tenancies Bond Authority',
+        title: 'RTBA Online Guide for Renters',
         url: 'https://rentalbonds.vic.gov.au/',
-        note: 'Victorian statutory bond registration and electronic repayment system'
+        note: 'Victorian statutory bond registration and refund rules'
       },
       {
-        agency: 'Residential Tenancies Authority Queensland (RTA)',
-        title: 'Bond Management & Condition Report Forms',
+        agency: 'Residential Tenancies Authority (QLD)',
+        title: 'Rental Bonds and Entry Condition Reports',
         url: 'https://www.rta.qld.gov.au/starting-a-tenancy/rental-bond',
-        note: 'Queensland government rules and tenant dispute resolution guidelines'
+        note: 'Queensland bond handling rules and dispute support'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'furniture',
-    nextStepTitle: 'Furnish Your Australian Home on a Budget'
+    nextStepTitle: 'Furnish Your Australian Home on a Budget',
+    nextStepAnchorText: 'Next step: find cheap furniture for international students in Australia',
+    relatedGuides: [
+      { id: 'renting-inspections', anchorText: 'how to rent with no rental history in Australia' },
+      { id: 'bank-account', anchorText: 'how to open a bank account in Australia as a new arrival' },
+      { id: 'proof-of-age', anchorText: 'applying for a Proof of Age card in Australia' }
+    ]
   },
 
   // 7. Furniture
@@ -514,78 +574,88 @@ export const GUIDES: GuideItem[] = [
     category: 'Find a Home',
     categorySlug: 'find-a-home',
     slug: 'furniture',
-    title: 'Furnishing Your Home on a Budget',
-    seoKeyword: 'cheap furniture international students Australia',
-    question: 'How do I furnish an unfurnished rental apartment in Australia without spending thousands of dollars?',
+    title: 'Cheap Furniture for International Students in Australia',
+    seoKeyword: 'cheap furniture international students australia',
+    intro:
+      'Finding cheap furniture for international students in Australia is essential because most private rentals come completely unfurnished without beds, fridges, or tables. Combining secondhand finds from charity op-shops and local marketplaces with affordable flatpack staples keeps setup costs manageable. Always follow Scamwatch safety advice at scamwatch.gov.au when buying secondhand online.',
+    question: 'How can new arrivals furnish an unfurnished rental apartment on a student budget?',
     directAnswer:
-      'Most long-term rental properties in Australia are leased completely unfurnished (without a refrigerator, washing machine, mattress, or dining table). You can furnish a 1-to-2 bedroom flat for under A$800 to A$1,200 by combining second-hand platforms like Facebook Marketplace and charity op-shops (Salvos, Vinnies) with budget retailers like IKEA and Kmart. Always inspect appliances in working order before paying, and watch out for delivery scams.',
+      'Most long-term Australian rentals include no furniture or whitegoods. You can set up Day 1 essentials—especially a bed and a refrigerator—affordably by buying a new mattress, visiting tested charity op-shops (Salvos, Vinnies), comparing Kmart and IKEA basics, and buying secondhand safely in person without sending advance deposits.',
     appliesTo:
-      'New arrivals moving into unfurnished private rentals or room-share tenancies.',
+      'International students and new migrants moving into unfurnished flats, apartments, or share houses.',
+    stepsHeading: 'Where do new migrants find affordable furniture without getting scammed?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Prioritise the Day 1 essentials (Sleep & Food)',
+        title: 'Focus on Day 1 sleep and kitchen essentials first',
         description:
-          'Do not try to buy everything in Week 1. Prioritise two critical items: a clean mattress/bed frame and an energy-efficient refrigerator. Buy small kitchenware (plates, kettles, cutlery, towels) at Kmart or Big W for minimal cost.',
-        tip: 'Do not buy a used second-hand foam mattress from the street; buy an affordable boxed mattress from IKEA or Amazon Australia with free home delivery.'
+          'Avoid overspending before you move in. Prioritise a clean mattress, bed frame, fridge, and simple cooking utensils from budget stores like Kmart, Big W, or IKEA.',
+        tip: 'New boxed mattresses delivered to your door avoid hygiene issues common with street or used mattresses.'
       },
       {
         stepNumber: 2,
-        title: 'Master Facebook Marketplace and Gumtree safely',
+        title: 'Use Facebook Marketplace and Gumtree safely',
         description:
-          'Search terms like "moving sale", "expat relocating", or "must go this weekend" to find solid oak dining sets, study desks, and sofa beds at 70% to 90% below retail.',
-        caution: 'Pay ONLY in cash or PayID in-person once you see the item. Never send money via PayID ahead of time to a "seller" claiming their cousin will arrange courier delivery.'
+          'Searching phrases like "moving sale" can turn up gently used study desks, chairs, and dining tables at big discounts from people relocating.',
+        caution: 'Pay via cash or PayID only after seeing the item in person. Ignore requests asking for your email for fake "PayID business account upgrades".'
       },
       {
         stepNumber: 3,
-        title: 'Visit charity stores (Op-Shops) for quality secondhand goods',
+        title: 'Shop at charity op-shops for tested secondhand goods',
         description:
-          'Salvation Army (Salvos Stores), St Vincent de Paul (Vinnies), and Brotherhood of St Laurence operate large suburban superstores with tested electrical whitegoods, desks, lamps, and bookshelves.',
-        tip: 'Charity op-shops test and tag all electrical goods (microwaves, heaters, kettles) to ensure compliance with Australian electrical safety standards.'
+          'Charity stores like Salvos Stores and Vinnies often carry secondhand tables, bookshelves, and electrically tested and tagged appliances at student-friendly prices.',
+        tip: 'Op-shops check electrical appliances for Australian safety compliance before putting them on the floor.'
       },
       {
         stepNumber: 4,
-        title: 'Arrange affordable local transport or van hire',
+        title: 'Plan low-cost transport for bulky items',
         description:
-          'If you do not have a car, you can book a short-term ute or van through Car Next Door / Uber Carshare, hire a Bunnings ute (A$25/hour), or use Airtasker to hire a local driver with a van for A$50 to A$80.',
-        tip: 'Measure your apartment doorway and lift dimensions before purchasing a large 3-seater sofa or large double-door fridge.'
+          'If you do not own a car, compare short-term van or ute hire, store delivery services, or local transport helpers, and always measure apartment lifts and doorways first.',
+        tip: 'Check local council hard-rubbish rules before collecting kerbside items, as council regulations vary by suburb.'
       }
     ],
     stateNotes: {
-      'Hard Rubbish Collections': 'Many local city councils (e.g. City of Melbourne, City of Sydney, City of Adelaide) hold scheduled hard rubbish clean-up days where residents leave intact desks and chairs on the kerb, known locally as "kerbside shopping". Check council by-laws first.'
+      'Council By-Laws': 'Local city councils manage kerbside hard-waste rules independently. Check your local council website before leaving or collecting items on nature strips.'
     },
+    faqHeading: 'Frequently Asked Questions About Budget Furniture in Australia',
     faqs: [
       {
-        question: 'What is an "op shop"?',
-        answer: 'An "op shop" (short for opportunity shop) is an Australian charity thrift store selling donated clothes, homewares, and furniture to fund community welfare programs.'
+        question: 'Are Australian rental apartments usually furnished?',
+        answer: 'Private long-term rentals in Australia are usually leased unfurnished, meaning tenants supply their own bed, desk, fridge, and washing machine unless the listing specifically says "furnished".'
       },
       {
-        question: 'Should I buy rented furniture instead?',
-        answer: 'Furniture rental services exist (A$80–$160/month), but long-term contracts can end up costing more than buying brand new IKEA items. It is usually more economical to buy flatpack pieces you can resell when moving out.'
+        question: 'What is an Australian "op-shop"?',
+        answer: 'An op-shop (opportunity shop) is a charity retail store selling donated furniture, homewares, and clothing, with proceeds supporting local community services.'
       },
       {
-        question: 'How do I avoid PayID scams on Facebook Marketplace?',
-        answer: 'Scammers will ask for your email address and send a fake email appearing to be from "PayID Support" claiming you must pay an upfront fee to upgrade to a "business account". PayID is free and never requires email account upgrades. Walk away immediately.'
+        question: 'How do I avoid online Marketplace PayID scams in Australia?',
+        answer: 'Never send advance holding fees or follow email links claiming you must pay to "upgrade PayID". PayID is free and requires no upgrades—report suspicious messages on scamwatch.gov.au.'
       }
     ],
     officialSources: [
       {
         agency: 'Scamwatch (ACCC)',
-        title: 'Classified and Secondhand Goods Buying Scams',
+        title: 'Classified & Online Marketplace Scams',
         url: 'https://www.scamwatch.gov.au/types-of-scams/buying-or-selling/classified-scams',
-        note: 'Official Australian consumer protection guidance on spotting online marketplace fraud'
+        note: 'Official Australian consumer guidance on avoiding secondhand buying scams'
       },
       {
         agency: 'Energy Rating Australia',
-        title: 'Appliance Energy Consumption Calculator',
+        title: 'Appliance Energy Rating Calculator',
         url: 'https://www.energyrating.gov.au/',
-        note: 'Calculate electricity running costs for secondhand fridges and washing machines'
+        note: 'Compare electricity running costs for refrigerators and washing machines'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'proof-of-age',
-    nextStepTitle: 'Get an 18+ Proof of Age Card'
+    nextStepTitle: 'Get an 18+ Proof of Age Card',
+    nextStepAnchorText: 'Next step: apply for a Proof of Age card in Australia to protect your passport',
+    relatedGuides: [
+      { id: 'renting-inspections', anchorText: 'how to rent with no rental history in Australia' },
+      { id: 'bond-condition-report', anchorText: 'completing your rental bond and condition report' },
+      { id: 'superannuation', anchorText: 'how does super work in Australia for new migrants' }
+    ]
   },
 
   // 8. Proof of Age Card
@@ -594,86 +664,96 @@ export const GUIDES: GuideItem[] = [
     category: 'ID and Paperwork',
     categorySlug: 'id-and-paperwork',
     slug: 'proof-of-age',
-    title: 'Getting a Proof of Age / Photo Card',
-    seoKeyword: 'proof of age card South Australia',
-    question: 'Why should I get an Australian Proof of Age card, and how do I apply without losing my passport on night outs?',
+    title: 'Proof of Age Card Australia: Everyday 18+ Photo ID Guide',
+    seoKeyword: 'proof of age card australia',
+    intro:
+      'Getting a Proof of Age card in Australia lets you verify your age and identity everywhere without risking your foreign passport on nights out or errands. Whether you need an 18 Plus card in South Australia via Service SA or a Photo Card in NSW or Victoria, this guide shows you the documents and steps required. Always confirm current fees and eligibility on official state portals such as sa.gov.au, service.nsw.gov.au, or vicroads.vic.gov.au.',
+    question: 'How do I apply for an 18 Plus card in South Australia or another Australian state?',
     directAnswer:
-      'An Australian 18+ Proof of Age card (also known as a Photo Card) is an official government-issued photo ID that proves your age and identity without carrying your valuable foreign passport to restaurants, pubs, clubs, domestic flights, or parcel pickups. Losing a passport in Australia costs upwards of A$350 to replace and causes immense immigration stress, whereas a state Photo Card costs only A$25 to A$65 and fits neatly in your wallet.',
+      'An Australian Proof of Age card (often called an 18+ card or state Photo Card) is an official government photo ID for adults aged 18 and over who do not hold an Australian driver licence. Applying at your state transport or service centre (such as Service SA, Service NSW, or VicRoads) requires your foreign passport, visa details, and proof of local Australian address.',
     appliesTo:
-      'Any migrant or student aged 18 and older who does not hold a full Australian driver licence.',
+      'International students and new migrants aged 18+ who do not yet hold an Australian state driver licence.',
+    stepsHeading: 'How do new arrivals get a Proof of Age card in Australia?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Check your state’s issuing department',
+        title: 'Identify your state issuing authority',
         description:
-          'South Australia: Service SA (Proof of Age card). Victoria: VicRoads (Victorian Proof of Age card). New South Wales: Service NSW (NSW Photo Card). Queensland: Department of Transport and Main Roads (TMR Photo Identification Card). Western Australia: Department of Transport (WA Photo Card).',
-        tip: 'In South Australia, international students can book an appointment at Service SA centres in Adelaide CBD, Marion, or Prospect.'
+          'South Australia: Proof of Age card (Service SA). Victoria: Proof of Age card (VicRoads). New South Wales: NSW Photo Card (Service NSW). Queensland: Photo Identification Card (Transport and Main Roads). Western Australia: WA Photo Card (Department of Transport).',
+        tip: 'If you live in Adelaide, check Service SA appointment options and required forms at sa.gov.au.'
       },
       {
         stepNumber: 2,
-        title: 'Assemble your primary and secondary identification',
+        title: 'Gather your identity and Australian address documents',
         description:
-          'You will need your current foreign passport, current Australian visa grant notice, proof of local residential address (bank statement or tenancy agreement issued within 3 months), and your Australian bank debit card.',
-        tip: 'Ensure the spelling of your full name matches exactly between your passport, visa grant, and bank statement.'
+          'Bring your valid foreign passport, visa grant documentation, Australian bank card, and official proof of your local residential address (such as a bank statement, rental lease, or utility bill matching your exact passport spelling).',
+        tip: 'Double-check that your middle and family names match across your bank account and lease before applying.'
       },
       {
         stepNumber: 3,
-        title: 'Visit the service centre in person for your photograph',
+        title: 'Attend a service centre in person for photo verification',
         description:
-          'Attend your booked appointment or walk in. The customer service officer will verify your documents, take a digital photo, capture your signature, and process the application fee (approx. A$28–$65).',
-        tip: 'In NSW and SA, you can also access a digital version of your card on your smartphone via the Service NSW or mySA GOV mobile apps.'
+          'Submit your application in person (or complete online pre-steps where supported), have your photograph captured at the counter, and pay the applicable state card fee.',
+        tip: 'States such as NSW and South Australia also support digital passes in official government mobile apps after issuance.'
       },
       {
         stepNumber: 4,
-        title: 'Receive your durable plastic card in the post',
+        title: 'Keep your foreign passport safely stored at home',
         description:
-          'Your card will be manufactured and delivered by Australia Post to your registered address within 10 to 14 business days. Keep your foreign passport locked safely in your room.',
-        caution: 'Always report a lost photo card immediately to the issuing authority to prevent identity theft.'
+          'Once your physical card arrives by post, carry it for domestic flights, parcel collection, licensed venues, and 100-point ID checks while locking your passport securely at home.',
+        caution: 'Replacing a lost foreign passport at an embassy is expensive and time-consuming—report any lost state ID promptly.'
       }
     ],
     stateNotes: {
-      'South Australia (Service SA)': 'Proof of Age card costs approx. $27. Applications can be lodged at any Service SA customer centre with passport and proof of SA address.',
-      'Victoria (VicRoads)': 'Proof of Age card requires an application form signed by an authorised witness or certified documents at a VicRoads customer service centre.',
-      'New South Wales (Service NSW)': 'NSW Photo Card is available from Service NSW service centres for $61 (5-year validity) or $107 (10-year validity).'
+      'South Australia (Service SA)': 'Often searched as the "18 Plus card South Australia" or SA Proof of Age card—apply through Service SA centres with your passport and SA address proof. Confirm current fees at sa.gov.au.',
+      'Victoria (VicRoads)': 'Applications require identity verification and witness endorsement where specified. Check current rules at vicroads.vic.gov.au.',
+      'New South Wales (Service NSW)': 'Issued as the NSW Photo Card at Service NSW centres, with 5-year and 10-year options. Check service.nsw.gov.au for current pricing.'
     },
+    faqHeading: 'Frequently Asked Questions About Australian Proof of Age Cards',
     faqs: [
       {
-        question: 'Can I use an overseas driver licence to enter Australian bars and licensed venues?',
-        answer: 'Many venues, security guards, and bottle shops in Australia refuse overseas driver licences because they cannot easily verify the security holograms or language. An Australian Proof of Age card is universally accepted without question.'
+        question: 'Where do I apply for an 18 Plus card in South Australia?',
+        answer: 'In South Australia, Proof of Age cards are issued through Service SA customer service centres. Check the latest ID checklist and application fees on sa.gov.au before visiting.'
       },
       {
-        question: 'Can I use my Proof of Age card on Australian domestic flights?',
-        answer: 'Yes. Qantas, Virgin Australia, and Jetstar accept state-issued Proof of Age / Photo Cards as valid photo identification for domestic flights across Australia.'
+        question: 'Can I use an overseas driver licence at pubs and venues in Australia?',
+        answer: 'Many Australian venues and bottle shops do not accept overseas driver licences as proof of age. A state-issued Proof of Age or Photo Card is widely recognised across the country.'
       },
       {
-        question: 'Can I hold both a driver licence and a Proof of Age card?',
-        answer: 'Yes. If you do not have an Australian driver licence yet, the Proof of Age card serves as your primary day-to-day ID. Once you obtain an Australian driver licence, the licence becomes your primary photo ID.'
+        question: 'Does an Australian Proof of Age card work for domestic flights?',
+        answer: 'Yes. Major domestic airlines in Australia accept current government-issued state Proof of Age or Photo Cards as photo identification on domestic flights.'
       }
     ],
     officialSources: [
       {
         agency: 'Government of South Australia (Service SA)',
-        title: 'Apply for a Proof of Age Card in SA',
+        title: 'Apply for a Proof of Age Card in South Australia',
         url: 'https://www.sa.gov.au/topics/driving-and-transport/licences/proof-of-age-card',
-        note: 'Official identity documentation requirements, forms, and service locations in Adelaide'
+        note: 'Official requirements and application forms for an 18+ Proof of Age card in SA'
       },
       {
         agency: 'Service NSW',
         title: 'Apply for an NSW Photo Card',
         url: 'https://www.service.nsw.gov.au/transaction/apply-for-an-nsw-photo-card',
-        note: 'NSW requirements, digital wallet setup, and fee schedule'
+        note: 'NSW eligibility criteria, digital wallet info, and current card fees'
       },
       {
         agency: 'VicRoads',
-        title: 'Victorian Proof of Age Card Application',
+        title: 'Victorian Proof of Age Card',
         url: 'https://www.vicroads.vic.gov.au/licences/proof-of-age-card',
-        note: 'Victorian identity verification, referee rules, and postal processing'
+        note: 'Victorian ID requirements, referee rules, and application centres'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'superannuation',
-    nextStepTitle: 'Set Up and Manage Your Superannuation'
+    nextStepTitle: 'Set Up and Manage Your Superannuation',
+    nextStepAnchorText: 'Next step: learn how superannuation works in Australia for new migrants',
+    relatedGuides: [
+      { id: 'bank-account', anchorText: 'how to open a bank account in Australia as a new arrival' },
+      { id: 'driver-licence', anchorText: 'convert a foreign driver’s licence in Australia' },
+      { id: 'police-check', anchorText: 'apply for a police check as an international student in Australia' }
+    ]
   },
 
   // 9. Superannuation
@@ -682,78 +762,88 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Set-Up',
     categorySlug: 'get-set-up',
     slug: 'superannuation',
-    title: 'Superannuation (Super) Explained',
-    seoKeyword: 'superannuation for temporary migrants Australia',
-    question: 'What is Australian Superannuation, who pays it, and can I claim it back when I leave the country?',
+    title: 'How Does Super Work in Australia? Guide for New Migrants',
+    seoKeyword: 'how does super work in australia',
+    intro:
+      'Understanding how super works in Australia ensures you do not miss out on mandatory employer retirement contributions when you start working. We break down key superannuation rules for new migrants in Australia—including picking one low-fee fund, tracking payments via myGov, and claiming eligible balances when permanently departing. Always check current Superannuation Guarantee rates and DASP rules on ato.gov.au.',
+    question: 'What are the superannuation rules in Australia for new migrants and students?',
     directAnswer:
-      'Superannuation (commonly known as "Super") is Australia’s compulsory retirement savings system. If you are working in Australia, your employer is legally mandated to pay an extra 11.5% (rising to 12% from July 2025) of your gross wage on top of your standard salary into an accredited super fund. Temporary visa holders can claim this accumulated money back when permanently departing Australia via the ATO’s Departing Australia Superannuation Payment (DASP).',
+      'Superannuation ("super") is Australia’s compulsory retirement savings system. Eligible employees receive compulsory Superannuation Guarantee (SG) contributions paid by their employer on top of their ordinary wage into an Australian super fund. Temporary visa holders who leave Australia permanently after their visa ends may be able to apply for a Departing Australia Superannuation Payment (DASP) through the ATO.',
     appliesTo:
-      'All employees working full-time, part-time, or casual in Australia, regardless of how much they earn each month.',
+      'All eligible full-time, part-time, and casual workers in Australia, including international students and skilled temporary visa holders.',
+    stepsHeading: 'How do new migrants set up and track superannuation in Australia?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Choose an Industry Super Fund with low administration fees',
+        title: 'Pick one super fund so you avoid duplicate account fees',
         description:
-          'When you start a job, your employer will offer their "default" fund, or you can nominate your own. Australian Industry Super Funds (such as AustralianSuper, Hostplus, Rest, or UniSuper) are run solely to benefit members with low overhead fees and strong long-term returns.',
-        tip: 'If working in hospitality or retail, Hostplus or Rest are popular; for university or professional roles, UniSuper or AustralianSuper are standard.'
+          'When you start your first Australian job, your employer offers a default fund or asks you to nominate your own using a Superannuation Standard Choice form. Many newcomers compare low-fee industry super funds and keep just one active fund.',
+        tip: 'If you work multiple casual jobs, give every employer the exact same super fund details so fees do not erode multiple small accounts.'
       },
       {
         stepNumber: 2,
-        title: 'Provide your chosen Super fund details to your employer',
+        title: 'Provide your TFN and check default insurance settings',
         description:
-          'Complete the Superannuation Standard Choice form provided during employee onboarding. Provide your fund name, Unique Superannuation Identifier (USI), and your Member Number.',
-        caution: 'Do not create a new super fund with every new job. Having multiple accounts means you pay multiple sets of monthly account keeping fees and insurance premiums, draining your balance.'
+          'Give your Tax File Number (TFN) to your super fund so contributions are taxed at standard concessional rates instead of extra penalty tax. Also check whether default life insurance was added automatically and whether it suits your situation.',
+        tip: 'Compare super fund fees and performance independently using the ATO YourSuper comparison tool on ato.gov.au.'
       },
       {
         stepNumber: 3,
-        title: 'Link your super account to your myGov portal',
+        title: 'Link the ATO to myGov to monitor employer deposits',
         description:
-          'Connect the Australian Taxation Office (ATO) service to your myGov account. Here you can view every super contribution your boss deposits, view your total balance across funds, and consolidate old accounts with one click.',
-        tip: 'Employers are required by law to pay your super at least once every quarter (many pay monthly with payroll).'
+          'Create a myGov account (my.gov.au) and link it to the ATO. Inside your ATO portal, you can check whether employers are depositing your super on time and consolidate any duplicate accounts.',
+        tip: 'Confirm current pay-day super payment schedules and SG percentage rates directly on ato.gov.au.'
       },
       {
         stepNumber: 4,
-        title: 'Understand the Departing Australia Superannuation Payment (DASP)',
+        title: 'Learn about Departing Australia Superannuation Payment (DASP)',
         description:
-          'If you hold an eligible temporary visa (such as subclass 500 or 482) and permanently depart Australia after your visa expires, you can apply online through the ATO to withdraw your accumulated super balance.',
-        caution: 'DASP payments are subject to withholding tax (generally 35% or 47% depending on visa type, 65% for Working Holiday Makers).'
+          'If you worked in Australia on an eligible temporary visa and permanently depart once your visa has expired or been cancelled, you can submit a free DASP claim through the ATO online portal.',
+        caution: 'DASP withdrawals are subject to specific withholding tax rates set by federal law—verify current rates on ato.gov.au before applying.'
       }
     ],
     stateNotes: {
-      'Federal Jurisdiction': 'Superannuation is governed by federal legislation under the Australian Prudential Regulation Authority (APRA) and the ATO. Super rules do not change across state lines.'
+      'National Federal Law': 'Superannuation is governed federally by the ATO and APRA, so super rules apply uniformly across every Australian state and territory.'
     },
+    faqHeading: 'Frequently Asked Questions About Superannuation in Australia for New Migrants',
     faqs: [
       {
-        question: 'Does super get deducted from my take-home pay?',
-        answer: 'No. The 11.5%+ superannuation guarantee is an additional payment paid by your employer on top of your ordinary earnings. If your employment contract specifies "$30/hour plus super", you receive $30/hour into your bank account and an extra $3.45/hour goes into your super fund.'
+        question: 'Is super taken out of my agreed hourly pay in Australia?',
+        answer: 'Generally no—Superannuation Guarantee contributions are paid by your employer on top of your ordinary time earnings, unless your contract clearly states a "total remuneration package" including super.'
       },
       {
-        question: 'Can my employer pay me cash-in-hand to avoid super?',
-        answer: 'No. "Cash-in-hand" jobs that avoid super and tax are illegal in Australia. You miss out on mandatory super contributions and worker compensation safety protections.'
+        question: 'How does super work in Australia for temporary visa holders leaving the country?',
+        answer: 'Eligible temporary residents who depart Australia permanently and no longer hold an active visa can apply to withdraw their super via the ATO’s DASP portal, minus applicable withholding tax.'
       },
       {
-        question: 'How do I cancel automatic life insurance inside my super fund?',
-        answer: 'Most super funds automatically enrol members in death and total disability insurance, deducting fees from your balance. If you are young, have no dependents in Australia, and want to keep 100% of your money, log into your fund portal to opt out.'
+        question: 'How can I check if my employer is paying my super?',
+        answer: 'Log into myGov linked with the ATO to inspect super contributions reported by your employer, alongside checking your payslips and super fund app.'
       }
     ],
     officialSources: [
       {
         agency: 'Australian Taxation Office (ATO)',
-        title: 'Super for Individuals and New Workers',
+        title: 'Super for Individuals & Workers',
         url: 'https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super',
-        note: 'Complete breakdown of superannuation guarantee rates and employee rights'
+        note: 'Official federal rules on Superannuation Guarantee rates, choice of fund, and unpaid super'
       },
       {
         agency: 'ATO DASP Portal',
-        title: 'Departing Australia Superannuation Payment (DASP) Online',
+        title: 'Departing Australia Superannuation Payment (DASP)',
         url: 'https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/temporary-residents-and-superannuation/departing-australia-superannuation-payment-dasp',
-        note: 'Official application portal to reclaim accumulated super upon leaving Australia'
+        note: 'Official rules and application steps for temporary residents leaving Australia'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'buying-a-car',
-    nextStepTitle: 'Buying a Car Safely in Australia'
+    nextStepTitle: 'Buying a Car Safely in Australia',
+    nextStepAnchorText: 'Next step: buying a car in Australia as a new migrant safely',
+    relatedGuides: [
+      { id: 'tax-file-number', anchorText: 'how to apply for a TFN online in Australia' },
+      { id: 'bank-account', anchorText: 'open a bank account in Australia as a new arrival' },
+      { id: 'police-check', anchorText: 'applying for an Australian Federal Police check online' }
+    ]
   },
 
   // 10. Buying a Car
@@ -762,86 +852,96 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Around',
     categorySlug: 'get-around',
     slug: 'buying-a-car',
-    title: 'Buying a Used Car in Australia',
-    seoKeyword: 'buying a used car Australia international student',
-    question: 'How do I buy a reliable used car in Australia without inheriting debt, getting scammed, or failing registration (rego)?',
+    title: 'Buying a Car in Australia: Safe New Migrant Guide',
+    seoKeyword: 'buying a car in australia new migrant',
+    intro:
+      'When buying a car in Australia as a new migrant, knowing how local vehicle checks work prevents costly mistakes with hidden finance debt or expired registration. Every car purchase should include an official government PPSR check, roadworthy verification where required, and prompt registration transfer. Always confirm transfer deadlines and stamp duty rules on your state transport authority website.',
+    question: 'What checks must new migrants complete before buying a used car in Australia?',
     directAnswer:
-      'Buying a used car in Australia requires three non-negotiable checks: running an official A$2 government PPSR (Personal Property Securities Register) check to confirm the car has no outstanding financial loan or write-off history, ensuring the seller supplies a current Roadworthy Certificate (RWC / Pink Slip), and transferring the state vehicle registration ("rego") within 14 days. Never purchase a vehicle without a signed transfer form and a clear test drive.',
+      'Before paying for a used car in Australia, always run an official Personal Property Securities Register check on ppsr.gov.au using the car’s 17-character VIN to confirm there is no unpaid loan, stolen flag, or write-off history. You should also verify state roadworthy requirements, understand that "rego" includes Compulsory Third Party (CTP) injury cover only, and lodge transfer paperwork within your state deadline.',
     appliesTo:
-      'Migrants living in suburban, regional, or outer metropolitan areas where public transport is limited.',
+      'Migrants living in outer suburbs or regional areas who decide to purchase a car during their first year.',
+    stepsHeading: 'How do new arrivals buy and register a used car in Australia safely?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Run an official A$2 PPSR check on the VIN before inspecting',
+        title: 'Search the official government PPSR database (ppsr.gov.au)',
         description:
-          'Obtain the 17-character Vehicle Identification Number (VIN) from the seller. Search it exclusively on the official government website ppsr.gov.au for A$2. This reveals if a bank holds a mortgage over the car, if it has been written off in a flood/crash, or if it has been reported stolen.',
-        caution: 'If you buy a car with money owing on it, the bank can legally seize the car from your driveway with zero compensation to you.'
+          'Ask the seller for the VIN and run a search directly on the official Australian Government site ppsr.gov.au (check current official fee on site). Avoid third-party commercial websites charging inflated prices for the same check.',
+        caution: 'Never buy a car with money still owing on it; a lender can legally repossess an encumbered vehicle.'
       },
       {
         stepNumber: 2,
-        title: 'Verify the Roadworthy Certificate (RWC / Pink Slip / Safety Certificate)',
+        title: 'Check Roadworthy Certificate rules and book a mechanic inspection',
         description:
-          'In Victoria and Queensland, the private seller must provide a valid roadworthy inspection certificate issued by a licensed mechanic before registration can be transferred. In NSW, light vehicles older than 5 years require an annual pink slip inspection.',
-        tip: 'In South Australia, annual roadworthy certificates are not mandatory for private sales, making an independent mechanical pre-purchase inspection ($150–$250 via RAA) even more crucial.'
+          'States handle roadworthiness differently: Victoria and Queensland generally require a valid safety/roadworthy certificate on sale, NSW uses annual Pink Slips, while South Australia does not mandate private-sale certificates—making an independent pre-purchase inspection worthwhile.',
+        tip: 'Always verify the seller’s photo ID matches the vehicle registration papers before transferring funds.'
       },
       {
         stepNumber: 3,
-        title: 'Understand Registration ("Rego") and Compulsory Third Party (CTP)',
+        title: 'Know what "rego" covers vs property car insurance',
         description:
-          'Australian vehicle registration ("rego") is renewed annually or quarterly and includes basic Compulsory Third Party (CTP / Green Slip) insurance that covers human injuries caused in an accident. Rego DOES NOT cover damage to other people’s cars.',
-        tip: 'Always buy at least Third-Party Property Damage insurance ($30–$50/month) so you are not personally liable for $80,000 if you accidentally bump into a luxury vehicle.'
+          'State registration ("rego") includes statutory Compulsory Third Party (CTP) insurance covering injuries to people, NOT damage to other vehicles. Arrange at least Third-Party Property Damage or Comprehensive insurance before driving away.',
+        tip: 'Arrange insurance cover over the phone or online to start the moment you take the keys.'
       },
       {
         stepNumber: 4,
-        title: 'Complete the notice of vehicle transfer within 14 days',
+        title: 'Submit the registration transfer within the state deadline',
         description:
-          'Both the buyer and seller must complete and sign the official state vehicle transfer form. Lodge this at the state transport authority (Service SA, VicRoads, Service NSW) and pay the state transfer fee and stamp duty (usually 3% to 4% of market value).',
-        caution: 'Failure to transfer registration within 14 days incurs administrative late penalty fees.'
+          'Complete the signed transfer form with the seller and lodge it with your state authority (such as Service SA, VicRoads, Service NSW, or TMR QLD) within the statutory window (often 14 days) along with transfer fees and stamp duty.',
+        caution: 'Late registration transfers attract administrative penalties from state transport departments.'
       }
     ],
     stateNotes: {
-      'South Australia (Service SA)': 'Vehicle transfer requires a customer number from Service SA. SA does not require a roadworthy certificate for standard private transfers, but independent RAA check is strongly recommended.',
-      'Victoria (VicRoads)': 'Buyer must submit a valid Certificate of Roadworthiness (RWC) issued within 30 days of the sale date.',
-      'New South Wales (Service NSW)': 'Safety check (Pink Slip) is required. Registration transfer can be completed online via Service NSW if both parties hold local customer profiles.'
+      'South Australia (Service SA)': 'Private sales do not require a standard RWC, so book an independent mechanical check. Transfer details are on sa.gov.au.',
+      'Victoria (VicRoads)': 'Buyers generally require a current Certificate of Roadworthiness issued within 30 days. Confirm exact transfer rules on vicroads.vic.gov.au.',
+      'New South Wales (Service NSW)': 'Annual safety inspections (Pink Slip) apply to older light vehicles; online transfers are available via service.nsw.gov.au.'
     },
+    faqHeading: 'Frequently Asked Questions About Buying a Used Car in Australia',
     faqs: [
       {
-        question: 'What is PPSR?',
-        answer: 'The Personal Property Securities Register (PPSR) is the single official Australian Government register that records security interests, written-off vehicle status, and stolen reports for motor vehicles.'
+        question: 'What is a PPSR check when buying a car in Australia?',
+        answer: 'The Personal Property Securities Register (ppsr.gov.au) is the official Australian Government check showing if a vehicle has unpaid finance, has been written off, or is reported stolen.'
       },
       {
-        question: 'What does "Rego" include?',
-        answer: 'Rego includes state vehicle registration fees, roadside administration charges, and statutory Compulsory Third Party (CTP) insurance. It protects against bodily injury compensation claims, but provides $0 coverage for property or car repair costs.'
+        question: 'Does Australian car rego include full car insurance?',
+        answer: 'No. Rego includes Compulsory Third Party (CTP) cover for personal injuries, not damage to your car or another person’s car. You need separate third-party property or comprehensive insurance.'
       },
       {
-        question: 'Can I buy a car using an overseas driver licence?',
-        answer: 'Yes. You can purchase, register, and insure a car in your name using your overseas passport and visa. The state transport authority will issue you an internal client/customer reference number to register the car.'
+        question: 'Can I buy and register a car in Australia on an overseas driver licence?',
+        answer: 'Usually yes—state transport agencies can issue you a customer reference number using your passport, visa, and local address, subject to state rules.'
       }
     ],
     officialSources: [
       {
         agency: 'Australian Financial Security Authority (AFSA)',
-        title: 'Official PPSR Vehicle Check Portal ($2)',
+        title: 'Official PPSR Vehicle Check (ppsr.gov.au)',
         url: 'https://www.ppsr.gov.au/',
-        note: 'Official Australian Government search to verify vehicle debt, written-off status, and theft records'
+        note: 'Official Australian Government register for vehicle debt and write-off checks'
       },
       {
-        agency: 'Service SA / DIT',
-        title: 'Vehicle Registration Transfer & Stamp Duty in South Australia',
+        agency: 'Service SA',
+        title: 'Buying and Selling a Vehicle in South Australia',
         url: 'https://www.sa.gov.au/topics/driving-and-transport/vehicles-and-registration/buying-and-selling-a-vehicle',
-        note: 'South Australian official transfer forms, stamp duty calculator, and buyer obligations'
+        note: 'Official SA transfer process, stamp duty details, and buyer obligations'
       },
       {
         agency: 'VicRoads',
-        title: 'Transfer a Victorian Vehicle Registration',
+        title: 'Buy, Sell or Transfer a Vehicle in Victoria',
         url: 'https://www.vicroads.vic.gov.au/registration/buy-sell-or-transfer-a-vehicle',
-        note: 'Victorian roadworthy requirements, transfer fees, and seller checklists'
+        note: 'Victorian roadworthy certificate rules and registration transfer process'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'driver-licence',
-    nextStepTitle: 'Convert or Use Your Driver Licence'
+    nextStepTitle: 'Convert or Use Your Driver Licence',
+    nextStepAnchorText: 'Next step: rules for driving in Australia on an overseas licence',
+    relatedGuides: [
+      { id: 'public-transport', anchorText: 'comparing public transport cards in Australia first' },
+      { id: 'proof-of-age', anchorText: 'applying for a Proof of Age card in Australia' },
+      { id: 'police-check', anchorText: 'get a police check as an international student in Australia' }
+    ]
   },
 
   // 11. Driver Licence
@@ -850,86 +950,96 @@ export const GUIDES: GuideItem[] = [
     category: 'Get Around',
     categorySlug: 'get-around',
     slug: 'driver-licence',
-    title: 'Driving with an Overseas Licence & Conversion',
-    seoKeyword: 'convert overseas driver licence Australia',
-    question: 'Can I drive in Australia with my overseas licence, and when do I need to convert to an Australian state licence?',
+    title: 'Driving in Australia on an Overseas Licence & Conversion',
+    seoKeyword: 'driving in australia on overseas licence',
+    intro:
+      'Knowing the rules for driving in Australia on an overseas licence protects you from heavy fines and keeps your motor insurance valid. We also cover when and how you need to convert a foreign driver’s licence in Australia, as residency time limits differ from state to state. Always check current state road authority rules on service.nsw.gov.au, vicroads.vic.gov.au, or sa.gov.au before driving.',
+    question: 'When do I need to convert a foreign driver’s licence in Australia?',
     directAnswer:
-      'If you hold a temporary visa (such as an international student subclass 500 or temporary graduate subclass 485), you can drive legally using your valid foreign licence provided it is in English or accompanied by an official NAATI-accredited translation or International Driving Permit (IDP). If you become a permanent resident, you must convert to a local state driver licence within 3 to 6 months of landing.',
+      'Temporary visa holders can often drive on a current, valid overseas licence if it is in English or paired with an International Driving Permit (IDP) or official NAATI translation—however, states like Victoria and NSW enforce 6-month continuous residency cutoffs where temporary residents must convert. Permanent residents must usually convert within 3 to 6 months depending on their state.',
     appliesTo:
-      'All temporary and permanent visa holders who plan to drive cars, scooters, or motorbikes on Australian roads.',
+      'International students, temporary visa holders, and permanent residents planning to drive anywhere in Australia.',
+    stepsHeading: 'How do you stay compliant driving in Australia on an overseas licence?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Ensure your overseas licence is valid and translated',
+        title: 'Confirm your licence is valid and translated into English',
         description:
-          'Your physical licence must remain current and unexpired. If your overseas licence is not written in English, you must carry an International Driving Permit (IDP) or a certified translation produced by a NAATI-accredited translator.',
-        caution: 'Driving with an untranslated non-English licence is treated the same as driving unlicenced, leading to heavy court fines and invalidating car insurance.'
+          'You must carry your current physical foreign driver’s licence every time you drive. If it is not in English, carry either an International Driving Permit (IDP) or a certified NAATI translation acceptable in your state.',
+        caution: 'Driving with an expired or untranslated overseas licence can be treated as unlicensed driving and invalidate insurance.'
       },
       {
         stepNumber: 2,
-        title: 'Learn Australian road rules (Left side, roundabouts, hook turns)',
+        title: 'Check state residency deadlines for licence conversion',
         description:
-          'Australia drives strictly on the LEFT side of the road. Familiarise yourself with multi-lane roundabout rules (give way to all vehicles already on your right), school zone speed limits (40 km/h or 25 km/h in SA during school times), and Melbourne CBD hook turns.',
-        tip: 'Australia has zero tolerance for mobile phone use while driving; high-tech roadside AI cameras enforce strict fines exceeding A$400.'
+          'State rules vary significantly. For example, Victoria and NSW require many temporary visa holders who stay continuously for 6 months to convert to a local licence, while South Australia also sets strict timeframes once permanent residency begins. Always verify current dates on your state site.',
+        tip: 'Check the exact rule for your specific visa type on vicroads.vic.gov.au, service.nsw.gov.au, or sa.gov.au.'
       },
       {
         stepNumber: 3,
-        title: 'Check Recognized Country status for licence conversion',
+        title: 'Check whether your home country qualifies for direct conversion',
         description:
-          'If your home country is on the "Recognized Country" list (e.g., UK, USA, Germany, Japan, Singapore) and you are over 25, you can convert to an Australian licence without taking a driving test. If your country is not recognized, you must pass a computer-based road knowledge test and an in-car practical driving assessment.',
-        tip: 'In South Australia and Victoria, recent legislative updates require temporary visa holders living in the state continuously for 6 months to convert to a local licence in certain circumstances.'
+          'Drivers from Australian-recognised licensing countries who meet age rules may convert without sitting knowledge or practical driving exams. Drivers from non-recognised countries must pass theory, hazard perception, and practical driving assessments.',
+        tip: 'Even experienced overseas drivers benefit from 2 or 3 lessons with an accredited Australian driving instructor to learn local road test expectations.'
       },
       {
         stepNumber: 4,
-        title: 'Book your knowledge and practical tests',
+        title: 'Learn core Australian road rules before driving',
         description:
-          'Visit your state licensing authority (Service SA, VicRoads, Service NSW) with your passport, visa grant, proof of address, and original overseas licence to book your Driver Knowledge Test (DKT) or practical driving exam.',
-        tip: 'Take at least 2 or 3 lessons with a local qualified Australian driving instructor to understand local test routes and blind-spot head check requirements.'
+          'Australia drives on the left side of the road, gives way to vehicles already inside roundabouts, enforces strict school zone speed limits, and uses Melbourne CBD hook turns. Speed and mobile-phone cameras operate nationwide.',
+        caution: 'Touching an unmounted phone while driving—or even while stopped at red lights—carries steep fines and demerit points.'
       }
     ],
     stateNotes: {
-      'South Australia (Service SA)': 'Temporary visa holders can drive on foreign licence if current and in English. PR holders must transfer within 90 days.',
-      'Victoria (VicRoads)': 'Temporary visa holders who have resided in Victoria for more than 6 continuous months must hold a Victorian driver licence to drive legally on Victorian roads.',
-      'New South Wales (Service NSW)': 'Temporary visa holders in NSW must convert to an NSW licence after 6 months of continuous residence if from specific overseas jurisdictions.'
+      'South Australia (Service SA)': 'Temporary residents may drive on a current foreign licence with English translation where needed; PR holders generally have 90 days to convert. Check sa.gov.au.',
+      'Victoria (VicRoads)': 'Check VicRoads 6-month continuous residency rules requiring overseas licence holders to obtain a Victorian driver licence. See vicroads.vic.gov.au.',
+      'New South Wales (Service NSW)': 'Verify whether the 6-month residency conversion rule applies to your visa and arrival date on service.nsw.gov.au.'
     },
+    faqHeading: 'Frequently Asked Questions About Driving in Australia on an Overseas Licence',
     faqs: [
       {
-        question: 'What is a NAATI translation?',
-        answer: 'NAATI (National Accreditation Authority for Translators and Interpreters) is the official national standards body. Australian police and courts only accept foreign document translations stamped by a certified NAATI translator.'
+        question: 'How do I convert a foreign driver’s licence in Australia?',
+        answer: 'Book an appointment at your state licensing agency (Service NSW, VicRoads, Service SA, or equivalent) with your passport, visa, local address proof, and translated foreign licence to complete verification and any required tests.'
       },
       {
-        question: 'What is the blood alcohol limit (BAC) for driving in Australia?',
-        answer: 'For full licence holders, the legal blood alcohol limit is strictly under 0.05. For learner, provisional (P-plate), and international drivers converting to probationary status, the limit is strictly 0.00 (Zero Tolerance).'
+        question: 'Do I need a NAATI translation to drive on an overseas licence in Australia?',
+        answer: 'If your overseas driver’s licence is not printed in English, you generally need either an official International Driving Permit (IDP) or a NAATI-accredited English translation—confirm exact accepted formats on your state site.'
       },
       {
-        question: 'What are Australian speed cameras like?',
-        answer: 'Australian police utilize extensive fixed speed cameras, mobile speed camera vans, point-to-point average speed cameras, and red-light cameras. Even exceeding the posted limit by 3 to 5 km/h results in photographic speeding fines.'
+        question: 'What is the legal blood alcohol limit for drivers in Australia?',
+        answer: 'Full licence holders must remain below 0.05 BAC, while learner and provisional (P-plate) drivers must maintain a strict 0.00 blood alcohol limit.'
       }
     ],
     officialSources: [
       {
         agency: 'Service NSW',
-        title: 'Overseas Driver Licence Regulations in NSW',
+        title: 'Transfer an Overseas Driver Licence in NSW',
         url: 'https://www.service.nsw.gov.au/transaction/transfer-an-overseas-driver-licence',
-        note: 'Guidelines on the 6-month continuous residency rule and recognized country conversion paths'
+        note: 'Official NSW rules on overseas licences, conversion tests, and 6-month residency cutoffs'
       },
       {
         agency: 'VicRoads',
-        title: 'Overseas Licences and Victorian Driving Rules',
+        title: 'Overseas Drivers in Victoria',
         url: 'https://www.vicroads.vic.gov.au/licences/renew-replace-or-update/new-to-victoria/overseas-drivers',
-        note: 'Conversion processes, test booking, and 6-month residency cut-off dates'
+        note: 'Official Victorian overseas licence conversion guide and residency timeframes'
       },
       {
-        agency: 'Service SA (Government of South Australia)',
+        agency: 'Service SA',
         title: 'Driving with an Overseas Licence in SA',
         url: 'https://www.sa.gov.au/topics/driving-and-transport/licences/drivers-licence/driving-with-an-overseas-licence',
-        note: 'Requirements for international students and permanent visa holders in South Australia'
+        note: 'South Australian guidelines for temporary and permanent residents'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'police-check',
-    nextStepTitle: 'Apply for a National Police Check'
+    nextStepTitle: 'Apply for a National Police Check',
+    nextStepAnchorText: 'Next step: how to apply for an Australian Federal Police check online',
+    relatedGuides: [
+      { id: 'buying-a-car', anchorText: 'buying a car in Australia as a new migrant safely' },
+      { id: 'proof-of-age', anchorText: 'getting a Proof of Age card in Australia' },
+      { id: 'public-transport', anchorText: 'using public transport cards in Australia' }
+    ]
   },
 
   // 12. Police Check
@@ -938,78 +1048,88 @@ export const GUIDES: GuideItem[] = [
     category: 'ID and Paperwork',
     categorySlug: 'id-and-paperwork',
     slug: 'police-check',
-    title: 'National Police Check for Jobs & Visas',
-    seoKeyword: 'national police check for international students',
-    question: 'How do international students and new migrants obtain an official Australian National Police Check for work or internships?',
+    title: 'Police Check International Student Australia (AFP Online)',
+    seoKeyword: 'police check international student australia',
+    intro:
+      'Getting a police check as an international student in Australia is a common prerequisite for university clinical placements, aged care work, tutoring, and graduate jobs. This guide explains how to apply for an Australian Federal Police check online directly so you choose the right check code and avoid paying extra third-party markups. Always confirm current application fees and check requirements directly on afp.gov.au or acic.gov.au.',
+    question: 'How do I apply for an Australian Federal Police check online safely?',
     directAnswer:
-      'An Australian National Police Check is a certified document listing any disclosable criminal history outcomes across all Australian states and territories. Most Australian employers in healthcare, aged care, security, banking, and education require this check before onboarding. You can apply directly through the Australian Federal Police (AFP) portal online or through an ACIC-accredited provider for approximately A$42 to A$47.',
+      'An Australian National Police Check verifies any disclosable Australian court outcomes across all states and territories. When an employer, health board, or immigration department requires a federal clearance, apply directly through the official Australian Federal Police (AFP) portal at afp.gov.au; for general private employment, an ACIC-accredited provider may also be accepted if approved by your employer.',
     appliesTo:
-      'Anyone applying for jobs, internships, volunteer roles, nursing placements, or immigration visa extensions in Australia.',
+      'International students and new migrants applying for healthcare placements, hospitality/retail jobs, internships, or background clearances.',
+    stepsHeading: 'How do international students complete an Australian Federal Police check online?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Determine whether you need an AFP check or an ACIC check',
+        title: 'Confirm whether you need an AFP check or an ACIC-accredited check',
         description:
-          'If the check is for immigration, citizenship, overseas employment, or registration with regulatory health boards (AHPRA), you MUST use the official Australian Federal Police (AFP) portal. For general retail, warehouse, or hospitality jobs, an ACIC (Australian Criminal Intelligence Commission) accredited provider is usually accepted.',
-        tip: 'Always confirm the exact "Code Purpose" required by your employer or university placement coordinator before submitting.'
+          'Check your employer or university placement instructions first. Immigration matters, AHPRA health registrations, and many government or clinical roles specifically require an official Australian Federal Police (AFP) National Police Check and a designated Purpose Code.',
+        tip: 'Ask your employer or university coordinator for the exact AFP Purpose Code number before starting your online form.'
       },
       {
         stepNumber: 2,
-        title: 'Gather 100 points of identification documents',
+        title: 'Prepare 100 points of identity documents',
         description:
-          'The AFP uses a strict 100-point identification checklist. Combine your foreign passport (70 points) with an Australian bank statement or debit card (25 points) and your student ID or utility bill (25 points) to exceed 100 points.',
-        caution: 'Ensure the name entered matches the exact legal name formatting across all uploaded identity files.'
+          'Assemble clear colour scans matching the AFP identification point rules—such as your foreign passport paired with an Australian bank statement, debit card, student ID, or Proof of Age card.',
+        caution: 'Make sure every letter of your given, middle, and family names matches across your passport and supporting documents.'
       },
       {
         stepNumber: 3,
-        title: 'Submit your application and payment online',
+        title: 'Submit your application directly via afp.gov.au',
         description:
-          'Fill in the online form, upload scanned colour copies of your identity documents, and pay the fee (standard AFP fee is $42). Do not pay third-party agency markups charging $70+ for the exact same federal check.',
-        tip: 'Digital National Police Certificates with cryptographic validation barcodes are issued via email within 2 to 5 business days for most applicants.'
+          'Complete the online form directly on the official Australian Federal Police website and pay the standard government fee listed there. You do not need to pay commercial resellers higher fees for an AFP check.',
+        tip: 'Elect a digital certificate option where available so you can download and verify it easily.'
       },
       {
         stepNumber: 4,
-        title: 'Store and securely share your digital certificate',
+        title: 'Save and share your certificate securely',
         description:
-          'Save the original PDF certificate on your cloud drive. Employers can verify the authenticity of an AFP digital certificate using the official AFP online verification tool.',
-        caution: 'Police checks do not have a formal expiry date under Australian law, but most employers specify that a certificate must be no older than 3 to 6 months.'
+          'Store your PDF National Police Certificate safely. Employers can confirm its authenticity directly via the AFP verification service.',
+        caution: 'Most Australian employers treat a police check as recent only if issued within the past 3 to 6 months, so verify timing before applying.'
       }
     ],
     stateNotes: {
-      'National Federal Coverage': 'A National Police Check covers records held by all state police forces (NSW Police, Victoria Police, Queensland Police, SA Police, WA Police, etc.). You do not need to apply to individual state police departments.'
+      'National Coverage': 'An Australian National Police Check covers disclosable records held across all Australian states and territories (NSW, VIC, QLD, SA, WA, TAS, ACT, NT) in one single check.'
     },
+    faqHeading: 'Frequently Asked Questions About Australian Police Checks for Students',
     faqs: [
       {
-        question: 'Will traffic fines show up on my National Police Check?',
-        answer: 'Minor traffic infringements (such as speeding fines or parking tickets) that were paid without court conviction do not appear on a standard National Police Certificate.'
+        question: 'How do I apply for an Australian Federal Police check online without extra fees?',
+        answer: 'Go straight to the official Australian Federal Police portal at afp.gov.au rather than commercial third-party websites, and select the exact check purpose code your employer or placement requires.'
       },
       {
-        question: 'Does the Australian police check include offences from my home country?',
-        answer: 'No. An Australian National Police Check only searches criminal records and court convictions held within Australian jurisdictions. If an employer or visa requires overseas records, you will need a Police Clearance Certificate from your home country.'
+        question: 'Does an Australian police check show criminal history from my home country?',
+        answer: 'No. An Australian National Police Check only searches Australian police and court records. If an organisation requires overseas history, you must obtain a police clearance from your home country.'
       },
       {
-        question: 'How long does an AFP Police Check take to process?',
-        answer: 'Approximately 70% of digital AFP checks are completed and dispatched within 24 to 48 hours. If your application is flagged for manual review due to a common name match, it may take up to 10 to 15 business days.'
+        question: 'How long does an AFP National Police Check take?',
+        answer: 'Many straightforward online checks are issued within a few business days, while applications requiring manual review take longer. Check current processing times directly on afp.gov.au.'
       }
     ],
     officialSources: [
       {
         agency: 'Australian Federal Police (AFP)',
-        title: 'National Police Checks Online Application Portal',
+        title: 'National Police Checks Official Online Portal',
         url: 'https://www.afp.gov.au/our-services/national-police-checks',
-        note: 'Official federal application portal for immigration, health, and national employment checks ($42)'
+        note: 'Official federal portal for AFP National Police Checks, purpose codes, and current fees'
       },
       {
         agency: 'Australian Criminal Intelligence Commission (ACIC)',
-        title: 'National Police Checking Service & Accredited Bodies',
+        title: 'National Police Checking Service',
         url: 'https://www.acic.gov.au/services/national-police-checking-service',
-        note: 'List of authorized commercial screening providers and verification protocols'
+        note: 'Official list of accredited background checking organisations in Australia'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: 'working-with-children',
-    nextStepTitle: 'Apply for a Working with Children Check (WWCC)'
+    nextStepTitle: 'Apply for a Working with Children Check (WWCC)',
+    nextStepAnchorText: 'Next step: apply for a Working with Children Check in Australia',
+    relatedGuides: [
+      { id: 'proof-of-age', anchorText: 'get a Proof of Age card in Australia for 100-point ID checks' },
+      { id: 'tax-file-number', anchorText: 'how to apply for a TFN online in Australia' },
+      { id: 'superannuation', anchorText: 'how does super work in Australia for new migrants' }
+    ]
   },
 
   // 13. Working with Children Check (WWCC)
@@ -1018,87 +1138,97 @@ export const GUIDES: GuideItem[] = [
     category: 'ID and Paperwork',
     categorySlug: 'id-and-paperwork',
     slug: 'working-with-children',
-    title: 'Working with Children Check (WWCC)',
-    seoKeyword: 'working with children check international student',
-    question: 'Do I need a Working with Children Check (WWCC), and how do I apply in my state?',
+    title: 'Working With Children Check Australia: State-by-State Guide',
+    seoKeyword: 'working with children check australia',
+    intro:
+      'Applying for a Working With Children Check in Australia is legally required before starting paid or volunteer roles involving people under 18, including tutoring, coaching, childcare, and school placements. Because child-safety clearances are managed separately by each state and territory, you must apply in the state where you live and work. Always confirm current fees and "No Card, No Start" rules on your state screening portal.',
+    question: 'Do new migrants and international students need a Working With Children Check (WWCC)?',
     directAnswer:
-      'In Australia, anyone working or volunteering in roles involving contact with individuals under 18—including private tutoring, childcare, swimming coaching, retail toy stores, school campus events, and certain hospitality venues—is legally required to hold an active state Working with Children Check. Unlike a one-off police check, a WWCC provides continuous monitoring for criminal offences over its 3-to-5-year validity period.',
+      'Yes, anyone working or volunteering in child-related roles in Australia must hold an active state Working With Children Check (known as a Blue Card in Queensland). Unlike a one-off police check, a WWCC provides ongoing monitoring throughout its validity period (typically 3 to 5 years depending on the state).',
     appliesTo:
-      'Any migrant seeking employment or volunteer positions involving child-related work.',
+      'International students and new migrants pursuing paid tutoring, sports coaching, childcare, education placements, or youth volunteering.',
+    stepsHeading: 'How do new arrivals apply for a Working With Children Check in Australia?',
     steps: [
       {
         stepNumber: 1,
-        title: 'Identify your state’s specific screening system',
+        title: 'Find your state or territory screening authority',
         description:
-          'Each state administers its own screening: NSW: Working with Children Check (Service NSW). Victoria: Working with Children Check (Working with Children Victoria). Queensland: Blue Card (Blue Card Services). South Australia: Working with Children Check (DHS Screening Unit). Western Australia: Working with Children Check (Department of Communities).',
-        tip: 'In South Australia, checks are administered directly by the Department of Human Services (DHS Screening Unit) online.'
+          'NSW: Office of the Children’s Guardian (Service NSW). Victoria: Working with Children Check (Service Victoria). Queensland: Blue Card Services. South Australia: DHS Screening Unit. Western Australia: Department of Communities.',
+        tip: 'A clearance issued in one state generally does not cover ongoing employment in another state.'
       },
       {
         stepNumber: 2,
-        title: 'Select between Volunteer or Paid Employee check',
+        title: 'Choose Volunteer vs Paid Employee clearance carefully',
         description:
-          'A Volunteer check is either free or very low cost ($0 to $20), but it CANNOT be used for paid work. If you plan to earn money as a tutor, nanny, or cafe worker at a school venue, you must apply for a Paid Employee check (A$80–$130 depending on the state).',
-        caution: 'Working in child-related employment with a volunteer card or without a clearance is an offence subject to heavy financial fines and visa cancellation risks.'
+          'Volunteer checks are cheaper or free in most states, but legally you CANNOT use a volunteer clearance for paid jobs such as tutoring or nanny work. Apply for a Paid Employee check if you will earn income.',
+        caution: 'Working in a paid child-related job with only a volunteer card breaches state law.'
       },
       {
         stepNumber: 3,
-        title: 'Complete the online application and verify ID at an agency outlet',
+        title: 'Submit online and verify your ID at Australia Post or a service centre',
         description:
-          'Submit the online application with your passport, visa grant, and residential address. You will receive an application barcode or reference number. Take this barcode and your physical ID documents to an Australia Post outlet or state service centre to verify your identity and have your photo taken.',
-        tip: 'Once verified, processing usually takes between 1 and 3 weeks. You will receive an official digital WWCC clearance number via email and SMS.'
+          'Complete the online form and take your reference barcode plus physical ID documents (passport, bank card, address proof) to a nominated counter such as Australia Post or a state service centre where required.',
+        tip: 'Allow several weeks before your job or university placement starts in case processing takes longer.'
       },
       {
         stepNumber: 4,
-        title: 'Link your WWCC number with your employer or university portal',
+        title: 'Provide your clearance number to your employer or university',
         description:
-          'Provide your WWCC number, full legal name, and date of birth to your employer’s HR team. Under Australian law, the employer must verify your clearance online in their organization’s portal before your first shift.',
-        tip: 'Keep your contact details up to date; you are legally required to notify the screening unit within 3 months if your phone number or home address changes.'
+          'Give your WWCC or Blue Card number and date of birth to your employer so they can verify it online before your first shift, and update your address with the screening unit whenever you move.',
+        tip: 'Wait for formal approval in strict "No Card, No Start" states such as Queensland before working.'
       }
     ],
     stateNotes: {
-      'Queensland': 'Known officially as the "Blue Card". Queensland enforces strict "No Card, No Start" laws—you cannot commence work until your Blue Card is formally issued.',
-      'South Australia': 'Administered by DHS Screening Unit. Working with Children Checks are valid for 5 years across South Australia.',
-      'New South Wales': 'Administered by Office of the Children’s Guardian. Check costs $80 for paid workers and is valid for 5 years.',
-      'Victoria': 'Administered by Department of Justice and Community Safety. Paid check costs $128.20 and lasts 5 years.'
+      'Queensland (Blue Card)': 'Known as the Blue Card; Queensland enforces strict "No Card, No Start" rules. Confirm current fees on qld.gov.au.',
+      'South Australia (DHS)': 'Managed online by the Department of Human Services Screening Unit at screening.sa.gov.au.',
+      'New South Wales (OCG)': 'Managed through Service NSW and the Office of the Children’s Guardian (ocg.nsw.gov.au).',
+      'Victoria (Service Victoria)': 'Apply online and verify ID via Service Victoria / Australia Post (service.vic.gov.au).'
     },
+    faqHeading: 'Frequently Asked Questions About Working With Children Checks in Australia',
     faqs: [
       {
-        question: 'Can I use an NSW WWCC to work with kids in Melbourne or Brisbane?',
-        answer: 'Generally no. Child protection screening is managed at the state level. While there are limited temporary exemptions for visiting school camps, regular employment requires a clearance from the state where the work occurs.'
+        question: 'Can I use a volunteer Working With Children Check for paid tutoring?',
+        answer: 'No. If you are receiving payment for child-related work, you must hold a Paid Employee WWCC or upgrade your volunteer clearance through your state screening unit first.'
       },
       {
-        question: 'What is the difference between a Police Check and a WWCC?',
-        answer: 'A Police Check is a point-in-time snapshot of past disclosable court convictions. A WWCC is an active continuous monitoring clearance; if a cardholder is charged with a child-related offence in the future, their employer is immediately notified and the card revoked.'
+        question: 'What is the difference between an AFP Police Check and a WWCC?',
+        answer: 'A National Police Check is a point-in-time record of disclosable court convictions, while a WWCC assesses child-safety risk and actively monitors records throughout its validity period.'
       },
       {
-        question: 'Can international students apply before getting an Australian driver licence?',
-        answer: 'Yes. You can complete the 100-point identity check using your foreign passport, student ID card, Australian bank statement, and utility or mobile phone bill.'
+        question: 'Can international students apply without an Australian driver licence?',
+        answer: 'Yes. You can meet state identity checks using combinations of your foreign passport, student ID, Australian bank statement, and Proof of Age card.'
       }
     ],
     officialSources: [
       {
         agency: 'NSW Office of the Children’s Guardian',
-        title: 'Working with Children Check Verification Portal',
+        title: 'Working With Children Check NSW',
         url: 'https://ocg.nsw.gov.au/working-with-children-check',
-        note: 'NSW official guidelines, application forms, and employer online verification'
+        note: 'Official NSW application portal, paid vs volunteer rules, and verification'
       },
       {
-        agency: 'Working with Children Victoria',
-        title: 'Apply for a Victorian WWCC',
+        agency: 'Service Victoria',
+        title: 'Apply for a Victorian Working With Children Check',
         url: 'https://www.service.vic.gov.au/services/working-with-children',
-        note: 'Victorian requirements, volunteer vs paid status, and Australia Post verification'
+        note: 'Official Victorian WWCC instructions, fees, and ID checks'
       },
       {
         agency: 'Department of Human Services South Australia',
-        title: 'DHS Working with Children Screening Check',
+        title: 'DHS Screening Unit – Working With Children Check',
         url: 'https://screening.sa.gov.au/types-of-check/working-with-children-check',
-        note: 'South Australian DHS screening applications and employer registration'
+        note: 'Official South Australian WWCC application portal'
       }
     ],
     lastReviewed: 'November 2026',
     reviewedBy: 'FirstYear AU Settlement Advisory Team',
     nextStepId: '12-month-plan',
-    nextStepTitle: 'View the Complete 12-Month Plan Timeline'
+    nextStepTitle: 'View the Complete 12-Month Plan Timeline',
+    nextStepAnchorText: 'Next step: return to the complete 12-month new migrant Australia setup guide',
+    relatedGuides: [
+      { id: 'police-check', anchorText: 'get a police check as an international student in Australia' },
+      { id: 'proof-of-age', anchorText: 'apply for a Proof of Age card in Australia' },
+      { id: 'tax-file-number', anchorText: 'how to apply for a TFN online in Australia' }
+    ]
   }
 ];
 

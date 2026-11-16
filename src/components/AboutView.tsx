@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
-  ShieldCheck, FileText, CheckCircle2, HeartHandshake, 
-  Compass, ArrowRight, Eye, Scale, Sparkles, Building, ExternalLink 
+  ShieldCheck, FileText, HeartHandshake, 
+  ArrowRight, Eye, Scale, ChevronRight
 } from 'lucide-react';
 import sitemapDiagram from '../assets/sitemap.png';
+import { ABOUT_FAQS } from '../data/pageFaqs';
+import { getHref } from '../utils/routing';
 
 interface AboutViewProps {
   subPage: 'story' | 'how-we-work';
@@ -13,16 +15,23 @@ interface AboutViewProps {
 
 export const AboutView: React.FC<AboutViewProps> = ({
   subPage,
-  onNavigate,
-  onOpenSubscribeModal
+  onNavigate
 }) => {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
       {/* Subpage Switcher Tabs */}
       <div className="flex items-center justify-center">
         <div className="bg-white p-1 rounded-full flex items-center border border-[#E0ECE6] shadow-xs text-xs sm:text-sm font-semibold">
-          <button
-            onClick={() => onNavigate('about/story')}
+          <a
+            href={getHref('about/story')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('about/story');
+              }
+            }}
             className={`px-6 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'story'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -30,9 +39,15 @@ export const AboutView: React.FC<AboutViewProps> = ({
             }`}
           >
             Our story
-          </button>
-          <button
-            onClick={() => onNavigate('about/how-we-work')}
+          </a>
+          <a
+            href={getHref('about/how-we-work')}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onNavigate('about/how-we-work');
+              }
+            }}
             className={`px-6 py-2 rounded-full transition-all cursor-pointer ${
               subPage === 'how-we-work'
                 ? 'bg-[#1B4D3E] text-white shadow-xs'
@@ -40,7 +55,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
             }`}
           >
             How we work
-          </button>
+          </a>
         </div>
       </div>
 
@@ -52,60 +67,78 @@ export const AboutView: React.FC<AboutViewProps> = ({
               The FirstYear AU Story
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              Why we started: Turning Australian settlement chaos into clarity
+              About FirstYear AU: New Migrant Guide Australia
             </h1>
             <p className="text-base text-[#1B3A34]/80 leading-relaxed">
-              Every year, over 500,000 international students and skilled visa holders arrive in Australia. Almost all of them face the same painful shock: nobody tells you which tasks come first, or how they connect.
+              Every year, international students and skilled visa holders arrive across Australia facing the same hurdle: nobody explains which everyday setup tasks come first or how they fit together. We created this new migrant guide Australia to bring all foundational steps into one clear timeline, with reminders to confirm current rules on official sites such as ato.gov.au and homeaffairs.gov.au.
             </p>
           </div>
 
           {/* Narrative Content */}
           <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 sm:p-10 space-y-6 text-[#1B3A34] leading-relaxed text-sm sm:text-base shadow-xs">
             <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E]">
-              The Problem: Scattered Rules, Unfamiliar Words & Culture Shock
+              Why do new arrivals struggle with Australian rules and terminology?
             </h2>
             <p>
-              When a newcomer lands at Sydney, Melbourne, Brisbane, or Adelaide airport, they are bombarded with conflicting advice. Friends suggest one thing, social media reels suggest another, and bank clerks ask for "100 points of ID" without explaining what that means.
+              When a newcomer lands at Sydney, Melbourne, Brisbane, or Adelaide airport, information is scattered across government agencies, banks, and social media chats. Bank staff ask for 100 points of ID without explaining what qualifies, and landlords ask for rental history new migrants have not yet built.
             </p>
             <p>
-              Worse, Australian bureaucracy is split across different government tiers:
+              Australian services are also split across three levels of government:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-[#1B3A34]/80">
-              <li><strong>Federal Government</strong> controls visas, tax file numbers (ATO), and superannuation.</li>
-              <li><strong>State Governments</strong> control public transport smart cards, driver licensing, rental bond authorities, and working with children checks.</li>
-              <li><strong>Local City Councils</strong> govern municipal waste, kerbside collections, and library proof-of-address.</li>
+              <li><strong>Federal Government</strong> administers visas (Department of Home Affairs), Tax File Numbers and superannuation (ato.gov.au).</li>
+              <li><strong>State Governments</strong> run public transport cards, driver licensing, rental bond authorities, Proof of Age cards, and Working with Children Checks.</li>
+              <li><strong>Local City Councils</strong> manage household waste rules and community services.</li>
             </ul>
             <p>
-              Because no single government department explains the full journey, newcomers get stuck in "Catch-22" loops: you can’t get a rental without a bank statement, you can’t unlock your bank account without proof of address, and you can’t get proof of address without a rental.
+              Because no single government portal maps the end-to-end journey, newcomers get caught in frustrating loops—needing a local phone number for banking, and needing bank statements to apply for a rental home.
             </p>
 
             <div className="bg-[#F6FAF7] border border-[#2A9D8F]/30 p-5 rounded-2xl my-6">
               <h3 className="text-base font-bold text-[#1B4D3E] mb-1">
-                Who We Build For: New Migrants & International Students
+                Who We Build For: New Migrants &amp; International Students
               </h3>
               <p className="text-sm text-[#1B3A34]/80">
-                Whether you are an international student landing for university in Adelaide, Melbourne, or Sydney, a skilled professional on a work visa, or a newcomer starting fresh with your family—everyone faces unfamiliar Australian terminology ("rego", "bond", "condition report", "TFN"), zero local credit history, and conflicting state-by-state advice. FirstYear AU was designed from the ground up to give every new arrival a trusted, step-by-step roadmap to settle in Australia with total peace of mind.
+                Whether you are an international student starting university in Adelaide, Melbourne, or Sydney, a skilled professional on a work visa, or a family settling in—everyone encounters unfamiliar terms (&quot;rego&quot;, &quot;bond&quot;, &quot;condition report&quot;, &quot;TFN&quot;). FirstYear AU gives every newcomer a trusted roadmap without providing visa or migration advice.
               </p>
             </div>
 
             <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E]">
-              Our Mission: A Clear, Week-by-Week Path
+              How does our moving to Australia checklist keep things simple?
             </h2>
             <p>
-              We created FirstYear AU to turn this confusing maze into a calm, sequential plan: <strong>what to do, when to do it, and why, in plain English</strong>. We believe access to accurate settlement information is a fundamental right, which is why all our foundational guides are completely free to read with zero sign-up wall.
+              FirstYear AU turns a confusing first year into a clear week-by-week plan: <strong>what to do, when to do it and why, in plain English</strong>. All 13 core guides are free to read anytime, with direct links to start your{' '}
+              <a
+                href={getHref('plan/week-1')}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    onNavigate('plan/week-1');
+                  }
+                }}
+                className="text-[#2A9D8F] font-semibold underline hover:text-[#1B4D3E]"
+              >
+                first week in Australia checklist
+              </a>.
             </p>
 
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#E0ECE6]">
               <span className="text-xs text-[#1B3A34]/70">
-                Want to know how we ensure our information remains 100% accurate?
+                Want to know how we verify every settlement guide?
               </span>
-              <button
-                onClick={() => onNavigate('about/how-we-work')}
+              <a
+                href={getHref('about/how-we-work')}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    onNavigate('about/how-we-work');
+                  }
+                }}
                 className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-sm transition-all cursor-pointer inline-flex items-center gap-1.5"
               >
                 <span>See how we work</span>
                 <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -116,13 +149,13 @@ export const AboutView: React.FC<AboutViewProps> = ({
         <div className="space-y-10 animate-in fade-in duration-200">
           <div className="space-y-3 text-center max-w-3xl mx-auto">
             <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
-              Standards & Integrity
+              Standards &amp; Integrity
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
-              How we work: Official sources, rigorous review & independence
+              Official Australian Settlement Sources &amp; How We Work
             </h1>
             <p className="text-base text-[#1B3A34]/80 leading-relaxed">
-              We know misinformation causes fines, rejected leases, and immense visa anxiety. Here is the strict editorial constitution that governs every guide we publish.
+              Clear settlement information depends on checking primary government portals. Here is how FirstYear AU researches every guide, marks Last Reviewed dates, and clearly labels partner offers so readers can verify rules independently.
             </p>
           </div>
 
@@ -132,9 +165,9 @@ export const AboutView: React.FC<AboutViewProps> = ({
               <div className="w-10 h-10 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E]">
                 <FileText className="w-5 h-5 text-[#2A9D8F]" />
               </div>
-              <h2 className="text-lg font-bold text-[#1B4D3E]">1. Official Government Sources Only</h2>
+              <h2 className="text-lg font-bold text-[#1B4D3E]">1. How do we verify official government sources?</h2>
               <p className="text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed">
-                We never base our guides on forum rumors or informal advice. Every rule is cross-referenced with legislation from the Australian Taxation Office (ATO), Department of Home Affairs, Australian Communications and Media Authority (ACMA), Australian Federal Police (AFP), and state tenancy and licensing authorities (Consumer Affairs Victoria, NSW Fair Trading, Service SA).
+                We cross-reference guides against Australian Taxation Office (ato.gov.au), Department of Home Affairs, ACMA, Australian Federal Police (afp.gov.au), and state agencies (Consumer Affairs Victoria, NSW Fair Trading, Service SA, RTBA) rather than unverified social forums.
               </p>
             </div>
 
@@ -142,9 +175,9 @@ export const AboutView: React.FC<AboutViewProps> = ({
               <div className="w-10 h-10 rounded-2xl bg-[#FCF4DD] flex items-center justify-center text-[#684C00]">
                 <Scale className="w-5 h-5 text-[#684C00]" />
               </div>
-              <h2 className="text-lg font-bold text-[#1B4D3E]">2. Quarterly Review & "Last Reviewed" Dates</h2>
+              <h2 className="text-lg font-bold text-[#1B4D3E]">2. Why do we display Last Reviewed dates?</h2>
               <p className="text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed">
-                Migration settings and state transport fees change regularly. Our settlement research team audits every page quarterly, checking fee schedules, concession eligibility, and regulatory updates. Every guide prominently displays its "Last reviewed" date and reviewer credentials.
+                State fees, concession rules, and reporting periods change over time. Every guide states its reviewer and Last Reviewed date while reminding readers to confirm current details directly on official government websites.
               </p>
             </div>
 
@@ -152,9 +185,9 @@ export const AboutView: React.FC<AboutViewProps> = ({
               <div className="w-10 h-10 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E]">
                 <ShieldCheck className="w-5 h-5 text-[#2A9D8F]" />
               </div>
-              <h2 className="text-lg font-bold text-[#1B4D3E]">3. Editorial Independence</h2>
+              <h2 className="text-lg font-bold text-[#1B4D3E]">3. How do we maintain editorial independence?</h2>
               <p className="text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed">
-                Commercial partners cannot buy editorial placement or alter our advice. If an official government pathway is free (such as applying for a TFN on ato.gov.au or checking vehicle VINs on ppsr.gov.au for $2), we say so loudly and explicitly warn users against commercial markup scams.
+                Partners cannot alter our factual steps. Whenever an official government portal is free or low cost—such as applying for a TFN on ato.gov.au or running a vehicle check on ppsr.gov.au—we point directly to the official government option.
               </p>
             </div>
 
@@ -162,33 +195,46 @@ export const AboutView: React.FC<AboutViewProps> = ({
               <div className="w-10 h-10 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E]">
                 <HeartHandshake className="w-5 h-5 text-[#2A9D8F]" />
               </div>
-              <h2 className="text-lg font-bold text-[#1B4D3E]">4. Full Partner Disclosure</h2>
+              <h2 className="text-lg font-bold text-[#1B4D3E]">4. How are partner offers disclosed?</h2>
               <p className="text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed">
-                To sustain our free guides, we feature selected partner offers (e.g. mobile SIMs, NBN fibre, and student furniture packages). Every partner offer is explicitly labelled as a "Disclosed Partner Offer". We only partner with providers that offer genuine, verified value for newcomers.
+                Every commercial link on our{' '}
+                <a
+                  href={getHref('pricing/partners')}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      onNavigate('pricing/partners');
+                    }
+                  }}
+                  className="text-[#2A9D8F] underline font-semibold"
+                >
+                  partner offers page
+                </a>{' '}
+                carries a clear affiliate disclosure label so you always know how FirstYear AU is funded.
               </p>
             </div>
           </div>
 
-          {/* Website Structure Diagram from User Attachment */}
+          {/* Website Structure Diagram */}
           <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 sm:p-8 space-y-4 shadow-xs">
             <div className="flex items-center justify-between pb-3 border-b border-[#E0ECE6]">
               <div className="flex items-center gap-2">
                 <Eye className="w-5 h-5 text-[#2A9D8F]" />
-                <h3 className="font-bold text-[#1B4D3E] text-base">
-                  FirstYear AU Architectural Sitemap & Hierarchy
-                </h3>
+                <h2 className="font-bold text-[#1B4D3E] text-base">
+                  FirstYear AU Sitemap &amp; New Migrant Guide Hierarchy
+                </h2>
               </div>
               <span className="text-xs text-[#2A9D8F] font-bold">
                 Verified Site Blueprint
               </span>
             </div>
             <p className="text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed">
-              Below is the verified structural sitemap for the FirstYear AU platform, detailing how each tier flows seamlessly into sequential settlement milestones:
+              Below is the structural sitemap for the FirstYear AU platform, connecting each stage of our moving to Australia checklist to its detailed guides:
             </p>
             <div className="border border-[#E0ECE6] rounded-2xl overflow-hidden bg-[#F6FAF7] p-2 sm:p-4 flex items-center justify-center">
               <img
                 src={sitemapDiagram}
-                alt="FirstYear AU Website and Content Plan Sitemap Diagram"
+                alt="FirstYear AU new migrant guide Australia settlement website structure and 12-month checklist diagram"
                 className="max-w-full h-auto rounded-xl shadow-xs"
                 loading="lazy"
               />
@@ -198,23 +244,66 @@ export const AboutView: React.FC<AboutViewProps> = ({
           {/* Action Row */}
           <div className="bg-gradient-to-r from-[#1B4D3E] to-[#2A9D8F] text-white p-6 sm:p-8 rounded-3xl shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-bold text-white text-base sm:text-lg">
-                Ready to review the full 12-Month Settlement Plan?
-              </h3>
+              <h2 className="font-bold text-white text-base sm:text-lg">
+                Ready to open the 12-Month New Migrant Setup Guide?
+              </h2>
               <p className="text-xs sm:text-sm text-emerald-100 mt-0.5">
                 Start with Week 1 tasks or download the free printable checklist.
               </p>
             </div>
-            <button
-              onClick={() => onNavigate('plan/overview')}
+            <a
+              href={getHref('plan/overview')}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  onNavigate('plan/overview');
+                }
+              }}
               className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs sm:text-sm px-7 py-3 rounded-full shadow-sm transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 active:scale-95"
             >
               <span>Explore 12-Month Plan</span>
               <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-            </button>
+            </a>
           </div>
         </div>
       )}
+
+      {/* FAQ section kept in HTML DOM */}
+      <section className="space-y-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
+          Frequently Asked Questions About FirstYear AU
+        </h2>
+        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
+          {ABOUT_FAQS.map((faq, index) => {
+            const isOpen = openFaqIndex === index;
+            return (
+              <div key={index} className="py-4 px-5 sm:px-6">
+                <button
+                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
+                >
+                  <span>{faq.question}</span>
+                  <ChevronRight
+                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
+                      isOpen ? 'rotate-90' : ''
+                    }`}
+                  />
+                </button>
+                <p
+                  className={
+                    isOpen
+                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
+                      : 'hidden'
+                  }
+                >
+                  {faq.answer}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 };

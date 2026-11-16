@@ -11,13 +11,27 @@ import { ContactView } from './components/ContactView';
 import { RentalTemplateModal } from './components/RentalTemplateModal';
 import { SubscribeModal } from './components/SubscribeModal';
 import { AussieGlossaryModal } from './components/AussieGlossaryModal';
-import { GUIDES, getGuideById } from './data/guidesData';
+import { getGuideById } from './data/guidesData';
+import { getSeoRouteByPath } from './data/seoRoutes';
+import {
+  getHref,
+  getCanonicalUrl,
+  resolveAppPathFromLocation,
+  getStructuredDataForPath
+} from './utils/routing';
 
-export default function App() {
-  // Navigation State
+interface AppProps {
+  initialPath?: string;
+}
+
+export default function App({ initialPath }: AppProps) {
+  // Navigation State (SSR-safe)
   const [currentPath, setCurrentPath] = useState<string>(() => {
-    const hash = window.location.hash.replace('#', '');
-    return hash || 'home';
+    if (initialPath) return initialPath;
+    if (typeof window !== 'undefined') {
+      return resolveAppPathFromLocation(window.location.pathname, window.location.hash);
+    }
+    return 'home';
   });
 
   // Modals State
@@ -25,26 +39,78 @@ export default function App() {
   const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
   const [isGlossaryModalOpen, setIsGlossaryModalOpen] = useState(false);
 
-  // Sync state with URL hash
+  // Sync state with browser Back/Forward navigation and legacy hashes
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        setCurrentPath(hash);
-      } else {
-        setCurrentPath('home');
-      }
+    const syncFromLocation = () => {
+      const resolved = resolveAppPathFromLocation(window.location.pathname, window.location.hash);
+      setCurrentPath(resolved);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', syncFromLocation);
+    window.addEventListener('hashchange', syncFromLocation);
+    return () => {
+      window.removeEventListener('popstate', syncFromLocation);
+      window.removeEventListener('hashchange', syncFromLocation);
+    };
   }, []);
 
+  // Dynamically sync document <title>, meta tags, Open Graph, canonical URL, and JSON-LD
+  useEffect(() => {
+    const meta = getSeoRouteByPath(currentPath);
+    const canonical = getCanonicalUrl(currentPath);
+
+    document.title = meta.title;
+
+    const setMetaTag = (selector: string, attrName: 'name' | 'property', attrValue: string, content: string) => {
+      let el = document.querySelector(selector) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attrName, attrValue);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    setMetaTag('meta[name="description"]', 'name', 'description', meta.description);
+    setMetaTag('meta[name="keywords"]', 'name', 'keywords', meta.keywords);
+    setMetaTag('meta[property="og:title"]', 'property', 'og:title', meta.ogTitle);
+    setMetaTag('meta[property="og:description"]', 'property', 'og:description', meta.ogDescription);
+    setMetaTag('meta[property="og:url"]', 'property', 'og:url', canonical);
+    setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', meta.ogTitle);
+    setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', meta.ogDescription);
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', canonical);
+
+    // Update JSON-LD structured data scripts
+    const existingScripts = document.querySelectorAll('script[data-fyau-jsonld="true"]');
+    existingScripts.forEach((s) => s.remove());
+
+    const schemas = getStructuredDataForPath(currentPath);
+    schemas.forEach((schemaObj) => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.setAttribute('data-fyau-jsonld', 'true');
+      script.textContent = JSON.stringify(schemaObj);
+      document.head.appendChild(script);
+    });
+  }, [currentPath]);
+
   const navigateTo = (path: string) => {
-    window.location.hash = path;
+    if (typeof window !== 'undefined') {
+      const nextUrl = getHref(path);
+      if (window.location.pathname !== nextUrl || window.location.hash) {
+        window.history.pushState({ path }, '', nextUrl);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     setCurrentPath(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Helper to resolve guide by category and slug
@@ -85,7 +151,7 @@ export default function App() {
     if (currentPath.startsWith('plan/')) {
       const stageName = currentPath.replace('plan/', '');
       const stageLabels: Record<string, string> = {
-        'overview': 'Overview',
+        overview: 'Overview',
         'before-arrival': 'Before arrival',
         'week-1': 'Week 1',
         'month-1': 'Month 1',
@@ -110,10 +176,10 @@ export default function App() {
     if (currentPath.startsWith('pricing/')) {
       const sub = currentPath.replace('pricing/', '');
       const subLabels: Record<string, string> = {
-        'free': 'Free plan and checklist',
-        'plus': 'FirstYear Plus subscription',
-        'compare': 'Compare plans',
-        'partners': 'Partner offers'
+        free: 'Free plan and checklist',
+        plus: 'FirstYear Plus subscription',
+        compare: 'Compare plans',
+        partners: 'Partner offers'
       };
       return [
         { label: 'Membership and Pricing', path: 'pricing/compare' },
@@ -125,9 +191,9 @@ export default function App() {
     if (currentPath.startsWith('contact/')) {
       const sub = currentPath.replace('contact/', '');
       const subLabels: Record<string, string> = {
-        'form': 'Contact form',
-        'faq': 'Frequently Asked Questions',
-        'chatbot': 'Chat-Bot Assistant'
+        form: 'Contact form',
+        faq: 'Frequently Asked Questions',
+        chatbot: 'Chat-Bot Assistant'
       };
       return [
         { label: 'Contact', path: 'contact/form' },

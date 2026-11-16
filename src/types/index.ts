@@ -22,6 +22,11 @@ export interface GuideStep {
   caution?: string;
 }
 
+export interface RelatedGuideLink {
+  id: string;
+  anchorText: string;
+}
+
 export interface GuideItem {
   id: string; // e.g. 'sim-internet', 'bank-account', etc.
   category: 'Get Set-Up' | 'Find a Home' | 'Get Around' | 'ID and Paperwork';
@@ -29,17 +34,22 @@ export interface GuideItem {
   slug: string;
   title: string;
   seoKeyword: string;
+  intro: string;
   question: string;
   directAnswer: string;
   appliesTo: string;
+  stepsHeading: string;
   steps: GuideStep[];
   stateNotes?: Record<string, string>;
+  faqHeading: string;
   faqs: GuideFAQ[];
   officialSources: GuideOfficialSource[];
   lastReviewed: string;
   reviewedBy: string;
   nextStepId: string;
   nextStepTitle: string;
+  nextStepAnchorText: string;
+  relatedGuides: RelatedGuideLink[];
   hasTemplateOffer?: boolean;
 }
 
