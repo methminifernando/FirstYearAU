@@ -7,7 +7,8 @@ import { SUGGESTED_QUESTIONS, getBotAnswer, BotResponse } from '../data/chatbotK
 import { getGuideById } from '../data/guidesData';
 import { getHref } from '../utils/routing';
 import contactAdvisorImg from '../assets/images/contact_advisor_desk_1795004748461.jpg';
-import plusCommunityImg from '../assets/images/pricing_plus_community_1795004748132.jpg';
+import contactFaqLibraryImg from '../assets/images/contact_faq_library_1795006591496.jpg';
+import contactChatbotMobileImg from '../assets/images/contact_chatbot_mobile_1795006591996.jpg';
 
 interface ContactViewProps {
   subPage: 'form' | 'faq' | 'chatbot';
@@ -303,8 +304,8 @@ export const ContactView: React.FC<ContactViewProps> = ({
 
           <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white max-w-4xl mx-auto">
             <img
-              src={plusCommunityImg}
-              alt="International students and newcomers reviewing Australian settlement guides together"
+              src={contactFaqLibraryImg}
+              alt="Sunlit Australian university library resource desk where newcomers look up settlement questions"
               referrerPolicy="no-referrer"
               className="w-full h-48 sm:h-64 object-cover"
             />
@@ -414,10 +415,10 @@ export const ContactView: React.FC<ContactViewProps> = ({
 
           <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
             <img
-              src={contactAdvisorImg}
-              alt="FirstYear AU settlement guidance desk welcoming newcomers in Australia"
+              src={contactChatbotMobileImg}
+              alt="Newcomer using an interactive Australian settlement assistant on a smartphone in a bright cafe"
               referrerPolicy="no-referrer"
-              className="w-full h-44 sm:h-56 object-cover object-top"
+              className="w-full h-44 sm:h-56 object-cover"
             />
           </div>
 

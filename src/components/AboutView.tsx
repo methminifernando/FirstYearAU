@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import sitemapDiagram from '../assets/sitemap.png';
 import studentsCampusImg from '../assets/images/students_in_australia_1794143904293.jpg';
-import sydneyHarbourImg from '../assets/images/hero_sydney_blue_1794970409970.jpg';
+import editorialTeamImg from '../assets/images/about_editorial_team_1795006583992.jpg';
 import { getHref } from '../utils/routing';
 
 interface AboutViewProps {
@@ -170,8 +170,8 @@ export const AboutView: React.FC<AboutViewProps> = ({
 
           <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
             <img
-              src={sydneyHarbourImg}
-              alt="Sydney Harbour skyline and coastal Australian landmarks in bright daylight"
+              src={editorialTeamImg}
+              alt="FirstYear AU editors reviewing official Australian federal and state settlement portals"
               referrerPolicy="no-referrer"
               className="w-full h-52 sm:h-72 object-cover"
             />

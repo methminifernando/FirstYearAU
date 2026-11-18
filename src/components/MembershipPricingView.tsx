@@ -7,10 +7,10 @@ import { PLAN_COMPARISON, PARTNER_OFFERS } from '../data/pricingData';
 import { PLAN_STAGES } from '../data/planData';
 import { getGuideById } from '../data/guidesData';
 import { getHref } from '../utils/routing';
-import arrivalChecklistImg from '../assets/images/plan_arrival_checklist_1795004747130.jpg';
+import pricingFreeChecklistImg from '../assets/images/pricing_free_checklist_1795006589476.jpg';
 import plusCommunityImg from '../assets/images/pricing_plus_community_1795004748132.jpg';
-import taxSuperImg from '../assets/images/guide_tax_super_1795004743348.jpg';
-import simInternetImg from '../assets/images/guide_sim_internet_1795004742804.jpg';
+import pricingComparePlansImg from '../assets/images/pricing_compare_plans_1795006590976.jpg';
+import pricingPartnerOffersImg from '../assets/images/pricing_partner_offers_1795006590443.jpg';
 
 interface MembershipPricingViewProps {
   subPage: 'free' | 'plus' | 'compare' | 'partners';
@@ -142,8 +142,8 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
 
           <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white no-print">
             <img
-              src={arrivalChecklistImg}
-              alt="Newcomer arriving in an Australian international terminal ready to start the free arrival checklist"
+              src={pricingFreeChecklistImg}
+              alt="Printed moving to Australia settlement checklist beside a laptop and coffee cup on a bright study desk"
               referrerPolicy="no-referrer"
               className="w-full h-52 sm:h-72 object-cover"
             />
@@ -445,8 +445,8 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
 
           <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
             <img
-              src={taxSuperImg}
-              alt="Organized Australian study desk with laptop and planner comparing free checklist and FirstYear Plus features"
+              src={pricingComparePlansImg}
+              alt="Newcomers reviewing plan features side-by-side on a tablet and notebook in a sunlit workspace"
               referrerPolicy="no-referrer"
               className="w-full h-52 sm:h-72 object-cover"
             />
@@ -563,8 +563,8 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
 
           <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
             <img
-              src={simInternetImg}
-              alt="New arrival testing mobile SIM and everyday digital services at a sunny Australian city cafe"
+              src={pricingPartnerOffersImg}
+              alt="Everyday newcomer essentials in Australia including prepaid SIM card, router, and home setup kit"
               referrerPolicy="no-referrer"
               className="w-full h-52 sm:h-72 object-cover"
             />

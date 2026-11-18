@@ -10,11 +10,16 @@ import { getHref } from '../utils/routing';
 import simInternetImg from '../assets/images/guide_sim_internet_1795004742804.jpg';
 import bankingImg from '../assets/images/guide_banking_1795004744288.jpg';
 import taxSuperImg from '../assets/images/guide_tax_super_1795004743348.jpg';
+import superannuationImg from '../assets/images/guide_superannuation_1795006587298.jpg';
 import rentingHomeImg from '../assets/images/guide_renting_home_1795004744162.jpg';
+import bondReportImg from '../assets/images/guide_bond_report_1795006587574.jpg';
 import furnitureImg from '../assets/images/guide_furniture_1795004744660.jpg';
 import publicTransportImg from '../assets/images/guide_public_transport_1795004745181.jpg';
+import driverLicenceImg from '../assets/images/guide_driver_licence_1795006587945.jpg';
 import drivingCarImg from '../assets/images/guide_driving_car_1795004746652.jpg';
 import idPaperworkImg from '../assets/images/guide_id_paperwork_1795004746132.jpg';
+import policeCheckImg from '../assets/images/guide_police_check_1795006588182.jpg';
+import workingChildrenImg from '../assets/images/guide_working_children_1795006589766.jpg';
 import studentsImg from '../assets/images/students_in_australia_1794143904293.jpg';
 
 const GUIDE_IMAGES: Record<string, { src: string; alt: string }> = {
@@ -31,16 +36,16 @@ const GUIDE_IMAGES: Record<string, { src: string; alt: string }> = {
     alt: 'Laptop and planning notebook on a sunlit wooden desk for applying for an Australian Tax File Number'
   },
   superannuation: {
-    src: taxSuperImg,
-    alt: 'Home desk with laptop and financial planner for managing superannuation in Australia'
+    src: superannuationImg,
+    alt: 'Young professional reviewing superannuation savings on a tablet at a sunlit Australian cafe'
   },
   'renting-inspections': {
     src: rentingHomeImg,
     alt: 'Bright sunlit Australian apartment living room with house keys on the table'
   },
   'bond-condition-report': {
-    src: rentingHomeImg,
-    alt: 'Modern Australian rental apartment living area prepared for entry condition inspection'
+    src: bondReportImg,
+    alt: 'Tenant photographing kitchen benchtops for an Australian rental entry condition report'
   },
   furniture: {
     src: furnitureImg,
@@ -51,8 +56,8 @@ const GUIDE_IMAGES: Record<string, { src: string; alt: string }> = {
     alt: 'Modern Australian commuter train and metro platform with passengers boarding in daylight'
   },
   'driver-licence': {
-    src: drivingCarImg,
-    alt: 'Modern car along a sunny Australian coastal road illustrating state driving rules'
+    src: driverLicenceImg,
+    alt: 'Driver view along a sunny Australian suburban road illustrating overseas licence rules'
   },
   'buying-a-car': {
     src: drivingCarImg,
@@ -63,12 +68,12 @@ const GUIDE_IMAGES: Record<string, { src: string; alt: string }> = {
     alt: 'Australian civic service counter with passport and document folder for photo ID application'
   },
   'police-check': {
-    src: idPaperworkImg,
-    alt: 'Official document folder and passport ready at a civic desk for police check verification'
+    src: policeCheckImg,
+    alt: 'Laptop, passport, and verification folder arranged neatly for an Australian national police check'
   },
   'working-with-children': {
-    src: studentsImg,
-    alt: 'International students and young professionals preparing for campus and community roles in Australia'
+    src: workingChildrenImg,
+    alt: 'Smiling educator reading picture books with children in an Australian community library'
   }
 };
 
@@ -82,8 +87,7 @@ interface GuideViewProps {
 export const GuideView: React.FC<GuideViewProps> = ({
   guide,
   onNavigate,
-  onSelectGuide,
-  onOpenTemplatePreview
+  onSelectGuide
 }) => {
   const guideVisual = GUIDE_IMAGES[guide.id] || {
     src: studentsImg,
@@ -191,43 +195,6 @@ export const GuideView: React.FC<GuideViewProps> = ({
           <p className="text-[#1B3A34]/80 leading-relaxed">{guide.appliesTo}</p>
         </div>
       </section>
-
-      {/* Template Offer Callout Box for Renting Guide with Deep Green Gradient */}
-      {guide.hasTemplateOffer && (
-        <section className="bg-gradient-to-r from-[#1B4D3E] via-[#1E6B58] to-[#2A9D8F] text-white rounded-3xl p-6 sm:p-8 shadow-md space-y-4">
-          <div className="flex items-center gap-2 text-[#E9C46A] text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-4 h-4" />
-            <span>Recommended Resource</span>
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
-            Need a rental application template for new migrants with zero local references?
-          </h3>
-          <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-2xl">
-            Don’t let agents skip your rental application in Australia. Preview our Newcomer Rental Application Pack free—featuring cover letter wording explaining overseas savings, proof of funds layout, and referee templates.
-          </p>
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <button
-              onClick={onOpenTemplatePreview}
-              className="bg-[#F4A261] hover:bg-[#e7924d] text-[#1B3A34] font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-sm transition-all cursor-pointer inline-flex items-center gap-1.5 active:scale-95"
-            >
-              <span>Preview the rental template free</span>
-              <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
-            </button>
-            <a
-              href={getHref('pricing/plus')}
-              onClick={(e) => {
-                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
-                  e.preventDefault();
-                  onNavigate('pricing/plus');
-                }
-              }}
-              className="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full border border-white/30 transition-colors cursor-pointer"
-            >
-              View Membership &amp; Pricing
-            </a>
-          </div>
-        </section>
-      )}
 
       {/* 4. Numbered Steps (White Cards with Soft Shadows) */}
       <section className="space-y-6">

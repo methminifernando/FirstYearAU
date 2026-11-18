@@ -7,11 +7,12 @@ import { PLAN_STAGES, PlanStageInfo } from '../data/planData';
 import { getGuideById } from '../data/guidesData';
 import { AustralianState } from '../types';
 import { getHref } from '../utils/routing';
+import overviewRoadmapImg from '../assets/images/plan_overview_roadmap_1795006585253.jpg';
+import beforeDepartureImg from '../assets/images/plan_before_departure_1795006584893.jpg';
 import arrivalChecklistImg from '../assets/images/plan_arrival_checklist_1795004747130.jpg';
-import simInternetImg from '../assets/images/guide_sim_internet_1795004742804.jpg';
-import rentingHomeImg from '../assets/images/guide_renting_home_1795004744162.jpg';
-import idPaperworkImg from '../assets/images/guide_id_paperwork_1795004746132.jpg';
-import drivingCarImg from '../assets/images/guide_driving_car_1795004746652.jpg';
+import month1SettlingImg from '../assets/images/plan_month1_settling_1795006586428.jpg';
+import months23WorkImg from '../assets/images/plan_months2_3_work_1795006586318.jpg';
+import months412LifestyleImg from '../assets/images/plan_months4_12_lifestyle_1795006585978.jpg';
 
 interface Plan12MonthViewProps {
   currentStageId?: string;
@@ -64,28 +65,28 @@ const STAGE_COPY: Record<
 
 const STAGE_IMAGES: Record<string, { src: string; alt: string }> = {
   overview: {
-    src: arrivalChecklistImg,
-    alt: 'Traveller arriving in an Australian international airport arrivals terminal with suitcase'
+    src: overviewRoadmapImg,
+    alt: 'Newcomer organising a 12-month Australian settlement plan in a sunlit apartment overlooking the city'
   },
   'before-arrival': {
-    src: arrivalChecklistImg,
-    alt: 'Traveller preparing pre-departure documents and luggage at an Australian arrivals terminal'
+    src: beforeDepartureImg,
+    alt: 'Carry-on suitcase, passport wallet, and travel documents packed before departing for Australia'
   },
   'week-1': {
-    src: simInternetImg,
-    alt: 'New arrival activating an Australian prepaid SIM card on a smartphone in Week 1'
+    src: arrivalChecklistImg,
+    alt: 'Traveller arriving in an Australian international airport terminal ready for Week 1 setup steps'
   },
   'month-1': {
-    src: rentingHomeImg,
-    alt: 'Bright sunlit Australian apartment living room prepared for rental move-in'
+    src: month1SettlingImg,
+    alt: 'Smiling newcomer unpacking boxes and arranging plants in a bright Australian apartment during Month 1'
   },
   'months-2-3': {
-    src: idPaperworkImg,
-    alt: 'Passport and document folder at an Australian civic service desk for ID verification'
+    src: months23WorkImg,
+    alt: 'International graduate collaborating with colleagues at a sunny Australian workplace'
   },
   'months-4-12': {
-    src: drivingCarImg,
-    alt: 'Modern silver car along a sunny Australian coastal road for driver licence and vehicle planning'
+    src: months412LifestyleImg,
+    alt: 'Friends relaxing outdoors on a grassy Australian harbourside park lawn during Months 4 to 12'
   }
 };
 
@@ -144,7 +145,7 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
 
   const copy = STAGE_COPY[currentStageId] || STAGE_COPY.overview;
   const stageVisual =
-    STAGE_IMAGES[activeStage] || STAGE_IMAGES[currentStageId] || STAGE_IMAGES.overview;
+    STAGE_IMAGES[currentStageId === 'overview' ? 'overview' : activeStage] || STAGE_IMAGES.overview;
 
   const statesList: { code: AustralianState; name: string }[] = [
     { code: 'ALL', name: 'All States (National)' },
