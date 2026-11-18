@@ -101,6 +101,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 }) => {
   const [activeTabId, setActiveTabId] = useState<string>('what-is-firstyear');
   const [mobileOpenTabId, setMobileOpenTabId] = useState<string | null>('what-is-firstyear');
+  const [showAllReviews, setShowAllReviews] = useState<boolean>(false);
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const trackHomeTabClick = (tabLabel: string) => {
@@ -227,6 +228,63 @@ export const HomeView: React.FC<HomeViewProps> = ({
       quote: (
         <>
           "I needed an official <strong className="text-[#1B4D3E] font-semibold">police check international student Australia</strong> and hospital volunteering clearance in Brisbane. FirstYear AU showed me the direct Australian Federal Police portal so I avoided shady commercial websites that charge extra. Clear, honest, and zero fluff."
+        </>
+      )
+    },
+    {
+      id: 'minjun',
+      name: 'Min-jun Park',
+      role: 'Masters of Engineering Student',
+      location: 'Perth, WA',
+      country: 'South Korea',
+      stars: 5,
+      avatarColor: 'bg-[#FDE9DB] text-[#8B4513]',
+      quote: (
+        <>
+          "Getting set up in Perth felt straightforward once I had everything in sequence. Using the{' '}
+          <strong className="text-[#1B4D3E] font-semibold">public transport cards Australia</strong> guide, I picked up my SmartRider with tertiary concession within days and avoided overpaying for daily train trips between campus and part-time work."
+        </>
+      )
+    },
+    {
+      id: 'sofia',
+      name: 'Sofia Reyes',
+      role: 'Registered Nurse (Subclass 482)',
+      location: 'Gold Coast, QLD',
+      country: 'Philippines',
+      stars: 5,
+      avatarColor: 'bg-[#FCF4DD] text-[#684C00]',
+      quote: (
+        <>
+          "The <strong className="text-[#1B4D3E] font-semibold">rental bond and condition report</strong> checklist saved us from missing tiny pre-existing scuffs when we moved into our apartment in Southport. Knowing how RTA bond lodgement works in Queensland gave us real peace of mind."
+        </>
+      )
+    },
+    {
+      id: 'daniel',
+      name: 'Daniel & Priya Wijaya',
+      role: 'IT Specialist & Accountant',
+      location: 'Canberra, ACT',
+      country: 'Indonesia',
+      stars: 5,
+      avatarColor: 'bg-[#E2F4EE] text-[#1B4D3E]',
+      quote: (
+        <>
+          "Understanding <strong className="text-[#1B4D3E] font-semibold">how does super work in Australia</strong> and verifying our employer contributions via myGov was something neither of us had dealt with before moving. The plain-English breakdown helped us avoid ending up with multiple duplicate accounts."
+        </>
+      )
+    },
+    {
+      id: 'chloe',
+      name: 'Chloe Tan',
+      role: 'Hospitality Management Graduate',
+      location: 'Hobart, TAS',
+      country: 'Malaysia',
+      stars: 5,
+      avatarColor: 'bg-[#E2F4EE] text-[#2A9D8F]',
+      quote: (
+        <>
+          "Between checking rules for <strong className="text-[#1B4D3E] font-semibold">driving on overseas licence Australia</strong> and getting a <strong className="text-[#1B4D3E] font-semibold">PPSR check</strong> before inspecting a used hatchback, FirstYear AU kept every official link in one place so I didn&apos;t miss a state requirement."
         </>
       )
     }
@@ -674,77 +732,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
         })()}
       </section>
 
-      {/* 3. HOW IT WORKS (3 Simple Steps) */}
-      <section className="bg-white py-14 border-y border-[#E2EBE5]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
-              Simple 3-Step Process
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1 font-display">
-              How does our moving to Australia checklist work?
-            </h2>
-            <p className="text-sm text-[#1B3A34]/80 mt-2">
-              We cut through conflicting social media advice so every international student and migrant knows the right order.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-[#F6FAF7] p-6 sm:p-7 rounded-3xl border border-[#E0ECE6] shadow-xs relative">
-              <div className="w-10 h-10 rounded-full bg-[#1B4D3E] text-white font-bold flex items-center justify-center text-sm mb-4">
-                1
-              </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Choose your stage &amp; state
-              </h3>
-              <p className="text-sm text-[#1B3A34]/80 mt-2 leading-relaxed">
-                Start before you fly or in Week 1, and review state-specific requirements for Victoria, South Australia, NSW, Queensland, or WA.
-              </p>
-            </div>
-
-            <div className="bg-[#F6FAF7] p-6 sm:p-7 rounded-3xl border border-[#E0ECE6] shadow-xs relative">
-              <div className="w-10 h-10 rounded-full bg-[#1B4D3E] text-white font-bold flex items-center justify-center text-sm mb-4">
-                2
-              </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Follow the week-by-week plan
-              </h3>
-              <p className="text-sm text-[#1B3A34]/80 mt-2 leading-relaxed">
-                Complete tasks in their natural sequence—activating a SIM card enables bank PayID, which supports your rental application and bond lodgement.
-              </p>
-            </div>
-
-            <div className="bg-[#F6FAF7] p-6 sm:p-7 rounded-3xl border border-[#E0ECE6] shadow-xs relative">
-              <div className="w-10 h-10 rounded-full bg-[#1B4D3E] text-white font-bold flex items-center justify-center text-sm mb-4">
-                3
-              </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Verify with official sources
-              </h3>
-              <p className="text-sm text-[#1B3A34]/80 mt-2 leading-relaxed">
-                Every guide links directly to official Australian Government bodies (such as ato.gov.au, Fair Trading, Service SA, and AFP) so you can confirm current rules.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. TESTIMONIALS WITH KEYWORDS (At the bottom of the home page as requested) */}
+      {/* 3. TESTIMONIALS WITH KEYWORDS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
-            Stories from New Arrivals
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1 font-display">
-            How newcomers use FirstYear AU in their first 12 months
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] font-display">
+            Stories from new arrivals
           </h2>
-          <p className="text-sm text-[#1B3A34]/80 mt-2">
-            General examples showing how international students and skilled migrants navigate their first week and rental setup in Australia.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {TESTIMONIALS.map((item) => (
+          {(showAllReviews ? TESTIMONIALS : TESTIMONIALS.slice(0, 4)).map((item) => (
             <div 
               key={item.id}
               className="bg-white rounded-3xl border border-[#E0ECE6] p-7 shadow-xs hover:shadow-md transition-all flex flex-col justify-between space-y-4"
@@ -784,6 +781,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAllReviews((prev) => !prev)}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#CFE0D7] bg-white hover:bg-[#EEF4F1] text-[#1B4D3E] font-bold text-sm shadow-2xs transition-colors cursor-pointer"
+          >
+            <span>{showAllReviews ? 'Show fewer reviews' : 'View more reviews'}</span>
+            <ChevronDown
+              className={`w-4 h-4 text-[#1B4D3E] transition-transform ${showAllReviews ? 'rotate-180' : ''}`}
+              aria-hidden="true"
+            />
+          </button>
         </div>
       </section>
 
