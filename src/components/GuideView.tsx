@@ -1,8 +1,8 @@
 import React from 'react';
 import { 
   AlertCircle, ExternalLink, Calendar, 
-  ChevronRight, ArrowRight, ShieldCheck, 
-  Sparkles, Info, Users, Link2
+  ArrowRight, ShieldCheck, 
+  Sparkles, Info, Users
 } from 'lucide-react';
 import { GuideItem } from '../types';
 import { getGuideById } from '../data/guidesData';
@@ -302,57 +302,7 @@ export const GuideView: React.FC<GuideViewProps> = ({
         </section>
       )}
 
-      {/* 6. Related Guides & Internal Plan Links */}
-      <section className="bg-white border border-[#E0ECE6] rounded-3xl p-6 space-y-4 shadow-xs">
-        <div className="flex items-center gap-2 text-[#1B4D3E]">
-          <Link2 className="w-5 h-5 text-[#2A9D8F]" />
-          <h2 className="text-base font-bold">
-            What should I read next in my 12-Month Plan?
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-          <a
-            href={getHref(nextPath)}
-            onClick={(e) => {
-              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
-                e.preventDefault();
-                if (guide.nextStepId === '12-month-plan') {
-                  onNavigate('plan/overview');
-                } else {
-                  onSelectGuide(guide.nextStepId);
-                }
-              }
-            }}
-            className="p-3.5 rounded-2xl bg-[#F6FAF7] border border-[#2A9D8F]/30 hover:border-[#2A9D8F] text-[#1B4D3E] font-semibold flex items-center justify-between gap-2 transition-colors"
-          >
-            <span>{guide.nextStepAnchorText}</span>
-            <ArrowRight className="w-4 h-4 text-[#2A9D8F] shrink-0" />
-          </a>
-
-          {guide.relatedGuides.map((rel) => {
-            const relGuide = getGuideById(rel.id);
-            const relPath = relGuide ? `${relGuide.categorySlug}/${relGuide.slug}` : 'plan/overview';
-            return (
-              <a
-                key={rel.id}
-                href={getHref(relPath)}
-                onClick={(e) => {
-                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
-                    e.preventDefault();
-                    onSelectGuide(rel.id);
-                  }
-                }}
-                className="p-3.5 rounded-2xl bg-[#F6FAF7] border border-[#E0ECE6] hover:border-[#2A9D8F] text-[#1B4D3E] font-semibold flex items-center justify-between gap-2 transition-colors"
-              >
-                <span>{rel.anchorText}</span>
-                <ChevronRight className="w-4 h-4 text-[#2A9D8F] shrink-0" />
-              </a>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 8. Official Government Sources */}
+      {/* 6. Official Government Sources */}
       <section className="bg-white border border-[#E0ECE6] rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
