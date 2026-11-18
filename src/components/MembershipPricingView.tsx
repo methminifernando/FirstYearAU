@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { 
   Check, X, ShieldCheck, Download, ArrowRight, 
-  Lock, Calendar, Bell, FileText, Video, CheckCircle2 
+  Lock, Calendar, Bell, FileText, Video, CheckCircle2,
+  Briefcase, Mic, Building2, Languages, FileSpreadsheet,
+  UserCheck, Tag, Zap, ClipboardCheck, Users
 } from 'lucide-react';
 import { PLAN_COMPARISON, PARTNER_OFFERS } from '../data/pricingData';
 import { PLAN_STAGES } from '../data/planData';
@@ -381,23 +383,161 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Practical self-checks to remind you to verify TFN setup, super fund deposits, and incoming lease documentation.
+                Check your lease, pay slip and super against a simple checklist to stay compliant from day one.
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
-              <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-[#2A9D8F]">
-                <ShieldCheck className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full bg-[#FDE9DB] flex items-center justify-center text-[#8B4513]">
+                <Briefcase className="w-5 h-5" />
               </div>
               <div className="flex items-center justify-between">
-                <h3 className="text-base font-bold text-[#1B4D3E]">7-Day Full Refund Guarantee</h3>
-                <span className="bg-[#E2F4EE] text-[#1B4D3E] text-[10px] font-bold px-2 py-0.5 rounded-full">Included</span>
+                <h3 className="text-base font-bold text-[#1B4D3E]">CV Preparation &amp; Review</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Try FirstYear Plus risk-free. Cancel anytime in one click, or request a full refund within 7 days with no questions asked.
+                Australian-style CV and cover letter templates, plus a personalised review of your CV for the local job market.
               </p>
             </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#E2F4EE] flex items-center justify-center text-[#2A9D8F]">
+                <Mic className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Mock Job Interviews</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Practice interviews with feedback on common Australian interview questions before meeting employers.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#FCF4DD] flex items-center justify-center text-[#684C00]">
+                <Building2 className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Recruiter &amp; Employer Connections</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Introductions to partner recruitment agencies and job boards tailored for new arrivals.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E]">
+                <Languages className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Translation Support</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Help finding NAATI-certified translators for licences, certificates and documents at discounted partner rates.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#FDE9DB] flex items-center justify-center text-[#8B4513]">
+                <FileSpreadsheet className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Tax Return Lodgement Support</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Lodge your first Australian tax return at discounted partner rates through our registered tax agent partners.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#E2F4EE] flex items-center justify-center text-[#2A9D8F]">
+                <UserCheck className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Personal Settlement Manager</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                A dedicated contact to answer your questions and keep your 12-month settlement plan on track.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#FCF4DD] flex items-center justify-center text-[#684C00]">
+                <Tag className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Exclusive Partner Offers</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Member-only discounts on mobile SIM plans, NBN internet, furniture and moving services.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E]">
+                <Zap className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Priority Email &amp; Chat Support</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Faster answers from our team within 24 hours whenever you are stuck on a settlement step.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#FDE9DB] flex items-center justify-center text-[#8B4513]">
+                <ClipboardCheck className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Job-Ready Paperwork Pack</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Checklist for police checks, Working with Children check, TFN and super details needed for your first job.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-[#E2F4EE] flex items-center justify-center text-[#2A9D8F]">
+                <Users className="w-5 h-5" />
+              </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-bold text-[#1B4D3E]">Community Events &amp; Webinars</h3>
+                <span className="bg-[#FCF4DD] text-[#684C00] text-[10px] font-bold px-2 py-0.5 rounded-full">Plus</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Monthly online sessions on renting, jobs and settling in with fellow newcomers across Australia.
+              </p>
+            </div>
+
+            <div className="md:col-span-2 lg:col-span-3 bg-white p-6 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
+              <div className="flex items-start sm:items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-[#2A9D8F] shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base font-bold text-[#1B4D3E]">7-Day Full Refund Guarantee</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Try FirstYear Plus risk-free. Cancel anytime in one click, or request a full refund within 7 days with no questions asked.
+                  </p>
+                </div>
+              </div>
+              <span className="bg-[#E2F4EE] text-[#1B4D3E] text-[10px] font-bold px-3 py-1 rounded-full self-start sm:self-center shrink-0">
+                Included
+              </span>
+            </div>
           </div>
+
+          <p className="text-xs text-slate-500 text-center max-w-3xl mx-auto leading-relaxed">
+            Tax lodgement is provided by registered tax agent partners. FirstYear AU provides general information only and does not give legal, financial, visa or migration advice.
+          </p>
 
           {/* Pricing CTA Box */}
           <div className="bg-gradient-to-r from-[#1B4D3E] to-[#2A9D8F] text-white rounded-3xl p-8 sm:p-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
