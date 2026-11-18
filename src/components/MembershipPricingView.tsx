@@ -536,9 +536,9 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
           <div className="bg-[#FFF8F0] border border-amber-200 p-5 rounded-2xl text-xs sm:text-sm text-amber-950 flex items-start gap-3">
             <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <div>
-              <h2 className="font-bold text-sm">How do FirstYear AU partner disclosures work?</h2>
+              <h2 className="font-bold text-sm">Commercial Partner Disclosure</h2>
               <p className="text-slate-600 mt-0.5">
-                FirstYear AU may receive an affiliate commission if you purchase through these links, at zero extra cost to you. We clearly disclose every partner relationship and encourage you to compare options independently alongside our free{' '}
+                FirstYear AU features clearly labelled partner offers (such as mobile SIMs, NBN broadband, and student furniture). We may receive a referral or affiliate commission if you sign up through these links at zero extra cost to you. We clearly disclose every partner relationship and encourage you to compare options independently alongside our free{' '}
                 <a
                   href={getHref('get-set-up/sim-internet')}
                   onClick={(e) => {

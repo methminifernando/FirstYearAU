@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, ShieldCheck, ArrowRight, MapPin } from 'lucide-react';
+import { Compass } from 'lucide-react';
 import { getHref } from '../utils/routing';
 
 interface FooterProps {
@@ -30,12 +30,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
   return (
     <footer className="bg-[#112B23] text-emerald-100/90 border-t border-[#1F4E3F] pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Grid: 5 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-[#1F4E3F]">
-          {/* Brand & Purpose */}
-          <div className="lg:col-span-2 space-y-4">
+        {/* Main Grid: 4 balanced columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-[#1F4E3F]">
+          {/* Brand */}
+          <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl bg-[#1B4D3E] border border-[#2A9D8F]/40 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-2xl bg-[#1B4D3E] border border-[#2A9D8F]/40 flex items-center justify-center shrink-0">
                 <Compass className="w-5 h-5 text-[#E9C46A]" />
               </div>
               <div className="flex flex-col">
@@ -43,23 +43,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
                   FirstYear <span className="text-[#E9C46A]">AU</span>
                 </span>
                 <span className="text-[10px] text-emerald-300/80 uppercase tracking-widest font-semibold">
-                  Australian Settlement Platform
+                  Settlement &amp; Migration Directory
                 </span>
               </div>
-            </div>
-
-            <p className="text-sm text-emerald-100/80 leading-relaxed max-w-sm">
-              FirstYear AU turns a confusing first year into a clear week-by-week plan: what to do, when to do it and why, in plain English.
-            </p>
-
-            <div className="bg-[#0C1F19] p-4 rounded-2xl border border-[#1F4E3F] text-xs text-emerald-100/90 space-y-2 shadow-xs">
-              <div className="flex items-center gap-2 text-[#E9C46A] font-semibold">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Our Statutory Integrity & Review Pledge</span>
-              </div>
-              <p>
-                Every settlement guide is cross-referenced with official Australian Government bodies (ATO, Home Affairs, Fair Work, CBS, RTBA, Service SA) and reviewed regularly. Confirm details on official sites before acting.
-              </p>
             </div>
           </div>
 
@@ -176,66 +162,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenGlossary }) =>
           </div>
         </div>
 
-        {/* Australian Cities & Settlement Hubs */}
-        <div className="py-8 border-b border-[#1F4E3F]">
-          <div className="flex items-center gap-2 mb-3">
-            <MapPin className="w-4 h-4 text-[#E9C46A]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-white">
-              State Settlement Coverage & City Hubs:
-            </span>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xs text-emerald-100/70">
-            <div>
-              <span className="font-bold text-white block">Melbourne (VIC)</span>
-              <span>myki, VicRoads & RTBA rules</span>
-            </div>
-            <div>
-              <span className="font-bold text-white block">Adelaide (SA)</span>
-              <span>metroCARD, Service SA & CBS rules</span>
-            </div>
-            <div>
-              <span className="font-bold text-white block">Sydney (NSW)</span>
-              <span>Opal, Service NSW & Fair Trading</span>
-            </div>
-            <div>
-              <span className="font-bold text-white block">Brisbane (QLD)</span>
-              <span>go card, Blue Card & RTA</span>
-            </div>
-            <div>
-              <span className="font-bold text-white block">Perth (WA)</span>
-              <span>SmartRider, WA Photo Card & DMIRS</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Partner Disclosure & Legal Disclaimers */}
-        <div className="pt-8 space-y-4 text-xs text-emerald-100/70">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-[#0C1F19] p-4 rounded-2xl border border-[#1F4E3F]">
-            <div>
-              <p className="font-bold text-white">
-                Commercial Partner Disclosure
-              </p>
-              <p className="text-emerald-100/80 mt-0.5">
-                FirstYear AU features clearly labelled partner offers (such as mobile SIMs, NBN broadband, and student furniture). We may receive a referral commission if you sign up through these links at no extra cost to you.
-              </p>
-            </div>
-            <NavLink
-              path="pricing/partners"
-              className="shrink-0 text-[#E9C46A] hover:text-white font-semibold inline-flex items-center gap-1 cursor-pointer"
-            >
-              <span>See partner policy</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </NavLink>
-          </div>
-
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-4 text-emerald-100/80">
-            <p className="text-center md:text-left font-medium">
-              Important: General information only, not legal, financial, visa, or migration advice. Confirm current regulations on official government portals (such as ato.gov.au and homeaffairs.gov.au).
-            </p>
-            <p className="shrink-0 text-center md:text-right">
-              &copy; {new Date().getFullYear()} FirstYear AU. All rights reserved. Settle into Australia with confidence.
-            </p>
-          </div>
+        {/* Bottom Copyright Bar */}
+        <div className="pt-8 text-xs text-emerald-100/80 text-center">
+          <p>
+            &copy; {new Date().getFullYear()} FirstYear AU. All rights reserved. Settle into Australia with confidence.
+          </p>
         </div>
       </div>
     </footer>
