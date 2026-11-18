@@ -96,50 +96,51 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   return (
     <div className="space-y-16 sm:space-y-20 bg-[#FBFDFB]">
-      {/* 1. HERO SECTION: Australian panoramic scenic background, picture clearly visible with subtle readable contrast */}
-      <section className="relative overflow-hidden min-h-[520px] lg:min-h-[560px] flex items-center border-b border-[#E0ECE6] bg-[#0E1E1A]">
-        {/* Australian Panoramic Scenic Background Image with descriptive keyword-rich alt text */}
+      {/* 1. HERO SECTION: Australian panoramic scenic background, vibrant sky & compact above-the-fold layout */}
+      <section className="relative overflow-hidden min-h-[440px] lg:min-h-[480px] flex items-center border-b border-[#E0ECE6] bg-[#0E1E1A]">
+        {/* Australian Panoramic Scenic Background Image with vibrant sky filter and keyword-rich alt text */}
         <img
           src={heroBgImage}
           alt="Sydney Harbour and city skyline panoramic view for our new migrant guide Australia"
-          className="absolute inset-0 w-full h-full object-cover object-center sm:object-top"
+          className="absolute inset-0 w-full h-full object-cover object-center sm:object-top [filter:brightness(1.12)_saturate(1.35)_contrast(1.05)]"
         />
 
-        {/* Balanced, subtle atmospheric overlay: lets the photo shine through while guaranteeing contrast for white text */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15 sm:from-[#0D1F18]/75 sm:via-[#0D1F18]/35 sm:to-transparent"
+        {/* Soft dark gradient only on the left side behind text so harbour & sky on the right stay bright and colourful */}
+        <div
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_45%,rgba(0,0,0,0)_75%)]"
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10 w-full">
-          <div className="max-w-3xl space-y-5">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-display leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-14 relative z-10 w-full">
+          <div className="max-w-5xl space-y-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-extrabold text-white font-display leading-tight lg:whitespace-nowrap drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
               Your New Migrant Guide to Australia
             </h1>
 
-            {/* Introduction paragraph: 3 friendly sentences with main keyword in first sentence */}
-            <p className="text-lg sm:text-xl lg:text-2xl font-medium text-white/95 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              New country, new rules, endless to-do lists—this <strong className="font-bold text-white">new migrant guide Australia</strong> turns your move into a simple week-by-week moving to Australia checklist. From getting a SIM card, opening a bank account and applying for your tax file number to finding a rental, discover all the key things to do after arriving in Australia in plain English. Built for new migrants and international students, with direct reminders to confirm official rules on government sites such as ato.gov.au.
+            {/* Concise 2-line intro paragraph on desktop with bolded key phrase */}
+            <p className="text-lg sm:text-xl lg:text-[1.25rem] xl:text-[1.35rem] font-medium text-white/95 leading-snug sm:leading-relaxed max-w-5xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+              New country, new rules, endless to-do lists. FirstYear AU turns your move into a simple{' '}
+              <strong className="font-bold text-white">week-by-week checklist</strong>, from your SIM card and tax file number to your first rental.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
               <NavLink
                 path="plan/overview"
-                className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
+                className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-sm sm:text-base px-8 py-3.5 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
               >
                 <span>Start my plan</span>
                 <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
               </NavLink>
               <NavLink
                 path="pricing/free"
-                className="bg-white/95 hover:bg-white text-[#1B4D3E] font-bold text-sm sm:text-base px-7 py-4 rounded-full shadow-md transition-all cursor-pointer text-center"
+                className="bg-white/95 hover:bg-white text-[#1B4D3E] font-bold text-sm sm:text-base px-7 py-3.5 sm:py-4 rounded-full shadow-md transition-all cursor-pointer text-center"
               >
                 Download free checklist
               </NavLink>
             </div>
 
             {/* Subtle Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-emerald-100 pt-2">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-emerald-100 pt-1">
               <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                 <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
                 100% Free Public Guides
