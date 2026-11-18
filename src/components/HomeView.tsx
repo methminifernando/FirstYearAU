@@ -1,7 +1,15 @@
-import React from 'react';
-import { 
-  ArrowRight, Star, 
-  Smartphone, Home, Car, Shield, ChevronRight
+import React, { useState, useRef } from 'react';
+import {
+  ArrowRight,
+  Star,
+  ChevronRight,
+  ChevronDown,
+  Compass,
+  ClipboardCheck,
+  Smartphone,
+  Home,
+  TrainFront,
+  IdCard
 } from 'lucide-react';
 import heroBgImage from '../assets/images/hero_sydney_blue_1794970409970.jpg';
 import { getHref } from '../utils/routing';
@@ -12,9 +20,139 @@ interface HomeViewProps {
   onOpenSubscribeModal: () => void;
 }
 
+interface HomeTabItem {
+  id: string;
+  label: string;
+  heading: string;
+  ctaLabel?: string;
+  ctaPath?: string;
+  icon: 'compass' | 'clipboard' | 'smartphone' | 'home' | 'train' | 'idcard';
+}
+
+const HOME_TABS: HomeTabItem[] = [
+  {
+    id: 'what-is-firstyear',
+    label: 'What is FirstYear AU?',
+    heading: 'What is FirstYear AU and how does it make settling in Australia easier?',
+    icon: 'compass'
+  },
+  {
+    id: 'your-first-week',
+    label: 'Your first week',
+    heading: 'What should you complete in your first week in Australia?',
+    ctaLabel: 'Read the full guide',
+    ctaPath: 'plan/week-1',
+    icon: 'clipboard'
+  },
+  {
+    id: 'get-set-up',
+    label: 'Get set up',
+    heading: 'How do you set up your SIM card, bank account, TFN and super?',
+    ctaLabel: 'Read the full guide',
+    ctaPath: 'get-set-up/sim-internet',
+    icon: 'smartphone'
+  },
+  {
+    id: 'find-a-home',
+    label: 'Find a home',
+    heading: 'How do you find a rental home in Australia with no local history?',
+    ctaLabel: 'Read the full guide',
+    ctaPath: 'find-a-home/renting-inspections',
+    icon: 'home'
+  },
+  {
+    id: 'get-around',
+    label: 'Get around',
+    heading: 'How do public transport, overseas licences and buying a car work?',
+    ctaLabel: 'Read the full guide',
+    ctaPath: 'get-around/public-transport',
+    icon: 'train'
+  },
+  {
+    id: 'id-and-paperwork',
+    label: 'ID and paperwork',
+    heading: 'Which Australian ID cards and police checks do newcomers need?',
+    ctaLabel: 'Read the full guide',
+    ctaPath: 'id-and-paperwork/proof-of-age',
+    icon: 'idcard'
+  }
+];
+
+function renderTabIcon(icon: HomeTabItem['icon'], isActive: boolean) {
+  const cls = `w-5 h-5 shrink-0 ${isActive ? 'text-[#1B3A34]' : 'text-[#1B4D3E]'}`;
+  switch (icon) {
+    case 'compass':
+      return <Compass className={cls} aria-hidden="true" />;
+    case 'clipboard':
+      return <ClipboardCheck className={cls} aria-hidden="true" />;
+    case 'smartphone':
+      return <Smartphone className={cls} aria-hidden="true" />;
+    case 'home':
+      return <Home className={cls} aria-hidden="true" />;
+    case 'train':
+      return <TrainFront className={cls} aria-hidden="true" />;
+    case 'idcard':
+      return <IdCard className={cls} aria-hidden="true" />;
+  }
+}
+
 export const HomeView: React.FC<HomeViewProps> = ({
   onNavigate
 }) => {
+  const [activeTabId, setActiveTabId] = useState<string>('what-is-firstyear');
+  const [mobileOpenTabId, setMobileOpenTabId] = useState<string | null>('what-is-firstyear');
+  const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const trackHomeTabClick = (tabLabel: string) => {
+    if (typeof window !== 'undefined') {
+      const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+      if (typeof win.gtag === 'function') {
+        win.gtag('event', 'home_tab_click', {
+          tab_name: tabLabel
+        });
+      }
+    }
+  };
+
+  const handleSelectDesktopTab = (tab: HomeTabItem) => {
+    setActiveTabId(tab.id);
+    setMobileOpenTabId(tab.id);
+    trackHomeTabClick(tab.label);
+  };
+
+  const handleToggleMobileTab = (tab: HomeTabItem) => {
+    const isClosing = mobileOpenTabId === tab.id;
+    setMobileOpenTabId(isClosing ? null : tab.id);
+    if (!isClosing) {
+      setActiveTabId(tab.id);
+      trackHomeTabClick(tab.label);
+    }
+  };
+
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const lastIndex = HOME_TABS.length - 1;
+    let nextIndex: number | null = null;
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextIndex = index === lastIndex ? 0 : index + 1;
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      nextIndex = index === 0 ? lastIndex : index - 1;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      nextIndex = lastIndex;
+    }
+
+    if (nextIndex !== null) {
+      const nextTab = HOME_TABS[nextIndex];
+      handleSelectDesktopTab(nextTab);
+      tabButtonRefs.current[nextIndex]?.focus();
+    }
+  };
   const NavLink: React.FC<{
     path: string;
     className?: string;
@@ -143,201 +281,397 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 2. EXPLORE BY SUB-SECTIONS (Clean, uncluttered settlement directory) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
-            Settlement Directory
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4D3E] mt-1 font-display">
-            What are the essential things to do after arriving in Australia?
-          </h2>
-          <p className="text-sm text-[#1B3A34]/80 mt-2">
-            Explore every milestone in our moving to Australia checklist with direct answers, step-by-step instructions, and official government links.
-          </p>
-        </div>
+      {/* 2. COMBINED SETTLEMENT TABS SECTION (Desktop 30% tabs / 70% panel, Mobile accordion, all content pre-rendered in DOM) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="FirstYear AU settlement guide overview">
+        {(() => {
+          const inlineLinkClass =
+            'text-[#2A9D8F] hover:text-[#1B4D3E] font-semibold underline decoration-[#2A9D8F]/40 underline-offset-2 transition-colors';
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          {/* Sub-section 1: Get Set-Up */}
-          <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 shadow-xs hover:shadow-md hover:border-[#2A9D8F] transition-all flex flex-col justify-between group">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E] group-hover:bg-[#1B4D3E] group-hover:text-white transition-colors">
-                <Smartphone className="w-6 h-6" />
+          const renderTabBody = (tabId: string) => {
+            switch (tabId) {
+              case 'what-is-firstyear':
+                return (
+                  <div className="space-y-4 text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+                    <p>
+                      Moving to a new country is exciting, but your first few months in Australia can quickly feel overwhelming. Everyday essentials are spread across government agencies, banks, mobile providers and real estate websites, and no one tells you which step comes first or how each task connects to the next.
+                    </p>
+                    <p>
+                      FirstYear AU is a new migrant guide to Australia, created for international students, skilled visa holders and new arrivals. Our week-by-week{' '}
+                      <NavLink path="plan/overview" className={inlineLinkClass}>
+                        moving to Australia checklist
+                      </NavLink>{' '}
+                      puts the most important{' '}
+                      <NavLink path="plan/week-1" className={inlineLinkClass}>
+                        things to do after arriving in Australia
+                      </NavLink>{' '}
+                      in the right order. It covers everything from choosing the{' '}
+                      <NavLink path="get-set-up/sim-internet" className={inlineLinkClass}>
+                        best SIM card for new arrivals
+                      </NavLink>{' '}
+                      and{' '}
+                      <NavLink path="get-set-up/bank-account" className={inlineLinkClass}>
+                        opening an Australian bank account
+                      </NavLink>{' '}
+                      to{' '}
+                      <NavLink path="get-set-up/tax-file-number" className={inlineLinkClass}>
+                        applying for your Tax File Number (TFN) online
+                      </NavLink>
+                      , understanding{' '}
+                      <NavLink path="get-set-up/superannuation" className={inlineLinkClass}>
+                        how super works in Australia
+                      </NavLink>
+                      , learning how to{' '}
+                      <NavLink path="find-a-home/renting-inspections" className={inlineLinkClass}>
+                        rent with no rental history
+                      </NavLink>
+                      ,{' '}
+                      <NavLink path="get-around/public-transport" className={inlineLinkClass}>
+                        getting around on public transport
+                      </NavLink>
+                      ,{' '}
+                      <NavLink path="get-around/driver-licence" className={inlineLinkClass}>
+                        driving on an overseas licence
+                      </NavLink>
+                      ,{' '}
+                      <NavLink path="id-and-paperwork/proof-of-age" className={inlineLinkClass}>
+                        getting a Proof of Age card
+                      </NavLink>
+                      ,{' '}
+                      <NavLink path="id-and-paperwork/police-check" className={inlineLinkClass}>
+                        arranging a national police check
+                      </NavLink>{' '}
+                      and much more.
+                    </p>
+                    <p>
+                      To make settling in even easier, we offer comprehensive packages designed to support you through every stage of your first year in Australia. Our{' '}
+                      <NavLink path="pricing/plus" className={inlineLinkClass}>
+                        FirstYear Plus membership
+                      </NavLink>{' '}
+                      brings together a wide range of services, including a personalised 12-month plan, timely task reminders, ready-to-use templates and helpful video walkthroughs, so you can settle in with confidence.
+                    </p>
+                  </div>
+                );
+
+              case 'your-first-week':
+                return (
+                  <div className="space-y-4 text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+                    <p>
+                      Your first seven days in Australia set the foundation for everything that follows. Because local phone numbers, bank verification, public transport, and tax registration depend on one another, following them in the right sequence saves time and prevents unnecessary delays.
+                    </p>
+                    <ul className="space-y-2.5 text-sm sm:text-[15px] text-[#1B3A34] list-disc pl-5 marker:text-[#2A9D8F]">
+                      <li>
+                        Activate a prepaid Australian{' '}
+                        <NavLink path="get-set-up/sim-internet" className={inlineLinkClass}>
+                          SIM card or eSIM
+                        </NavLink>{' '}
+                        using your passport so you can receive bank SMS verification codes right away.
+                      </li>
+                      <li>
+                        Visit a local bank branch in person with your passport to unlock your{' '}
+                        <NavLink path="get-set-up/bank-account" className={inlineLinkClass}>
+                          Australian bank account
+                        </NavLink>{' '}
+                        and set up PayID.
+                      </li>
+                      <li>
+                        Pick up your city&apos;s{' '}
+                        <NavLink path="get-around/public-transport" className={inlineLinkClass}>
+                          public transport card
+                        </NavLink>{' '}
+                        to travel safely to campus, appointments, and rental inspections.
+                      </li>
+                      <li>
+                        Wait until you pass airport immigration, then submit a free{' '}
+                        <NavLink path="get-set-up/tax-file-number" className={inlineLinkClass}>
+                          Tax File Number (TFN) application
+                        </NavLink>{' '}
+                        directly with the ATO.
+                      </li>
+                    </ul>
+                    <p className="text-xs sm:text-sm font-medium text-[#1B4D3E]">
+                      Always confirm current rules on official government websites.
+                    </p>
+                  </div>
+                );
+
+              case 'get-set-up':
+                return (
+                  <div className="space-y-4 text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+                    <p>
+                      Getting your Australian mobile service, everyday bank account, Tax File Number, and superannuation organised early keeps daily life running smoothly. Having these four essentials connected makes receiving wages, paying rent, and managing bills much simpler from the start.
+                    </p>
+                    <ul className="space-y-2.5 text-sm sm:text-[15px] text-[#1B3A34] list-disc pl-5 marker:text-[#2A9D8F]">
+                      <li>
+                        Choose between prepaid SIMs, eSIMs, and NBN broadband options with mandatory passport identity checks.
+                      </li>
+                      <li>
+                        Learn how to{' '}
+                        <NavLink path="get-set-up/bank-account" className={inlineLinkClass}>
+                          open a bank account as a new arrival
+                        </NavLink>{' '}
+                        and verify your identity within the initial branch arrival window.
+                      </li>
+                      <li>
+                        Follow our step-by-step{' '}
+                        <NavLink path="get-set-up/tax-file-number" className={inlineLinkClass}>
+                          apply for TFN online
+                        </NavLink>{' '}
+                        walkthrough on the official ATO portal and avoid unnecessary third-party service fees.
+                      </li>
+                      <li>
+                        Understand how employer contributions and departure refunds work in our{' '}
+                        <NavLink path="get-set-up/superannuation" className={inlineLinkClass}>
+                          superannuation guide for new migrants
+                        </NavLink>
+                        .
+                      </li>
+                    </ul>
+                    <p className="text-xs sm:text-sm font-medium text-[#1B4D3E]">
+                      Always confirm current rules on official government websites.
+                    </p>
+                  </div>
+                );
+
+              case 'find-a-home':
+                return (
+                  <div className="space-y-4 text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+                    <p>
+                      Securing a long-term home in Australia can feel confusing when you have no local rental history or Australian references yet. Knowing how property inspections work, how to present your documents, and how tenancy bonds are protected helps you apply with confidence.
+                    </p>
+                    <ul className="space-y-2.5 text-sm sm:text-[15px] text-[#1B3A34] list-disc pl-5 marker:text-[#2A9D8F]">
+                      <li>
+                        Prepare a clear application pack with overseas savings statements, visa details, and personal references for in-person inspections.
+                      </li>
+                      <li>
+                        Read our{' '}
+                        <NavLink path="find-a-home/bond-condition-report" className={inlineLinkClass}>
+                          rental bond and condition report guide
+                        </NavLink>{' '}
+                        so your security deposit is safely lodged with your state bond authority and existing marks are photographed on move-in.
+                      </li>
+                      <li>
+                        Discover practical tips for sourcing{' '}
+                        <NavLink path="find-a-home/furniture" className={inlineLinkClass}>
+                          affordable furniture and household essentials
+                        </NavLink>{' '}
+                        while steering clear of common online marketplace scams.
+                      </li>
+                    </ul>
+                    <p className="text-xs sm:text-sm font-medium text-[#1B4D3E]">
+                      Always confirm current rules on official government websites.
+                    </p>
+                  </div>
+                );
+
+              case 'get-around':
+                return (
+                  <div className="space-y-4 text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+                    <p>
+                      Transport ticketing, concession discounts, and driving laws are managed separately by each Australian state and territory. Understanding how local transit networks operate and when you must transfer an overseas driver licence keeps your daily commute smooth and legal.
+                    </p>
+                    <ul className="space-y-2.5 text-sm sm:text-[15px] text-[#1B3A34] list-disc pl-5 marker:text-[#2A9D8F]">
+                      <li>
+                        Set up your city&apos;s smart card—such as Opal, myki, go card, metroCARD, or SmartRider—and check international student concession eligibility in your state.
+                      </li>
+                      <li>
+                        Review our guide to{' '}
+                        <NavLink path="get-around/driver-licence" className={inlineLinkClass}>
+                          driving on an overseas licence in Australia
+                        </NavLink>
+                        , including NAATI translation needs and state licence conversion rules.
+                      </li>
+                      <li>
+                        Before purchasing a private vehicle, check our step-by-step{' '}
+                        <NavLink path="get-around/buying-a-car" className={inlineLinkClass}>
+                          buying a car in Australia guide
+                        </NavLink>{' '}
+                        covering official PPSR checks, roadworthy inspections, and registration transfer.
+                      </li>
+                    </ul>
+                    <p className="text-xs sm:text-sm font-medium text-[#1B4D3E]">
+                      Always confirm current rules on official government websites.
+                    </p>
+                  </div>
+                );
+
+              case 'id-and-paperwork':
+                return (
+                  <div className="space-y-4 text-sm sm:text-base text-[#1B3A34]/85 leading-relaxed">
+                    <p>
+                      Carrying your passport everywhere increases the risk of losing your primary travel and visa document. Getting an official local photo ID card alongside workplace and study background clearances prepares you safely for everyday venues, casual jobs, and university placements.
+                    </p>
+                    <ul className="space-y-2.5 text-sm sm:text-[15px] text-[#1B3A34] list-disc pl-5 marker:text-[#2A9D8F]">
+                      <li>
+                        Apply for your state or territory 18+ Proof of Age Photo Card so you can leave your foreign passport securely stored at home.
+                      </li>
+                      <li>
+                        See how to apply directly for an{' '}
+                        <NavLink path="id-and-paperwork/police-check" className={inlineLinkClass}>
+                          Australian Federal Police (AFP) check
+                        </NavLink>{' '}
+                        for employment, healthcare courses, or volunteer roles.
+                      </li>
+                      <li>
+                        Check whether your job, tutoring, or placement requires a state{' '}
+                        <NavLink path="id-and-paperwork/working-with-children" className={inlineLinkClass}>
+                          Working with Children Check or Blue Card
+                        </NavLink>
+                        .
+                      </li>
+                    </ul>
+                    <p className="text-xs sm:text-sm font-medium text-[#1B4D3E]">
+                      Always confirm current rules on official government websites.
+                    </p>
+                  </div>
+                );
+
+              default:
+                return null;
+            }
+          };
+
+          return (
+            <>
+              {/* DESKTOP & LAPTOP TWO-COLUMN ACCESSIBLE TABS (30% Left Tabs / 70% Right Content Column) */}
+              <div className="hidden lg:flex items-start gap-10 xl:gap-12">
+                {/* Left Vertical Tablist (~30% width) */}
+                <div
+                  role="tablist"
+                  aria-label="FirstYear AU settlement topics"
+                  aria-orientation="vertical"
+                  className="w-[30%] shrink-0 flex flex-col gap-2"
+                >
+                  {HOME_TABS.map((tab, index) => {
+                    const isActive = activeTabId === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        ref={(el) => {
+                          tabButtonRefs.current[index] = el;
+                        }}
+                        type="button"
+                        role="tab"
+                        id={`home-tab-${tab.id}`}
+                        aria-selected={isActive}
+                        aria-controls={`home-panel-${tab.id}`}
+                        tabIndex={isActive ? 0 : -1}
+                        onClick={() => handleSelectDesktopTab(tab)}
+                        onKeyDown={(e) => handleTabKeyDown(e, index)}
+                        className={`w-full text-left px-4 py-3.5 rounded-md text-[15px] transition-all flex items-center gap-2.5 cursor-pointer ${
+                          isActive
+                            ? 'bg-[#F4A261] text-[#1B3A34] font-bold'
+                            : 'bg-[#EEF4F1] hover:bg-[#DCECE4] text-[#1B4D3E] font-medium'
+                        }`}
+                      >
+                        {isActive && (
+                          <ChevronRight className="w-4 h-4 text-[#1B3A34] shrink-0 -ml-1" aria-hidden="true" />
+                        )}
+                        {renderTabIcon(tab.icon, isActive)}
+                        <span className="truncate">{tab.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Right Editorial Content Column (~70% width; all tabpanels stay mounted in HTML for SEO & instant switching) */}
+                <div className="w-[70%] pt-0.5">
+                  {HOME_TABS.map((tab) => {
+                    const isActive = activeTabId === tab.id;
+                    return (
+                      <div
+                        key={tab.id}
+                        role="tabpanel"
+                        id={`home-panel-${tab.id}`}
+                        aria-labelledby={`home-tab-${tab.id}`}
+                        hidden={!isActive}
+                        className={isActive ? 'space-y-5' : 'hidden'}
+                      >
+                        <h2 className="text-2xl sm:text-3xl xl:text-[2rem] font-extrabold text-[#1B4D3E] font-display leading-tight">
+                          {tab.heading}
+                        </h2>
+
+                        {renderTabBody(tab.id)}
+
+                        {tab.ctaLabel && tab.ctaPath && (
+                          <div className="pt-2">
+                            <NavLink
+                              path={tab.ctaPath}
+                              className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-sm px-6 py-3 rounded-full shadow-xs hover:shadow transition-all inline-flex items-center gap-2 cursor-pointer"
+                            >
+                              <span>{tab.ctaLabel}</span>
+                              <ArrowRight className="w-4 h-4 text-[#1B3A34]" aria-hidden="true" />
+                            </NavLink>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Get Set-Up
-              </h3>
-              <p className="text-xs text-[#1B3A34]/70 leading-relaxed">
-                Essential landing setup: connectivity, verified banking ID, ATO tax registration, and superannuation.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
-                <li>
-                  <NavLink path="get-set-up/sim-internet" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Best SIM card for new arrivals Australia</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="get-set-up/bank-account" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Open bank account Australia new arrival</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="get-set-up/tax-file-number" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>How to apply for a TFN online</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="get-set-up/superannuation" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>How does super work in Australia</span>
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="pt-5">
-              <NavLink
-                path="get-set-up/sim-internet"
-                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
-              >
-                Open Get Set-Up
-              </NavLink>
-            </div>
-          </div>
 
-          {/* Sub-section 2: Find a Home */}
-          <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 shadow-xs hover:shadow-md hover:border-[#2A9D8F] transition-all flex flex-col justify-between group">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E] group-hover:bg-[#1B4D3E] group-hover:text-white transition-colors">
-                <Home className="w-6 h-6" />
+              {/* MOBILE & TABLET ACCORDION (Tap any heading with icon to expand below) */}
+              <div className="lg:hidden space-y-2.5">
+                {HOME_TABS.map((tab) => {
+                  const isExpanded = mobileOpenTabId === tab.id;
+                  return (
+                    <div
+                      key={tab.id}
+                      className="rounded-xl border border-[#E0ECE6] bg-white overflow-hidden"
+                    >
+                      <button
+                        type="button"
+                        id={`home-acc-btn-${tab.id}`}
+                        aria-expanded={isExpanded}
+                        aria-controls={`home-acc-panel-${tab.id}`}
+                        onClick={() => handleToggleMobileTab(tab)}
+                        className={`w-full text-left px-4 py-3.5 text-sm sm:text-base transition-colors flex items-center justify-between gap-3 cursor-pointer ${
+                          isExpanded
+                            ? 'bg-[#F4A261] text-[#1B3A34] font-bold'
+                            : 'bg-[#EEF4F1] hover:bg-[#DCECE4] text-[#1B4D3E] font-semibold'
+                        }`}
+                      >
+                        <span className="flex items-center gap-3 min-w-0">
+                          {renderTabIcon(tab.icon, isExpanded)}
+                          <span>{tab.label}</span>
+                        </span>
+                        <ChevronDown
+                          className={`w-4 h-4 shrink-0 transition-transform ${
+                            isExpanded ? 'rotate-180 text-[#1B3A34]' : 'text-[#1B4D3E]'
+                          }`}
+                          aria-hidden="true"
+                        />
+                      </button>
+
+                      <div
+                        id={`home-acc-panel-${tab.id}`}
+                        aria-labelledby={`home-acc-btn-${tab.id}`}
+                        className={isExpanded ? 'p-5 space-y-4 border-t border-[#E0ECE6] bg-[#FBFDFB]' : 'hidden'}
+                      >
+                        <h2 className="text-xl sm:text-2xl font-extrabold text-[#1B4D3E] font-display leading-snug">
+                          {tab.heading}
+                        </h2>
+
+                        {renderTabBody(tab.id)}
+
+                        {tab.ctaLabel && tab.ctaPath && (
+                          <div className="pt-1">
+                            <NavLink
+                              path={tab.ctaPath}
+                              className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-sm px-6 py-3 rounded-full shadow-xs inline-flex items-center gap-2 cursor-pointer"
+                            >
+                              <span>{tab.ctaLabel}</span>
+                              <ArrowRight className="w-4 h-4 text-[#1B3A34]" aria-hidden="true" />
+                            </NavLink>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Find a Home
-              </h3>
-              <p className="text-xs text-[#1B3A34]/70 leading-relaxed">
-                How to secure private rentals with zero local history, protect your bond, and furnish affordably.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
-                <li>
-                  <NavLink path="find-a-home/renting-inspections" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Rent with no rental history Australia</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="find-a-home/bond-condition-report" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Rental bond and condition report</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="find-a-home/furniture" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Cheap furniture for students</span>
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="pt-5">
-              <NavLink
-                path="find-a-home/renting-inspections"
-                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
-              >
-                Open Find a Home
-              </NavLink>
-            </div>
-          </div>
-
-          {/* Sub-section 3: Get Around */}
-          <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 shadow-xs hover:shadow-md hover:border-[#2A9D8F] transition-all flex flex-col justify-between group">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E] group-hover:bg-[#1B4D3E] group-hover:text-white transition-colors">
-                <Car className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                Get Around
-              </h3>
-              <p className="text-xs text-[#1B3A34]/70 leading-relaxed">
-                State transit smart cards, overseas driver licence conversion, and buying used cars safely.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
-                <li>
-                  <NavLink path="get-around/public-transport" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Public transport cards Australia</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="get-around/driver-licence" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Driving on overseas licence Australia</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="get-around/buying-a-car" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Buying a car &amp; PPSR check</span>
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="pt-5">
-              <NavLink
-                path="get-around/public-transport"
-                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
-              >
-                Open Get Around
-              </NavLink>
-            </div>
-          </div>
-
-          {/* Sub-section 4: ID & Paperwork */}
-          <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 shadow-xs hover:shadow-md hover:border-[#2A9D8F] transition-all flex flex-col justify-between group">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#E2F4EE] flex items-center justify-center text-[#1B4D3E] group-hover:bg-[#1B4D3E] group-hover:text-white transition-colors">
-                <Shield className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-[#1B4D3E] font-display">
-                ID &amp; Paperwork
-              </h3>
-              <p className="text-xs text-[#1B3A34]/70 leading-relaxed">
-                Official 18+ photo identity cards, AFP national police checks, and Working with Children certification.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#1B3A34] pt-2 border-t border-[#E0ECE6]">
-                <li>
-                  <NavLink path="id-and-paperwork/proof-of-age" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Proof of Age card Australia (18+)</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="id-and-paperwork/police-check" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>AFP police check international student</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink path="id-and-paperwork/working-with-children" className="hover:text-[#2A9D8F] flex items-center gap-1.5 text-left cursor-pointer">
-                    <ChevronRight className="w-3 h-3 text-[#2A9D8F]" />
-                    <span>Working with Children Check</span>
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="pt-5">
-              <NavLink
-                path="id-and-paperwork/proof-of-age"
-                className="block w-full bg-[#EAF5F1] hover:bg-[#d6ece4] text-[#1B4D3E] font-bold py-2.5 px-4 rounded-full text-xs transition-colors cursor-pointer text-center"
-              >
-                Open ID &amp; Paperwork
-              </NavLink>
-            </div>
-          </div>
-
-        </div>
+            </>
+          );
+        })()}
       </section>
 
       {/* 3. HOW IT WORKS (3 Simple Steps) */}
