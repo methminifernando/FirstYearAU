@@ -42,7 +42,7 @@ export const PLAN_COMPARISON: PlanFeature[] = [
     name: 'Personalised 12-Month Calendar & Reminders',
     free: false,
     plus: true,
-    note: 'Automated email & SMS alerts before state deadlines expire (e.g. 6-week bank ID, 28-day TFN)'
+    note: 'Automated email and SMS reminders for key tasks in your plan'
   },
   {
     name: 'Condition Report Video Walkthrough & Inspection Kit',
@@ -54,13 +54,73 @@ export const PLAN_COMPARISON: PlanFeature[] = [
     name: 'Interactive Self-Check Diagnostic List',
     free: false,
     plus: true,
-    note: 'Verify if your lease, pay slip, super and contracts comply with Australian law'
+    note: 'Check your lease, pay slip and super against a simple checklist'
   },
   {
     name: 'Priority Access to New Settlement Modules',
     free: false,
     plus: true,
-    note: 'Tax return lodgement walkthroughs and visa transition guides'
+    note: 'Tax return walkthroughs and new settlement guides'
+  },
+  {
+    name: 'CV Preparation for the Australian Job Market',
+    free: 'CV template only',
+    plus: 'Full review',
+    note: 'Australian-style CV and cover letter templates, plus a personalised review of your CV'
+  },
+  {
+    name: 'Mock Job Interviews',
+    free: false,
+    plus: true,
+    note: 'Practice interviews with feedback on common Australian interview questions'
+  },
+  {
+    name: 'Recruiter & Employer Connections',
+    free: false,
+    plus: true,
+    note: 'Introductions to partner recruitment agencies and job boards for new arrivals'
+  },
+  {
+    name: 'Translation Support',
+    free: 'Free links to TIS National',
+    plus: 'Discounted partner rates',
+    note: 'Help finding NAATI-certified translators for licences, certificates and documents'
+  },
+  {
+    name: 'Tax Return Lodgement Support',
+    free: 'Step-by-step guide',
+    plus: 'Discounted lodgement',
+    note: 'Lodge your first Australian tax return through our registered tax agent partners'
+  },
+  {
+    name: 'Personal Settlement Manager',
+    free: false,
+    plus: true,
+    note: 'A dedicated contact to answer your questions and keep your plan on track'
+  },
+  {
+    name: 'Exclusive Partner Offers',
+    free: 'Standard offers',
+    plus: 'Member-only deals',
+    note: 'Member-only discounts on SIM plans, NBN, furniture and moving services'
+  },
+  {
+    name: 'Priority Email & Chat Support',
+    free: 'Standard response',
+    plus: 'Within 24 hours',
+    note: "Faster answers from our team when you're stuck"
+  },
+  {
+    name: 'Job-Ready Paperwork Pack',
+    free: false,
+    plus: true,
+    note: 'Checklist for police checks, Working with Children check, TFN and super details needed for your first job'
+  },
+  {
+    name: 'Community Events & Webinars',
+    free: false,
+    plus: true,
+    note: 'Monthly online sessions on renting, jobs and settling in'
   }
 ];
 
@@ -71,10 +131,9 @@ export const PARTNER_OFFERS: PartnerOffer[] = [
     category: 'Mobile & SIM',
     title: 'Full Telstra Network 4G/5G Coverage',
     tagline: 'Stay connected anywhere from Sydney to regional university campuses',
-    benefit: 'No lock-in contracts, generous rollover data banking, and unlimited international calls to 30+ countries including India, China, UK, and Nepal.',
-    priceNote: 'Plans from A$25/month',
-    dealCode: 'FIRSTYEAR25',
-    disclosure: 'Disclosed Partner Offer: FirstYear AU receives a modest referral commission if you activate through this link at no extra cost to you.',
+    benefit: 'Exclusive FirstYear Plus member pricing on no-lock-in prepaid plans with rollover data banking and unlimited international calls to 30+ countries including India, China, UK, and Nepal.',
+    priceNote: 'Member savings on A$25+ plans',
+    disclosure: 'Plus Subscriber Offer: FirstYear AU receives a modest referral commission if Plus members activate through their subscriber portal at no extra cost.',
     url: 'https://boost.com.au/'
   },
   {
@@ -83,10 +142,9 @@ export const PARTNER_OFFERS: PartnerOffer[] = [
     category: 'Home Broadband',
     title: 'High-Speed Student & Expat NBN Fibre',
     tagline: 'Reliable unlimited internet with quick setup in metropolitan rentals',
-    benefit: 'A$15/month discount for your first 6 months. Free eero Wi-Fi 6 router included on eligible 12-month plans, with Australian-based technical support.',
-    priceNote: 'From A$65/month (NBN 50)',
-    dealCode: 'FIRSTYEARNBN',
-    disclosure: 'Disclosed Partner Offer: FirstYear AU receives an affiliate fee if you connect home broadband via this offer.',
+    benefit: 'Exclusive FirstYear Plus member discount of A$15/month for your first 6 months plus a free eero Wi-Fi 6 router on eligible 12-month plans, with Australian-based technical support.',
+    priceNote: 'Member discount on NBN 50+',
+    disclosure: 'Plus Subscriber Offer: FirstYear AU receives an affiliate fee if Plus members connect home broadband via their subscriber portal.',
     url: 'https://www.superloop.com/'
   },
   {
@@ -95,10 +153,9 @@ export const PARTNER_OFFERS: PartnerOffer[] = [
     category: 'Budget Furniture',
     title: 'Affordable Student Bed & Desk Starter Bundles',
     tagline: 'Furnish your new bedroom sustainably without paying retail prices',
-    benefit: '15% student discount voucher code for clean, tested flatpack bedroom sets, study desks, and kitchen homewares delivered directly to your rental.',
-    priceNote: 'Starter packs from A$290',
-    dealCode: 'FYSTUDENT15',
-    disclosure: 'Disclosed Partner Offer: Curated partner promotion verified for transparent pricing and student affordability.',
+    benefit: '15% FirstYear Plus member discount on clean, tested flatpack bedroom sets, study desks, and kitchen homewares delivered directly to your rental.',
+    priceNote: '15% off starter packs',
+    disclosure: 'Plus Subscriber Offer: Curated partner promotion verified for transparent pricing and reserved for FirstYear Plus members.',
     url: 'https://www.salvosstores.com.au/'
   },
   {
@@ -107,10 +164,9 @@ export const PARTNER_OFFERS: PartnerOffer[] = [
     category: 'Banking & Money Transfer',
     title: 'Mid-Market Currency Exchange for Living Costs',
     tagline: 'Transfer tuition fees and living expenses without hidden bank spreads',
-    benefit: 'Zero transfer fee on your first international money transfer up to A$1,000 equivalent into your new Australian bank account.',
+    benefit: 'Zero transfer fee on your first international money transfer up to A$1,000 equivalent into your new Australian bank account for FirstYear Plus subscribers.',
     priceNote: 'Real mid-market exchange rate',
-    dealCode: 'FIRSTYEARFREE',
-    disclosure: 'Disclosed Partner Offer: Regulated international payments provider partnership; affiliate commission applies.',
+    disclosure: 'Plus Subscriber Offer: Regulated international payments provider partnership; affiliate commission applies for Plus members.',
     url: 'https://wise.com/'
   }
 ];

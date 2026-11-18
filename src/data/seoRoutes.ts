@@ -317,10 +317,10 @@ export const SEO_ROUTES: SeoRouteMeta[] = [
     fileName: 'partner-offers.html',
     title: 'New Migrant Partner Offers Australia | FirstYear AU',
     description:
-      'Explore clearly labelled new migrant partner offers Australia for SIMs, broadband, money transfers, and furniture alongside your free checklist.',
+      'Preview exclusive FirstYear Plus subscriber partner offers for SIMs, broadband, money transfers, and furniture in Australia.',
     ogTitle: 'New Migrant Partner Offers Australia | FirstYear AU',
     ogDescription:
-      'Explore clearly labelled new migrant partner offers Australia for SIMs, broadband, money transfers, and furniture alongside your free checklist.',
+      'Preview exclusive FirstYear Plus subscriber partner offers for SIMs, broadband, money transfers, and furniture in Australia.',
     keywords: 'new migrant partner offers australia, moving to australia checklist',
     changefreq: 'monthly',
     priority: '0.7'

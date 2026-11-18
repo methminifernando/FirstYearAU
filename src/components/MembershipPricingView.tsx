@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Check, X, ShieldCheck, Download, ArrowRight, 
-  ExternalLink, Calendar, Bell, FileText, Video, CheckCircle2 
+  Lock, Calendar, Bell, FileText, Video, CheckCircle2 
 } from 'lucide-react';
 import { PLAN_COMPARISON, PARTNER_OFFERS } from '../data/pricingData';
 import { PLAN_STAGES } from '../data/planData';
@@ -226,14 +226,14 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-[#1B4D3E] text-sm sm:text-base">
-                    Want the full Rental Application Template for New Migrants &amp; Reminders?
+                    Want a customised settlement plan, personalised info &amp; full resources?
                   </span>
                   <span className="bg-[#E9C46A] text-[#1B3A34] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                     Plus
                   </span>
                 </div>
                 <p className="text-xs text-slate-600">
-                  Upgrade to FirstYear Plus for A$4.99/month. Cancel anytime. 7-day refund guarantee.
+                  Upgrade to FirstYear Plus for tailored arrival milestones, personalised reminders, video walkthroughs, and templates — A$4.99/month. Cancel anytime with a 7-day refund guarantee.
                 </p>
               </div>
               <button
@@ -489,7 +489,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                             <X className="w-5 h-5 text-slate-300 mx-auto" />
                           )
                         ) : (
-                          <span className="text-xs font-medium text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full">
+                          <span className="inline-block text-xs font-medium text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full">
                             {feat.free}
                           </span>
                         )}
@@ -504,7 +504,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                             <X className="w-5 h-5 text-slate-300 mx-auto" />
                           )
                         ) : (
-                          <span className="text-xs font-bold text-[#684C00] bg-[#FCF4DD] px-2.5 py-1 rounded-full">
+                          <span className="inline-block text-xs font-bold text-[#684C00] bg-[#FCF4DD] px-2.5 py-1 rounded-full">
                             {feat.plus}
                           </span>
                         )}
@@ -543,6 +543,10 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
               </div>
             </div>
           </div>
+
+          <p className="text-xs text-slate-500 text-center max-w-3xl mx-auto leading-relaxed">
+            Tax lodgement is provided by registered tax agent partners. FirstYear AU provides general information only and does not give legal, financial, visa or migration advice.
+          </p>
         </div>
       )}
 
@@ -550,14 +554,19 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
       {subPage === 'partners' && (
         <div className="space-y-10 animate-in fade-in duration-200">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
-              Clearly Labelled Newcomer Deals
-            </span>
+            <div className="inline-flex items-center gap-2">
+              <span className="text-xs font-bold text-[#2A9D8F] tracking-wider uppercase">
+                FirstYear Plus Subscribers Only
+              </span>
+              <span className="bg-[#E9C46A] text-[#1B3A34] text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                Plus Exclusive
+              </span>
+            </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1B4D3E] font-display">
               New Migrant Partner Offers in Australia
             </h1>
             <p className="text-sm sm:text-base text-[#1B3A34]/80 leading-relaxed">
-              Explore clearly labelled new migrant partner offers in Australia covering prepaid SIMs, home NBN internet, currency transfers, and budget furniture alongside your free moving to Australia checklist. Always read each provider’s current terms independently before purchasing.
+              Partner offers are available exclusively to active <strong>FirstYear Plus</strong> subscribers. Preview vetted member deals on prepaid SIMs, home NBN internet, budget furniture, and international money transfers below—private partner links and member discount codes are unlocked only after subscribing to FirstYear Plus.
             </p>
           </div>
 
@@ -574,9 +583,9 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
           <div className="bg-[#FFF8F0] border border-amber-200 p-5 rounded-2xl text-xs sm:text-sm text-amber-950 flex items-start gap-3">
             <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <div>
-              <h2 className="font-bold text-sm">Commercial Partner Disclosure</h2>
+              <h2 className="font-bold text-sm">Commercial Partner Disclosure &amp; Plus Exclusivity</h2>
               <p className="text-slate-600 mt-0.5">
-                FirstYear AU features clearly labelled partner offers (such as mobile SIMs, NBN broadband, and student furniture). We may receive a referral or affiliate commission if you sign up through these links at zero extra cost to you. We clearly disclose every partner relationship and encourage you to compare options independently alongside our free{' '}
+                Partner offers and member promo codes are reserved strictly for <strong>FirstYear Plus</strong> subscribers and are not published publicly. FirstYear AU may receive a referral or affiliate commission when Plus members redeem a partner deal through their subscriber portal at zero extra cost. You can always read our public{' '}
                 <a
                   href={getHref('get-set-up/sim-internet')}
                   onClick={(e) => {
@@ -589,7 +598,7 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 >
                   best SIM card for new arrivals Australia
                 </a>{' '}
-                guide.
+                guide for free.
               </p>
             </div>
           </div>
@@ -621,14 +630,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                     {offer.benefit}
                   </p>
 
-                  {offer.dealCode && (
-                    <div className="bg-[#F6FAF7] p-2.5 rounded-xl border border-slate-200 flex items-center justify-between text-xs">
-                      <span className="text-slate-500">Promo Code:</span>
-                      <code className="font-mono font-bold text-[#1B4D3E] bg-[#E9C46A]/30 px-2 py-0.5 rounded">
-                        {offer.dealCode}
-                      </code>
-                    </div>
-                  )}
+                  <div className="bg-[#FCF4DD]/70 p-2.5 rounded-xl border border-amber-200/80 flex items-center justify-between gap-2 text-xs">
+                    <span className="text-[#684C00] font-semibold flex items-center gap-1.5">
+                      <Lock className="w-3.5 h-3.5 shrink-0" />
+                      <span>Member offer &amp; promo code</span>
+                    </span>
+                    <span className="text-[10px] font-bold bg-[#E9C46A] text-[#1B3A34] px-2.5 py-0.5 rounded-full uppercase tracking-wider shrink-0">
+                      Plus Only
+                    </span>
+                  </div>
 
                   <div className="text-[11px] text-slate-400 border-t border-slate-100 pt-2 italic">
                     {offer.disclosure}
@@ -636,15 +646,14 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 </div>
 
                 <div className="pt-5">
-                  <a
-                    href={offer.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={onOpenSubscribeModal}
                     className="w-full bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold py-2.5 px-4 rounded-full text-xs text-center transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
                   >
-                    <span>View {offer.provider} Offer</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                    <Lock className="w-3.5 h-3.5" />
+                    <span>Unlock {offer.provider} Offer with Plus</span>
+                  </button>
                 </div>
               </div>
             ))}

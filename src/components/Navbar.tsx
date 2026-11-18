@@ -88,7 +88,7 @@ const PRICING_LINKS: SubLinkItem[] = [
   { label: 'Free plan and checklist', path: 'pricing/free', desc: 'Free guides & printable PDF checklist' },
   { label: 'FirstYear Plus', path: 'pricing/plus', desc: 'A$4.99/mo with templates, reminders & video' },
   { label: 'Compare plans', path: 'pricing/compare', desc: 'Feature comparison with 7-day refund guarantee' },
-  { label: 'Partner offers', path: 'pricing/partners', desc: 'Vetted student mobile, internet & furniture deals' }
+  { label: 'Partner offers', path: 'pricing/partners', desc: 'FirstYear Plus-only mobile, internet & furniture deals' }
 ];
 
 const CONTACT_LINKS: SubLinkItem[] = [
