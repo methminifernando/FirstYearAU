@@ -6,6 +6,8 @@ import { GENERAL_FAQS } from '../data/faqData';
 import { SUGGESTED_QUESTIONS, getBotAnswer, BotResponse } from '../data/chatbotKnowledge';
 import { getGuideById } from '../data/guidesData';
 import { getHref } from '../utils/routing';
+import contactAdvisorImg from '../assets/images/contact_advisor_desk_1795004748461.jpg';
+import plusCommunityImg from '../assets/images/pricing_plus_community_1795004748132.jpg';
 
 interface ContactViewProps {
   subPage: 'form' | 'faq' | 'chatbot';
@@ -166,6 +168,15 @@ export const ContactView: React.FC<ContactViewProps> = ({
             </p>
           </div>
 
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={contactAdvisorImg}
+              alt="Friendly Australian settlement support advisor smiling at a bright sunlit desk"
+              referrerPolicy="no-referrer"
+              className="w-full h-52 sm:h-64 object-cover object-top"
+            />
+          </div>
+
           <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs">
             {submitted ? (
               <div className="py-12 text-center space-y-4">
@@ -290,6 +301,15 @@ export const ContactView: React.FC<ContactViewProps> = ({
             </p>
           </div>
 
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white max-w-4xl mx-auto">
+            <img
+              src={plusCommunityImg}
+              alt="International students and newcomers reviewing Australian settlement guides together"
+              referrerPolicy="no-referrer"
+              className="w-full h-48 sm:h-64 object-cover"
+            />
+          </div>
+
           {/* Category Tabs */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 text-xs justify-center">
             {faqCategories.map((cat) => (
@@ -390,6 +410,15 @@ export const ContactView: React.FC<ContactViewProps> = ({
             <p className="text-xs sm:text-sm text-[#1B3A34]/80 max-w-lg mx-auto">
               Use our Australia settlement assistant chat to find direct links on opening a bank account, applying for a TFN online, renting with no history, or state driver licence rules. Confirm details on official sites like ato.gov.au.
             </p>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={contactAdvisorImg}
+              alt="FirstYear AU settlement guidance desk welcoming newcomers in Australia"
+              referrerPolicy="no-referrer"
+              className="w-full h-44 sm:h-56 object-cover object-top"
+            />
           </div>
 
           {/* Chat Container */}

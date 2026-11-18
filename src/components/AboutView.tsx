@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   ShieldCheck, FileText, HeartHandshake, 
-  ArrowRight, Eye, Scale, ChevronRight
+  ArrowRight, Eye, Scale
 } from 'lucide-react';
 import sitemapDiagram from '../assets/sitemap.png';
-import { ABOUT_FAQS } from '../data/pageFaqs';
+import studentsCampusImg from '../assets/images/students_in_australia_1794143904293.jpg';
+import sydneyHarbourImg from '../assets/images/hero_sydney_blue_1794970409970.jpg';
 import { getHref } from '../utils/routing';
 
 interface AboutViewProps {
@@ -17,7 +18,6 @@ export const AboutView: React.FC<AboutViewProps> = ({
   subPage,
   onNavigate
 }) => {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
@@ -72,6 +72,15 @@ export const AboutView: React.FC<AboutViewProps> = ({
             <p className="text-base text-[#1B3A34]/80 leading-relaxed">
               Every year, international students and skilled visa holders arrive across Australia facing the same hurdle: nobody explains which everyday setup tasks come first or how they fit together. We created this new migrant guide Australia to bring all foundational steps into one clear timeline, with reminders to confirm current rules on official sites such as ato.gov.au and homeaffairs.gov.au.
             </p>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={studentsCampusImg}
+              alt="International students and newcomers connecting on a sunny Australian university campus"
+              referrerPolicy="no-referrer"
+              className="w-full h-56 sm:h-80 object-cover"
+            />
           </div>
 
           {/* Narrative Content */}
@@ -157,6 +166,15 @@ export const AboutView: React.FC<AboutViewProps> = ({
             <p className="text-base text-[#1B3A34]/80 leading-relaxed">
               Clear settlement information depends on checking primary government portals. Here is how FirstYear AU researches every guide, marks Last Reviewed dates, and clearly labels partner offers so readers can verify rules independently.
             </p>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={sydneyHarbourImg}
+              alt="Sydney Harbour skyline and coastal Australian landmarks in bright daylight"
+              referrerPolicy="no-referrer"
+              className="w-full h-52 sm:h-72 object-cover"
+            />
           </div>
 
           {/* Pillars Grid */}
@@ -267,43 +285,6 @@ export const AboutView: React.FC<AboutViewProps> = ({
           </div>
         </div>
       )}
-
-      {/* FAQ section kept in HTML DOM */}
-      <section className="space-y-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
-          Frequently Asked Questions About FirstYear AU
-        </h2>
-        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
-          {ABOUT_FAQS.map((faq, index) => {
-            const isOpen = openFaqIndex === index;
-            return (
-              <div key={index} className="py-4 px-5 sm:px-6">
-                <button
-                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronRight
-                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
-                      isOpen ? 'rotate-90' : ''
-                    }`}
-                  />
-                </button>
-                <p
-                  className={
-                    isOpen
-                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
-                      : 'hidden'
-                  }
-                >
-                  {faq.answer}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
     </div>
   );
 };

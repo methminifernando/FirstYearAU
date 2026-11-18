@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { 
   CheckCircle2, Circle, ArrowRight, Download, 
-  Filter, Sparkles, AlertTriangle, Calendar, ChevronRight 
+  Filter, Sparkles, AlertTriangle, Calendar 
 } from 'lucide-react';
 import { PLAN_STAGES, PlanStageInfo } from '../data/planData';
-import { PLAN_FAQS } from '../data/pageFaqs';
 import { getGuideById } from '../data/guidesData';
 import { AustralianState } from '../types';
 import { getHref } from '../utils/routing';
+import arrivalChecklistImg from '../assets/images/plan_arrival_checklist_1795004747130.jpg';
+import simInternetImg from '../assets/images/guide_sim_internet_1795004742804.jpg';
+import rentingHomeImg from '../assets/images/guide_renting_home_1795004744162.jpg';
+import idPaperworkImg from '../assets/images/guide_id_paperwork_1795004746132.jpg';
+import drivingCarImg from '../assets/images/guide_driving_car_1795004746652.jpg';
 
 interface Plan12MonthViewProps {
   currentStageId?: string;
@@ -58,6 +62,33 @@ const STAGE_COPY: Record<
   }
 };
 
+const STAGE_IMAGES: Record<string, { src: string; alt: string }> = {
+  overview: {
+    src: arrivalChecklistImg,
+    alt: 'Traveller arriving in an Australian international airport arrivals terminal with suitcase'
+  },
+  'before-arrival': {
+    src: arrivalChecklistImg,
+    alt: 'Traveller preparing pre-departure documents and luggage at an Australian arrivals terminal'
+  },
+  'week-1': {
+    src: simInternetImg,
+    alt: 'New arrival activating an Australian prepaid SIM card on a smartphone in Week 1'
+  },
+  'month-1': {
+    src: rentingHomeImg,
+    alt: 'Bright sunlit Australian apartment living room prepared for rental move-in'
+  },
+  'months-2-3': {
+    src: idPaperworkImg,
+    alt: 'Passport and document folder at an Australian civic service desk for ID verification'
+  },
+  'months-4-12': {
+    src: drivingCarImg,
+    alt: 'Modern silver car along a sunny Australian coastal road for driver licence and vehicle planning'
+  }
+};
+
 export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
   currentStageId = 'overview',
   onNavigate,
@@ -69,7 +100,6 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
   );
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>({});
   const [selectedState, setSelectedState] = useState<AustralianState>('ALL');
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Hydrate checklist state client-side only so SSR & initial render stay deterministic
   useEffect(() => {
@@ -113,7 +143,8 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
     PLAN_STAGES.find((s) => s.id === activeStage) || PLAN_STAGES[1];
 
   const copy = STAGE_COPY[currentStageId] || STAGE_COPY.overview;
-  const faqs = PLAN_FAQS[currentStageId] || PLAN_FAQS.overview;
+  const stageVisual =
+    STAGE_IMAGES[activeStage] || STAGE_IMAGES[currentStageId] || STAGE_IMAGES.overview;
 
   const statesList: { code: AustralianState; name: string }[] = [
     { code: 'ALL', name: 'All States (National)' },
@@ -263,6 +294,14 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
 
       {/* Active Stage Detailed View */}
       <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 sm:p-8 space-y-8 shadow-xs">
+        <div className="rounded-2xl overflow-hidden border border-[#E0ECE6]">
+          <img
+            src={stageVisual.src}
+            alt={stageVisual.alt}
+            referrerPolicy="no-referrer"
+            className="w-full h-52 sm:h-72 object-cover"
+          />
+        </div>
         <div className="space-y-3 pb-6 border-b border-[#E0ECE6]">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
@@ -426,43 +465,6 @@ export const Plan12MonthView: React.FC<Plan12MonthViewProps> = ({
           </div>
         </div>
       </div>
-
-      {/* Stage FAQ Section (All 3 answers kept in HTML DOM) */}
-      <section className="space-y-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
-          {copy.faqTitle}
-        </h2>
-        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
-          {faqs.map((faq, index) => {
-            const isOpen = openFaqIndex === index;
-            return (
-              <div key={index} className="py-4 px-5 sm:px-6">
-                <button
-                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronRight
-                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
-                      isOpen ? 'rotate-90' : ''
-                    }`}
-                  />
-                </button>
-                <p
-                  className={
-                    isOpen
-                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
-                      : 'hidden'
-                  }
-                >
-                  {faq.answer}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
     </div>
   );
 };

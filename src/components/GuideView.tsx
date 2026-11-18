@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   AlertCircle, ExternalLink, Calendar, 
   ChevronRight, ArrowRight, ShieldCheck, 
@@ -7,6 +7,70 @@ import {
 import { GuideItem } from '../types';
 import { getGuideById } from '../data/guidesData';
 import { getHref } from '../utils/routing';
+import simInternetImg from '../assets/images/guide_sim_internet_1795004742804.jpg';
+import bankingImg from '../assets/images/guide_banking_1795004744288.jpg';
+import taxSuperImg from '../assets/images/guide_tax_super_1795004743348.jpg';
+import rentingHomeImg from '../assets/images/guide_renting_home_1795004744162.jpg';
+import furnitureImg from '../assets/images/guide_furniture_1795004744660.jpg';
+import publicTransportImg from '../assets/images/guide_public_transport_1795004745181.jpg';
+import drivingCarImg from '../assets/images/guide_driving_car_1795004746652.jpg';
+import idPaperworkImg from '../assets/images/guide_id_paperwork_1795004746132.jpg';
+import studentsImg from '../assets/images/students_in_australia_1794143904293.jpg';
+
+const GUIDE_IMAGES: Record<string, { src: string; alt: string }> = {
+  'sim-internet': {
+    src: simInternetImg,
+    alt: 'International student setting up an Australian prepaid SIM card on a smartphone at a city cafe'
+  },
+  'bank-account': {
+    src: bankingImg,
+    alt: 'Passport, contactless debit card, and laptop prepared for opening an Australian bank account'
+  },
+  'tax-file-number': {
+    src: taxSuperImg,
+    alt: 'Laptop and planning notebook on a sunlit wooden desk for applying for an Australian Tax File Number'
+  },
+  superannuation: {
+    src: taxSuperImg,
+    alt: 'Home desk with laptop and financial planner for managing superannuation in Australia'
+  },
+  'renting-inspections': {
+    src: rentingHomeImg,
+    alt: 'Bright sunlit Australian apartment living room with house keys on the table'
+  },
+  'bond-condition-report': {
+    src: rentingHomeImg,
+    alt: 'Modern Australian rental apartment living area prepared for entry condition inspection'
+  },
+  furniture: {
+    src: furnitureImg,
+    alt: 'Cozy furnished Australian student apartment with timber study desk, sofa, and indoor plants'
+  },
+  'public-transport': {
+    src: publicTransportImg,
+    alt: 'Modern Australian commuter train and metro platform with passengers boarding in daylight'
+  },
+  'driver-licence': {
+    src: drivingCarImg,
+    alt: 'Modern car along a sunny Australian coastal road illustrating state driving rules'
+  },
+  'buying-a-car': {
+    src: drivingCarImg,
+    alt: 'Silver hatchback car beside an Australian road illustrating safe vehicle purchase checks'
+  },
+  'proof-of-age': {
+    src: idPaperworkImg,
+    alt: 'Australian civic service counter with passport and document folder for photo ID application'
+  },
+  'police-check': {
+    src: idPaperworkImg,
+    alt: 'Official document folder and passport ready at a civic desk for police check verification'
+  },
+  'working-with-children': {
+    src: studentsImg,
+    alt: 'International students and young professionals preparing for campus and community roles in Australia'
+  }
+};
 
 interface GuideViewProps {
   guide: GuideItem;
@@ -21,10 +85,9 @@ export const GuideView: React.FC<GuideViewProps> = ({
   onSelectGuide,
   onOpenTemplatePreview
 }) => {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  const guideVisual = GUIDE_IMAGES[guide.id] || {
+    src: studentsImg,
+    alt: `${guide.title} settlement guide illustration`
   };
 
   const nextPath =
@@ -92,6 +155,16 @@ export const GuideView: React.FC<GuideViewProps> = ({
           </a>
         </div>
       </header>
+
+      {/* Featured Subject Image */}
+      <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+        <img
+          src={guideVisual.src}
+          alt={guideVisual.alt}
+          referrerPolicy="no-referrer"
+          className="w-full h-56 sm:h-80 object-cover"
+        />
+      </div>
 
       {/* 2. Plain Language Question & Direct Answer First (Soft Mint Card) */}
       <section className="bg-white border-2 border-[#2A9D8F]/40 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
@@ -229,45 +302,7 @@ export const GuideView: React.FC<GuideViewProps> = ({
         </section>
       )}
 
-      {/* 6. Short FAQ (All 3 FAQ answers stay present in initial HTML DOM for search & AI crawlers) */}
-      <section className="space-y-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
-          {guide.faqHeading}
-        </h2>
-
-        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
-          {guide.faqs.map((faq, index) => {
-            const isOpen = openFaqIndex === index;
-            return (
-              <div key={index} className="py-4 px-5 sm:px-6">
-                <button
-                  onClick={() => toggleFaq(index)}
-                  aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronRight
-                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
-                      isOpen ? 'rotate-90' : ''
-                    }`}
-                  />
-                </button>
-                <p
-                  className={
-                    isOpen
-                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
-                      : 'hidden'
-                  }
-                >
-                  {faq.answer}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 7. Related Guides & Internal Plan Links */}
+      {/* 6. Related Guides & Internal Plan Links */}
       <section className="bg-white border border-[#E0ECE6] rounded-3xl p-6 space-y-4 shadow-xs">
         <div className="flex items-center gap-2 text-[#1B4D3E]">
           <Link2 className="w-5 h-5 text-[#2A9D8F]" />

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { 
   Check, X, ShieldCheck, Download, ArrowRight, 
-  ExternalLink, Calendar, Bell, FileText, Video, CheckCircle2, ChevronRight 
+  ExternalLink, Calendar, Bell, FileText, Video, CheckCircle2 
 } from 'lucide-react';
 import { PLAN_COMPARISON, PARTNER_OFFERS } from '../data/pricingData';
 import { PLAN_STAGES } from '../data/planData';
-import { PRICING_FAQS } from '../data/pageFaqs';
 import { getGuideById } from '../data/guidesData';
 import { getHref } from '../utils/routing';
+import arrivalChecklistImg from '../assets/images/plan_arrival_checklist_1795004747130.jpg';
+import plusCommunityImg from '../assets/images/pricing_plus_community_1795004748132.jpg';
+import taxSuperImg from '../assets/images/guide_tax_super_1795004743348.jpg';
+import simInternetImg from '../assets/images/guide_sim_internet_1795004742804.jpg';
 
 interface MembershipPricingViewProps {
   subPage: 'free' | 'plus' | 'compare' | 'partners';
@@ -23,7 +26,6 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
   onOpenSubscribeModal
 }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Printable checklist handler
   const handlePrintChecklist = () => {
@@ -136,6 +138,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
                 Explore Interactive 12-Month Plan
               </a>
             </div>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white no-print">
+            <img
+              src={arrivalChecklistImg}
+              alt="Newcomer arriving in an Australian international terminal ready to start the free arrival checklist"
+              referrerPolicy="no-referrer"
+              className="w-full h-52 sm:h-72 object-cover"
+            />
           </div>
 
           {/* Printable Checklist Section */}
@@ -285,6 +296,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             </div>
           </div>
 
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={plusCommunityImg}
+              alt="International newcomers collaborating with laptops and settlement planners in a sunlit Australian space"
+              referrerPolicy="no-referrer"
+              className="w-full h-56 sm:h-80 object-cover"
+            />
+          </div>
+
           <div className="text-center">
             <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
               What is included in FirstYear Plus for new migrants?
@@ -423,6 +443,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             </p>
           </div>
 
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={taxSuperImg}
+              alt="Organized Australian study desk with laptop and planner comparing free checklist and FirstYear Plus features"
+              referrerPolicy="no-referrer"
+              className="w-full h-52 sm:h-72 object-cover"
+            />
+          </div>
+
           <h2 className="text-xl font-bold text-[#1B4D3E] text-center font-display">
             How do the Free Plan and FirstYear Plus compare?
           </h2>
@@ -532,6 +561,15 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
             </p>
           </div>
 
+          <div className="rounded-3xl overflow-hidden border border-[#E0ECE6] shadow-sm bg-white">
+            <img
+              src={simInternetImg}
+              alt="New arrival testing mobile SIM and everyday digital services at a sunny Australian city cafe"
+              referrerPolicy="no-referrer"
+              className="w-full h-52 sm:h-72 object-cover"
+            />
+          </div>
+
           {/* Partner Disclosure Notice */}
           <div className="bg-[#FFF8F0] border border-amber-200 p-5 rounded-2xl text-xs sm:text-sm text-amber-950 flex items-start gap-3">
             <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
@@ -613,43 +651,6 @@ export const MembershipPricingView: React.FC<MembershipPricingViewProps> = ({
           </div>
         </div>
       )}
-
-      {/* FAQ Section for Membership & Pricing (All 3 answers kept in HTML DOM) */}
-      <section className="space-y-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-[#1B4D3E] font-display">
-          Frequently Asked Questions About FirstYear AU Plans &amp; Rental Templates
-        </h2>
-        <div className="divide-y divide-[#E0ECE6] border border-[#E0ECE6] bg-white rounded-3xl shadow-xs overflow-hidden">
-          {PRICING_FAQS.map((faq, index) => {
-            const isOpen = openFaqIndex === index;
-            return (
-              <div key={index} className="py-4 px-5 sm:px-6">
-                <button
-                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between text-left font-bold text-[#1B4D3E] hover:text-[#2A9D8F] transition-colors cursor-pointer text-sm sm:text-base"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronRight
-                    className={`w-4 h-4 transition-transform text-[#2A9D8F] shrink-0 ml-2 ${
-                      isOpen ? 'rotate-90' : ''
-                    }`}
-                  />
-                </button>
-                <p
-                  className={
-                    isOpen
-                      ? 'mt-2.5 text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed pr-6'
-                      : 'hidden'
-                  }
-                >
-                  {faq.answer}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
     </div>
   );
 };
