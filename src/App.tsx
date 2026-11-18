@@ -11,6 +11,8 @@ import { ContactView } from './components/ContactView';
 import { RentalTemplateModal } from './components/RentalTemplateModal';
 import { SubscribeModal } from './components/SubscribeModal';
 import { AussieGlossaryModal } from './components/AussieGlossaryModal';
+import { BookConsultModal } from './components/BookConsultModal';
+import { SearchModal } from './components/SearchModal';
 import { getGuideById } from './data/guidesData';
 import { getSeoRouteByPath } from './data/seoRoutes';
 import {
@@ -38,6 +40,8 @@ export default function App({ initialPath }: AppProps) {
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
   const [isGlossaryModalOpen, setIsGlossaryModalOpen] = useState(false);
+  const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   // Sync state with browser Back/Forward navigation and legacy hashes
   useEffect(() => {
@@ -211,6 +215,8 @@ export default function App({ initialPath }: AppProps) {
         currentPath={currentPath}
         onNavigate={navigateTo}
         onOpenGlossary={() => setIsGlossaryModalOpen(true)}
+        onOpenConsultModal={() => setIsConsultModalOpen(true)}
+        onOpenSearchModal={() => setIsSearchModalOpen(true)}
       />
 
       {/* Breadcrumbs (rendered on every subpage) */}
@@ -343,6 +349,17 @@ export default function App({ initialPath }: AppProps) {
             navigateTo(`${targetGuide.categorySlug}/${targetGuide.slug}`);
           }
         }}
+      />
+      <BookConsultModal
+        isOpen={isConsultModalOpen}
+        onClose={() => setIsConsultModalOpen(false)}
+        onNavigate={navigateTo}
+      />
+
+      <SearchModal
+        isOpen={isSearchModalOpen}
+        onClose={() => setIsSearchModalOpen(false)}
+        onNavigate={navigateTo}
       />
     </div>
   );

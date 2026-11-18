@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  ArrowRight, CheckCircle2, Star, 
+  ArrowRight, Star, 
   Smartphone, Home, Car, Shield, ChevronRight
 } from 'lucide-react';
 import heroBgImage from '../assets/images/hero_sydney_blue_1794970409970.jpg';
@@ -117,10 +117,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
               Your New Migrant Guide to Australia
             </h1>
 
-            {/* Concise 2-line intro paragraph on desktop with bolded key phrase */}
-            <p className="text-lg sm:text-xl lg:text-[1.25rem] xl:text-[1.35rem] font-medium text-white/95 leading-snug sm:leading-relaxed max-w-5xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              New country, new rules, endless to-do lists. FirstYear AU turns your move into a simple{' '}
-              <strong className="font-bold text-white">week-by-week checklist</strong>, from your SIM card and tax file number to your first rental.
+            {/* Welcome intro paragraph (<= 2 lines on desktop) with bold key phrase and subtle shadow */}
+            <p className="text-base sm:text-lg lg:text-[17px] font-medium text-white/95 leading-relaxed max-w-[685px] drop-shadow-[0_1px_6px_rgba(0,0,0,0.65)]">
+              Welcome to Australia! FirstYear AU is{' '}
+              <strong className="font-bold text-white">your friendly guide to settling in</strong>, with step-by-step help for everything you need in your first year. Pick your stage and see what to do next.
             </p>
 
             {/* Primary Action Buttons */}
@@ -138,22 +138,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
               >
                 Download free checklist
               </NavLink>
-            </div>
-
-            {/* Subtle Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-emerald-100 pt-1">
-              <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
-                <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
-                Free guides to start
-              </span>
-              <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
-                <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
-                Official ATO, Home Affairs &amp; Govt Sources
-              </span>
-              <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
-                <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
-                Regularly Reviewed General Information
-              </span>
             </div>
           </div>
         </div>

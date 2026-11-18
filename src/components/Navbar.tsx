@@ -5,7 +5,12 @@ import {
   ChevronDown,
   Compass,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Phone,
+  Mail,
+  MessageCircle,
+  Calendar,
+  Search
 } from 'lucide-react';
 import { getHref } from '../utils/routing';
 
@@ -96,9 +101,16 @@ interface NavbarProps {
   currentPath: string;
   onNavigate: (path: string) => void;
   onOpenGlossary?: () => void;
+  onOpenConsultModal?: () => void;
+  onOpenSearchModal?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  currentPath,
+  onNavigate,
+  onOpenConsultModal,
+  onOpenSearchModal
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
@@ -167,6 +179,37 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <>
+      {/* TOP CONTACT UTILITY BAR */}
+      <div className="bg-[#1B4D3E] text-white border-b border-[#2A9D8F]/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1.5 text-xs sm:text-[13px] font-medium">
+            <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-7 gap-y-1">
+              <a
+                href="tel:+61280004120"
+                className="inline-flex items-center gap-1.5 text-white/95 hover:text-[#E9C46A] transition-colors whitespace-nowrap"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#E9C46A] shrink-0" />
+                <span>+61 2 8000 4120</span>
+              </a>
+              <a
+                href="mailto:hello@firstyearau.com.au"
+                className="inline-flex items-center gap-1.5 text-white/95 hover:text-[#E9C46A] transition-colors whitespace-nowrap"
+              >
+                <Mail className="w-3.5 h-3.5 text-[#E9C46A] shrink-0" />
+                <span>hello@firstyearau.com.au</span>
+              </a>
+              <a
+                href="tel:+61400123456"
+                className="inline-flex items-center gap-1.5 text-white/95 hover:text-[#E9C46A] transition-colors whitespace-nowrap"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-[#E9C46A] shrink-0" />
+                <span>+61 400 123 456</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <header
         className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#E0ECE6] shadow-xs select-none"
         ref={navRef}
@@ -199,7 +242,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
           {/* Desktop & Laptop Horizontal Navigation Menu: Home, About, Guides, Pricing, Contact */}
           <nav
-            className="hidden lg:flex items-center justify-center gap-1 xl:gap-2"
+            className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-1.5"
             aria-label="Primary Navigation"
           >
             {/* 1. Home */}
@@ -211,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   handleNavClick('home');
                 }
               }}
-              className={`px-3.5 py-2 text-sm font-bold rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
+              className={`px-2.5 xl:px-3.5 py-2 text-[13px] xl:text-sm font-bold rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
                 isHomeActive
                   ? 'text-[#1B4D3E] bg-[#E2F4EE]'
                   : 'text-[#1B4D3E] hover:text-[#2A9D8F] hover:bg-[#F0F7F3]'
@@ -456,8 +499,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             </div>
           </nav>
 
-          {/* Desktop/Laptop Action CTA Button (Far Right) */}
-          <div className="hidden lg:flex items-center shrink-0">
+          {/* Desktop/Laptop Right Action Buttons: Start my plan + Search icon + Book a consult */}
+          <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0 relative">
             <a
               href={getHref('plan/overview')}
               onClick={(e) => {
@@ -466,15 +509,131 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   handleNavClick('plan/overview');
                 }
               }}
-              className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold text-sm px-5 xl:px-6 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 whitespace-nowrap"
+              className="border border-[#2A9D8F]/35 bg-[#F6FAF7] hover:bg-[#E2F4EE] text-[#1B4D3E] font-bold text-xs xl:text-sm px-3.5 xl:px-4 py-2.5 rounded-full transition-colors cursor-pointer whitespace-nowrap"
             >
-              <span>Start my plan</span>
-              <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
+              Start my plan
             </a>
+
+            <button
+              type="button"
+              onClick={() => {
+                setActiveDropdown(null);
+                onOpenSearchModal?.();
+              }}
+              className="p-2 text-[#1B3A34] hover:text-[#2A9D8F] hover:bg-[#F0F7F3] rounded-full transition-colors cursor-pointer"
+              aria-label="Search guides and checklists"
+              title="Search guides"
+            >
+              <Search className="w-5 h-5 stroke-[2.25]" />
+            </button>
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => toggleDropdown('consult')}
+                className="bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-xs xl:text-sm px-4 xl:px-5 py-2.5 rounded-full shadow-sm hover:shadow transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 whitespace-nowrap"
+                aria-expanded={activeDropdown === 'consult'}
+              >
+                <span>Book a consult</span>
+                <ChevronDown
+                  className={`w-4 h-4 text-[#1B3A34] transition-transform ${
+                    activeDropdown === 'consult' ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {activeDropdown === 'consult' && (
+                <div className="absolute right-0 top-full mt-2 w-72 bg-white text-[#1B3A34] rounded-2xl shadow-xl border border-[#D5E4DC] py-2 z-50">
+                  <div className="px-4 py-2 border-b border-[#E8F0EC] bg-[#F6FAF7] rounded-t-xl">
+                    <span className="text-[11px] font-bold text-[#1B4D3E] tracking-wider uppercase">
+                      Speak With FirstYear AU
+                    </span>
+                  </div>
+                  <div className="py-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveDropdown(null);
+                        onOpenConsultModal?.();
+                      }}
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-[#EAF5F1] transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <Calendar className="w-4 h-4 text-[#2A9D8F] shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-bold text-[#1B4D3E] group-hover:text-[#2A9D8F] block">
+                          Book a 1-on-1 Consult
+                        </span>
+                        <span className="text-[11px] text-slate-500 block">
+                          20-min call on arrival setup, banking or renting
+                        </span>
+                      </div>
+                    </button>
+
+                    <a
+                      href={getHref('contact/chatbot')}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                          e.preventDefault();
+                          handleNavClick('contact/chatbot');
+                        }
+                      }}
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-[#EAF5F1] transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#2A9D8F] shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold text-[#1B3A34] group-hover:text-[#2A9D8F] block">
+                          24/7 Settlement Chat-Bot
+                        </span>
+                        <span className="text-[11px] text-slate-500 block">
+                          Instant answers on guides and deadlines
+                        </span>
+                      </div>
+                    </a>
+
+                    <a
+                      href={getHref('contact/form')}
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                          e.preventDefault();
+                          handleNavClick('contact/form');
+                        }
+                      }}
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-[#EAF5F1] transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <Mail className="w-4 h-4 text-[#2A9D8F] shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-semibold text-[#1B3A34] group-hover:text-[#2A9D8F] block">
+                          Send a Written Inquiry
+                        </span>
+                        <span className="text-[11px] text-slate-500 block">
+                          Message hello@firstyearau.com.au online
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Mobile & Tablet Hamburger Menu Button */}
-          <div className="flex lg:hidden items-center shrink-0">
+          {/* Mobile & Tablet Actions: Search icon + Book a consult (tablet) + Hamburger Icon */}
+          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => onOpenSearchModal?.()}
+              className="p-2 text-[#1B3A34] hover:text-[#2A9D8F] hover:bg-[#F0F7F3] rounded-full transition-colors cursor-pointer"
+              aria-label="Search guides and checklists"
+            >
+              <Search className="w-5 h-5 stroke-[2.25]" />
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenConsultModal?.()}
+              className="hidden sm:inline-flex items-center gap-1 bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold text-xs px-4 py-2 rounded-full shadow-xs cursor-pointer whitespace-nowrap"
+            >
+              <span>Book a consult</span>
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -832,6 +991,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
             {/* Drawer Bottom CTA */}
             <div className="p-5 border-t border-[#E0ECE6] bg-[#F6FAF7] space-y-2.5 shrink-0">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenConsultModal?.();
+                }}
+                className="w-full bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-extrabold py-3 rounded-full text-center text-sm shadow-sm cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <Calendar className="w-4 h-4 text-[#1B3A34]" />
+                <span>Book a consult</span>
+              </button>
               <a
                 href={getHref('plan/overview')}
                 onClick={(e) => {
@@ -840,10 +1010,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     handleNavClick('plan/overview');
                   }
                 }}
-                className="w-full bg-[#F4A261] hover:bg-[#e7924e] text-[#1B3A34] font-bold py-3 rounded-full text-center text-sm shadow-sm cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full bg-[#1B4D3E] hover:bg-[#163e32] text-white font-bold py-3 rounded-full text-center text-sm shadow-sm cursor-pointer flex items-center justify-center gap-1.5"
               >
                 <span>Start my plan</span>
-                <ArrowRight className="w-4 h-4 text-[#1B3A34]" />
+                <ArrowRight className="w-4 h-4 text-white" />
               </a>
               <a
                 href={getHref('pricing/free')}
