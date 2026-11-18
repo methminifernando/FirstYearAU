@@ -3,7 +3,7 @@ import {
   ArrowRight, CheckCircle2, Star, 
   Smartphone, Home, Car, Shield, ChevronRight
 } from 'lucide-react';
-import heroBgImage from '../assets/images/australia_hero_bg_1794143866124.jpg';
+import heroBgImage from '../assets/images/hero_sydney_blue_1794970409970.jpg';
 import { getHref } from '../utils/routing';
 
 interface HomeViewProps {
@@ -96,28 +96,29 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   return (
     <div className="space-y-16 sm:space-y-20 bg-[#FBFDFB]">
-      {/* 1. HERO SECTION: Australian panoramic scenic background, vibrant sky & compact above-the-fold layout */}
+      {/* 1. HERO SECTION: Edited sunny blue-sky Sydney Harbour panoramic background with original overlay & full-width text layout */}
       <section className="relative overflow-hidden min-h-[440px] lg:min-h-[480px] flex items-center border-b border-[#E0ECE6] bg-[#0E1E1A]">
-        {/* Australian Panoramic Scenic Background Image with vibrant sky filter and keyword-rich alt text */}
+        {/* Local Blue-Sky Sydney Harbour Hero Image (no CSS colour filters) */}
         <img
           src={heroBgImage}
-          alt="Sydney Harbour and city skyline panoramic view for our new migrant guide Australia"
-          className="absolute inset-0 w-full h-full object-cover object-center sm:object-top [filter:brightness(1.12)_saturate(1.35)_contrast(1.05)]"
+          alt="Sydney Harbour, Opera House and city skyline on a sunny day with blue sky"
+          referrerPolicy="no-referrer"
+          className="absolute inset-0 w-full h-full object-cover object-center sm:object-top"
         />
 
-        {/* Soft dark gradient only on the left side behind text so harbour & sky on the right stay bright and colourful */}
+        {/* Original atmospheric overlay: lets the bright blue sky photo shine through while keeping white text crisp */}
         <div
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_45%,rgba(0,0,0,0)_75%)]"
+          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15 sm:from-[#0D1F18]/75 sm:via-[#0D1F18]/35 sm:to-transparent"
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-14 relative z-10 w-full">
           <div className="max-w-5xl space-y-4">
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-extrabold text-white font-display leading-tight lg:whitespace-nowrap drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-extrabold text-white font-display leading-tight lg:whitespace-nowrap drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
               Your New Migrant Guide to Australia
             </h1>
 
             {/* Concise 2-line intro paragraph on desktop with bolded key phrase */}
-            <p className="text-lg sm:text-xl lg:text-[1.25rem] xl:text-[1.35rem] font-medium text-white/95 leading-snug sm:leading-relaxed max-w-5xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+            <p className="text-lg sm:text-xl lg:text-[1.25rem] xl:text-[1.35rem] font-medium text-white/95 leading-snug sm:leading-relaxed max-w-5xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
               New country, new rules, endless to-do lists. FirstYear AU turns your move into a simple{' '}
               <strong className="font-bold text-white">week-by-week checklist</strong>, from your SIM card and tax file number to your first rental.
             </p>
@@ -143,7 +144,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-emerald-100 pt-1">
               <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                 <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
-                100% Free Public Guides
+                Free guides to start
               </span>
               <span className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                 <CheckCircle2 className="w-4 h-4 text-[#E9C46A]" />
