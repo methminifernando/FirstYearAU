@@ -13,6 +13,7 @@ import { SubscribeModal } from './components/SubscribeModal';
 import { AussieGlossaryModal } from './components/AussieGlossaryModal';
 import { BookConsultModal } from './components/BookConsultModal';
 import { SearchModal } from './components/SearchModal';
+import { FloatingChatWidget } from './components/FloatingChatWidget';
 import { getGuideById } from './data/guidesData';
 import { getSeoRouteByPath } from './data/seoRoutes';
 import {
@@ -360,6 +361,18 @@ export default function App({ initialPath }: AppProps) {
         isOpen={isSearchModalOpen}
         onClose={() => setIsSearchModalOpen(false)}
         onNavigate={navigateTo}
+      />
+
+      {/* Global Bottom-Right Floating Chat Assistant */}
+      <FloatingChatWidget
+        currentPath={currentPath}
+        onNavigate={navigateTo}
+        onSelectGuide={(slug) => {
+          const targetGuide = getGuideById(slug);
+          if (targetGuide) {
+            navigateTo(`${targetGuide.categorySlug}/${targetGuide.slug}`);
+          }
+        }}
       />
     </div>
   );
