@@ -1,9 +1,8 @@
 import React from 'react';
 import { 
   ShieldCheck, FileText, HeartHandshake, 
-  ArrowRight, Eye, Scale
+  ArrowRight, Scale
 } from 'lucide-react';
-import sitemapDiagram from '../assets/sitemap.png';
 import studentsCampusImg from '../assets/images/students_in_australia_1794143904293.jpg';
 import editorialTeamImg from '../assets/images/about_editorial_team_1795006583992.jpg';
 import { getHref } from '../utils/routing';
@@ -230,32 +229,6 @@ export const AboutView: React.FC<AboutViewProps> = ({
                 </a>{' '}
                 carries a clear affiliate disclosure label so you always know how FirstYear AU is funded.
               </p>
-            </div>
-          </div>
-
-          {/* Website Structure Diagram */}
-          <div className="bg-white rounded-3xl border border-[#E0ECE6] p-6 sm:p-8 space-y-4 shadow-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E0ECE6]">
-              <div className="flex items-center gap-2">
-                <Eye className="w-5 h-5 text-[#2A9D8F]" />
-                <h2 className="font-bold text-[#1B4D3E] text-base">
-                  FirstYear AU Sitemap &amp; New Migrant Guide Hierarchy
-                </h2>
-              </div>
-              <span className="text-xs text-[#2A9D8F] font-bold">
-                Verified Site Blueprint
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#1B3A34]/80 leading-relaxed">
-              Below is the structural sitemap for the FirstYear AU platform, connecting each stage of our moving to Australia checklist to its detailed guides:
-            </p>
-            <div className="border border-[#E0ECE6] rounded-2xl overflow-hidden bg-[#F6FAF7] p-2 sm:p-4 flex items-center justify-center">
-              <img
-                src={sitemapDiagram}
-                alt="FirstYear AU new migrant guide Australia settlement website structure and 12-month checklist diagram"
-                className="max-w-full h-auto rounded-xl shadow-xs"
-                loading="lazy"
-              />
             </div>
           </div>
 

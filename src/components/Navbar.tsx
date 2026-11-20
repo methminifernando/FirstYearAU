@@ -556,15 +556,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                         setActiveDropdown(null);
                         onOpenConsultModal?.();
                       }}
-                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-[#EAF5F1] transition-colors flex items-start gap-2.5 group cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-[#EAF5F1] transition-colors flex items-center gap-2.5 group cursor-pointer"
                     >
-                      <Calendar className="w-4 h-4 text-[#2A9D8F] shrink-0 mt-0.5" />
+                      <Calendar className="w-4 h-4 text-[#2A9D8F] shrink-0" />
                       <div>
                         <span className="font-bold text-[#1B4D3E] group-hover:text-[#2A9D8F] block">
                           Book a 1-on-1 Consult
-                        </span>
-                        <span className="text-[11px] text-slate-500 block">
-                          20-min call on arrival setup, banking or renting
                         </span>
                       </div>
                     </button>

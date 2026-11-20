@@ -667,10 +667,10 @@ export const GUIDES: GuideItem[] = [
     title: 'Proof of Age Card Australia: Everyday 18+ Photo ID Guide',
     seoKeyword: 'proof of age card australia',
     intro:
-      'Getting a Proof of Age card in Australia lets you verify your age and identity everywhere without risking your foreign passport on nights out or errands. Whether you need an 18 Plus card in South Australia via Service SA or a Photo Card in NSW or Victoria, this guide shows you the documents and steps required. Always confirm current fees and eligibility on official state portals such as sa.gov.au, service.nsw.gov.au, or vicroads.vic.gov.au.',
-    question: 'How do I apply for an 18 Plus card in South Australia or another Australian state?',
+      'Getting a Proof of Age card in Australia lets you verify your age and identity everywhere without risking your foreign passport on nights out or errands. Every Australian state and territory issues an official 18+ Photo Card through its local transport or service centre, and this guide walks through the documents and steps required nationwide. Always confirm current fees and eligibility on your official state or territory portal.',
+    question: 'How do I apply for an 18+ Proof of Age or Photo Card in Australia?',
     directAnswer:
-      'An Australian Proof of Age card (often called an 18+ card or state Photo Card) is an official government photo ID for adults aged 18 and over who do not hold an Australian driver licence. Applying at your state transport or service centre (such as Service SA, Service NSW, or VicRoads) requires your foreign passport, visa details, and proof of local Australian address.',
+      'An Australian Proof of Age card (often called an 18+ card or state Photo Card) is an official government photo ID issued across all Australian states and territories for adults aged 18 and over who do not hold an Australian driver licence. Applying at your local state or territory service centre (such as Service NSW, VicRoads, TMR Queensland, WA Department of Transport, Service SA, Service Tasmania, Access Canberra, or MVR NT) requires your foreign passport, visa details, and proof of local Australian address.',
     appliesTo:
       'International students and new migrants aged 18+ who do not yet hold an Australian state driver licence.',
     stepsHeading: 'How do new arrivals get a Proof of Age card in Australia?',
